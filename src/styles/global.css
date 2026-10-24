@@ -1027,3 +1027,30 @@ html, body { overflow-x: clip; }
   .hero.is-in .hero-media img { transition: transform 2.8s cubic-bezier(.2,.7,.1,1) .2s; }
 }
 @media (prefers-reduced-motion: reduce) { .hero.pre .hero-media { clip-path: none !important; } }
+
+/* ================= menu do celular v2: menor, numerado, com contato embaixo ================= */
+.drawer { padding: calc(var(--header-h) + 20px) var(--gutter) 28px; }
+.drawer-k { font: 500 .68rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.drawer-nav { display: flex; flex-direction: column; border-top: 1px solid var(--line-dark); }
+.drawer .drawer-nav a { display: flex; align-items: center; gap: 16px; font: 400 1.55rem/1.2 var(--serif); padding: 15px 0; border-bottom: 1px solid var(--line-dark); text-decoration: none; color: var(--on-dark); }
+.drawer .drawer-nav a span { font: 500 .66rem/1 var(--sans); letter-spacing: .14em; color: var(--gold); width: 20px; }
+.drawer .drawer-nav a svg { margin-left: auto; width: 14px; height: 14px; opacity: .45; }
+.drawer .drawer-nav a[aria-current="page"] { font-style: italic; color: var(--gold); }
+.drawer-foot { margin-top: auto; padding-top: 28px; }
+.drawer-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.drawer-btns .btn { justify-content: center; margin: 0; }
+.drawer-foot p { margin-top: 18px; font-size: .78rem; line-height: 1.7; color: var(--on-dark-2); }
+.drawer .drawer-nav a, .drawer-k, .drawer-foot { opacity: 0; transform: translateY(14px); }
+.menu-open .drawer .drawer-nav a, .menu-open .drawer-k, .menu-open .drawer-foot { opacity: 1; transform: none; transition: opacity .5s var(--ease), transform .6s var(--ease); }
+.menu-open .drawer .drawer-nav a { transition-delay: calc(.18s + var(--i) * .05s); }
+.menu-open .drawer-foot { transition-delay: .5s; }
+@media (prefers-reduced-motion: reduce) { .drawer .drawer-nav a, .drawer-k, .drawer-foot { opacity: 1; transform: none; } }
+
+/* sem barra fixa embaixo no celular: só o botão redondo do WhatsApp */
+@media (max-width: 700px) {
+  .float-wa { display: grid; right: 16px; bottom: 16px; width: 50px; height: 50px; }
+  .float-wa::before { display: none; }
+  .footer { padding-bottom: 32px; }
+  .cc { bottom: 12px; }
+  body { padding-bottom: 0 !important; }
+}

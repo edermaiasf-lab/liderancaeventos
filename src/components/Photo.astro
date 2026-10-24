@@ -1,7 +1,9 @@
 ---
 import { dims } from '../data/conteudo';
-interface Props { blur?: boolean; name: string; alt?: string; class?: string; lazy?: boolean; style?: string; parallax?: boolean; priority?: boolean }
-const { blur, name, alt = '', class: cls, lazy = true, style, parallax, priority } = Astro.props;
+interface Props { blur?: boolean; name: string; alt?: string; class?: string; lazy?: boolean; style?: string; parallax?: boolean; priority?: boolean; sizes?: string }
+const { blur, name, alt = '', class: cls, lazy = true, style, parallax, priority, sizes = '(max-width: 700px) 100vw, 50vw' } = Astro.props;
 const [w, h] = dims(name);
+// versão leve (800px) para celular e miniaturas; a grande fica para telas largas e para a ampliação
+const srcset = blur ? undefined : `/img/sm/${name}.webp 800w, /img/${name}.webp ${w}w`;
 ---
-<img src={blur ? `/img/blur/${name}.webp` : `/img/${name}.webp`} width={w} height={h} alt={alt} class={cls} style={style} loading={lazy && !priority ? 'lazy' : undefined} decoding="async" fetchpriority={priority ? 'high' : undefined} data-parallax={parallax ? '' : undefined} />
+<img src={blur ? `/img/blur/${name}.webp` : `/img/${name}.webp`} srcset={srcset} sizes={srcset ? sizes : undefined} width={w} height={h} alt={alt} class={cls} style={style} loading={lazy && !priority ? 'lazy' : undefined} decoding="async" fetchpriority={priority ? 'high' : undefined} data-parallax={parallax ? '' : undefined} />

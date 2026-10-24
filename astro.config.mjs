@@ -5,5 +5,5 @@ export default defineConfig({
   // TROCAR pelo domínio real quando for definido
   site: 'https://www.liderancaeventos.com.br',
   integrations: [sitemap()],
-  prefetch: { prefetchAll: true },
+  prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
 });

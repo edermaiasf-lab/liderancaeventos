@@ -12,6 +12,7 @@ const keepOverride = { 'vista-geral': 0.76, 'piscina-led-1': 0.75, 'entrada-noit
 (async () => {
   const d = '../imagens recebidas';
   fs.mkdirSync('public/img/blur', { recursive: true });
+  fs.mkdirSync('public/img/sm', { recursive: true });
   const files = fs.readdirSync(d).filter((f) => f.endsWith('.jpeg')).sort();
   const sizes = {};
   for (const [i, f] of files.entries()) {
@@ -23,6 +24,7 @@ const keepOverride = { 'vista-geral': 0.76, 'piscina-led-1': 0.75, 'entrada-noit
     // reamostra com lanczos e nitidez leve (as originais vieram comprimidas pelo WhatsApp)
     const buf = await crop.resize({ width: Math.round(m.width * 1.5), kernel: 'lanczos3' }).sharpen({ sigma: 0.9, m1: 0.6, m2: 2 }).modulate({ saturation: 1.04 }).webp({ quality: 90, smartSubsample: true, effort: 6 }).toBuffer();
     fs.writeFileSync(`public/img/${name}.webp`, buf);
+    await sharp(d + '/' + f).extract({ left: 0, top: 0, width: m.width, height: h }).resize({ width: 800, kernel: 'lanczos3' }).sharpen({ sigma: 0.6 }).webp({ quality: 80, effort: 6 }).toFile(`public/img/sm/${name}.webp`);
     await sharp(buf).resize(64).blur(1.2).modulate({ saturation: 1.15 }).webp({ quality: 60 }).toFile(`public/img/blur/${name}.webp`);
     sizes[name] = [Math.round(m.width * 1.5), Math.round(h * 1.5)];
   }

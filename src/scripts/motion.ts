@@ -105,7 +105,7 @@ function initHeroIntro() {
   requestAnimationFrame(() => requestAnimationFrame(() => {
     hero.classList.add('is-in');
     items.forEach((el, i) => {
-      (el as HTMLElement).style.transitionDelay = `${180 + i * 140}ms`;
+      (el as HTMLElement).style.transitionDelay = `${60 + i * 90}ms`;
       el.classList.add('in');
     });
   }));
