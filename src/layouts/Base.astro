@@ -54,6 +54,7 @@ const venue = {
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
+  {/* se mudar este script, atualizar o hash sha256 no Content-Security-Policy de public/_headers */}
   <script is:inline>document.documentElement.classList.add('js');</script>
   <ClientRouter />
   <script type="application/ld+json" set:html={JSON.stringify(venue)} />

@@ -30,7 +30,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
     </div>
     <div class="hero-mid">
       <div>
-        <h1><img class="hero-logo" src="/img/marca/completa-ouro.webp" srcset="/img/marca/completa-ouro-560.webp 560w, /img/marca/completa-ouro.webp 840w" sizes="(max-width: 700px) 220px, 280px" width="840" height="840" alt="Liderança Espaço de Eventos" fetchpriority="high" decoding="async" data-fade /></h1>
+        <h1><img class="hero-logo" src="/img/marca/completa-ouro.webp" srcset="/img/marca/completa-ouro-400.webp 400w, /img/marca/completa-ouro-560.webp 560w, /img/marca/completa-ouro.webp 840w" sizes="(max-width: 700px) 220px, 280px" width="840" height="840" alt="Liderança Espaço de Eventos" fetchpriority="high" decoding="async" data-fade /></h1>
         <p class="hero-sub" data-reveal>Piscina com cascata, salão e sinuca em Abadia de Goiás.</p>
       </div>
     </div>
@@ -43,7 +43,6 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
 
   <!-- O ESPAÇO (escuro, foto de fundo) -->
   <section class="sec dark photo" id="espaco">
-    <div class="backdrop" aria-hidden="true"><Photo name="piscina-noite" /></div>
     <div class="wrap intro">
       <div>
         <span class="kicker" data-reveal>O espaço</span>
@@ -90,7 +89,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
   </section>
 
   <!-- FAIXA DE FOTO -->
-  <div class="band" aria-hidden="true"><Photo name="salao-amplo" /><div class="band-cap"><div class="wrap">O salão, aberto para a piscina</div></div></div>
+  <div class="band" aria-hidden="true"><Photo name="salao-amplo" sizes="100vw" /><div class="band-cap"><div class="wrap">O salão, aberto para a piscina</div></div></div>
 
   <!-- A DIÁRIA -->
   <section class="dn" id="dn" data-dn aria-label="A diária, das 09h às 22h">
@@ -104,9 +103,9 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
           <div class="dn-clock"><Dial live /><small>Diária<br />09h — 22h</small></div>
         </div>
         <div class="dn-stage">
-          <Photo name="piscina-dia" alt="Piscina com cascata durante o dia" class="dn-img dn-1" lazy={false} />
-          <Photo name="piscina-cascata" alt="Piscina com cascata ao entardecer" class="dn-img dn-2" />
-          <Photo name="piscina-noite-2" alt="Piscina com cascata iluminada à noite" class="dn-img dn-3" />
+          <Photo sizes="(max-width: 700px) 100vw, 45vw" name="piscina-dia" alt="Piscina com cascata durante o dia" class="dn-img dn-1" />
+          <Photo sizes="(max-width: 700px) 100vw, 45vw" name="piscina-cascata" alt="Piscina com cascata ao entardecer" class="dn-img dn-2" />
+          <Photo sizes="(max-width: 700px) 100vw, 45vw" name="piscina-noite-2" alt="Piscina com cascata iluminada à noite" class="dn-img dn-3" />
           <span class="dn-cap" data-dn-cap>Piscina de dia</span>
         </div>
       </div>
@@ -150,7 +149,6 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
 
   <!-- EVENTOS (escuro, foto de fundo, fica parado até a próxima seção cobrir) -->
   <section class="sec dark photo">
-    <div class="backdrop" aria-hidden="true"><Photo name="piscina-led-1" /></div>
     <div class="wrap">
       <div class="head">
         <div><span class="kicker" data-reveal>Eventos</span><h2 data-split style="margin-top:26px">Para qual festa?</h2></div>
@@ -160,7 +158,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
         {eventos.slice(0, 3).map((e) => (
           <li>
             <a class="ecard" href={`/eventos/${e.slug}/`}>
-              <figure><Photo name={e.img} alt={e.alt} /></figure>
+              <figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure>
               <h3>{e.nome}</h3>
               <p>{e.resumo}</p>
               <span class="tlink">Conhecer <Arrow /></span>
@@ -197,7 +195,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
   </section>
 
   <!-- FAIXA DE FOTO 2 -->
-  <div class="band" aria-hidden="true"><Photo name="piscina-led-1" /><div class="band-cap"><div class="wrap">A piscina, quando as luzes acendem</div></div></div>
+  <div class="band" aria-hidden="true"><Photo name="piscina-led-1" sizes="100vw" /><div class="band-cap"><div class="wrap">A piscina, quando as luzes acendem</div></div></div>
 
   <!-- LOCAÇÃO -->
   <section class="sec sand">

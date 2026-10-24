@@ -24,7 +24,7 @@ const n = (c: string) => galeria.filter((g) => g[1] === c).length;
           const [w, h] = dims(img);
           return (
             <button type="button" data-item data-lb data-cat={cat} data-src={`/img/${img}.webp`} data-alt={alt} aria-label={`Ampliar: ${alt}`}>
-              <img src={`/img/sm/${img}.webp`} width={w} height={h} loading="lazy" decoding="async" alt="" />
+              <img src={`/img/sm/${img}.webp`} srcset={`/img/xs/${img}.webp 480w, /img/sm/${img}.webp 800w`} sizes="(max-width: 700px) 50vw, 33vw" width={w} height={h} loading="lazy" decoding="async" alt="" />
               <span class="go">{cat} — {alt}</span>
             </button>
           );

@@ -51,7 +51,10 @@ function initChrome() {
 
 /* ---------- painéis que ficam fixos e são cobertos pela próxima seção ---------- */
 function measurePins() {
-  $$('[data-pin]').forEach((el) => el.style.setProperty('--pin-offset', `${Math.min(0, innerHeight - el.offsetHeight)}px`));
+  const els = $$('[data-pin]');
+  const vh = innerHeight;
+  const hs = els.map((el) => el.offsetHeight);
+  els.forEach((el, i) => el.style.setProperty('--pin-offset', `${Math.min(0, vh - hs[i])}px`));
 }
 function initPins() {
   ro?.disconnect();

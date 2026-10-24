@@ -12,7 +12,7 @@ import { eventos, waLink } from '../../data/conteudo';
     <div class="wrap">
       <ul class="cols3" data-stagger>
         {eventos.map((e) => (
-          <li><a class="ecard" href={`/eventos/${e.slug}/`}><figure><Photo name={e.img} alt={e.alt} /></figure><h3>{e.nome}</h3><p>{e.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/eventos/${e.slug}/`}><figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{e.nome}</h3><p>{e.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
         ))}
         <li class="ecard-cta">
           <div>

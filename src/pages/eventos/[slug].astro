@@ -66,7 +66,7 @@ const crumbSchema = {
       <div class="head"><div><span class="kicker" data-reveal>Ambientes</span><h2 data-split style="margin-top:26px">Onde acontece.</h2></div></div>
       <ul class="cols3" data-stagger>
         {usa.map((a) => (
-          <li><a class="ecard" href={`/espaco/${a.slug}/`}><figure><Photo name={a.img} alt={a.alt} /></figure><h3>{a.nome}</h3><p>{papeis[a.slug]}</p><span class="tlink">Ver o ambiente <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/espaco/${a.slug}/`}><figure><Photo name={a.img} alt={a.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{a.nome}</h3><p>{papeis[a.slug]}</p><span class="tlink">Ver o ambiente <Arrow /></span></a></li>
         ))}
       </ul>
     </div>
@@ -104,12 +104,11 @@ const crumbSchema = {
 
   <!-- OUTROS EVENTOS -->
   <section class="sec dark photo">
-    <div class="backdrop" aria-hidden="true"><Photo name={e.img} /></div>
     <div class="wrap">
       <div class="head"><div><span class="kicker" data-reveal>Outros eventos</span><h2 data-split style="margin-top:26px">Veja também.</h2></div><a class="tlink" href="/eventos/">Todos os eventos <Arrow /></a></div>
       <ul class="cols3" data-stagger>
         {outros.map((o) => (
-          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
         ))}
       </ul>
     </div>

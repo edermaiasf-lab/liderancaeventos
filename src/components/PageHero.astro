@@ -4,7 +4,7 @@ interface Props { eyebrow?: string; title: string; lead?: string; img: string; a
 const { eyebrow, title, lead, img, alt = '', caption, pos = 'center', crumbs = [] } = Astro.props;
 ---
 <section class="phero" data-hero>
-  <div class="phero-media"><Photo name={img} alt={alt} lazy={false} priority style={`object-position:${pos}`} /></div>
+  <div class="phero-media"><Photo name={img} alt={alt} lazy={false} priority sizes="(max-width: 1000px) 100vw, 60vw" style={`object-position:${pos}`} /></div>
   <div class="phero-shade" aria-hidden="true"></div>
   <div class="wrap phero-in">
     <div class="phero-text">
