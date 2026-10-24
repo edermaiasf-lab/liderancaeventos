@@ -113,8 +113,8 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
     </div>
   </section>
 
-  <!-- MAPA -->
-  <section class="sec tight">
+  <!-- MAPA (no celular a lista de ambientes logo abaixo já cumpre esse papel) -->
+  <section class="sec tight hide-m">
     <div class="wrap">
       <div class="head">
         <div><span class="kicker" data-reveal>Conheça pelo mapa</span><h2 data-split style="margin-top:26px">Onde fica cada ambiente.</h2></div>
@@ -156,7 +156,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
         <div><span class="kicker" data-reveal>Eventos</span><h2 data-split style="margin-top:26px">Para qual festa?</h2></div>
         <a class="tlink" href="/eventos/">Ver todos os eventos <Arrow /></a>
       </div>
-      <ul class="cols3" data-stagger>
+      <ul class="cols3 swipe-m" data-stagger>
         {eventos.slice(0, 3).map((e) => (
           <li>
             <a class="ecard" href={`/eventos/${e.slug}/`}>

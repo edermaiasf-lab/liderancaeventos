@@ -786,7 +786,7 @@ main > [data-pin] { position: sticky; top: var(--pin-offset, 0px); z-index: 0; }
 }
 @media (max-width: 700px) {
   .mosaic-a figure, .mosaic-a figure:nth-child(n) { grid-column: span 6 !important; aspect-ratio: 4 / 5 !important; }
-  .mosaic-a figure:first-child { grid-column: span 12 !important; aspect-ratio: 4 / 3.4 !important; }
+  .mosaic-a figure:first-child:nth-last-child(odd) { grid-column: span 12 !important; aspect-ratio: 4 / 3.4 !important; }
   .mosaic-a figcaption { opacity: 1; transform: none; font-size: .66rem; }
   .chips-spec { grid-template-columns: 1fr; }
   .contact-cards { grid-template-columns: 1fr; }
@@ -1053,4 +1053,61 @@ html, body { overflow-x: clip; }
   .footer { padding-bottom: 32px; }
   .cc { bottom: 12px; }
   body { padding-bottom: 0 !important; }
+}
+
+/* botão flutuante com o símbolo oficial do WhatsApp */
+.float-wa { background: #25d366; color: #fff; border: 0; box-shadow: 0 10px 26px -8px rgba(0,0,0,.45); }
+.float-wa:hover { background: #1ebe5b; }
+.float-wa svg { width: 28px; height: 28px; }
+
+/* ================= celular: ajuste fino geral ================= */
+@media (max-width: 700px) {
+  :root { --sec: 60px; }
+  .sec.tight { padding-top: 40px; }
+  .head { gap: 14px; margin-bottom: 30px; }
+  .lead { margin-top: 18px; }
+
+  /* contato em lista compacta: rótulo + valor à esquerda, seta à direita */
+  .contact-cards { border-left: 0; }
+  .c-card { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; column-gap: 16px; row-gap: 6px; padding: 18px 0; border-right: 0; align-items: center; }
+  .c-card .kicker { grid-column: 1; font-size: .62rem; }
+  .c-card b { grid-column: 1; font-size: 1.25rem; }
+  .c-card small { display: none; }
+  .c-card i { grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 0; font-size: 0; gap: 0; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; justify-content: center; }
+  .c-card i svg { width: 14px; height: 14px; }
+
+  /* estrutura: cartões mais enxutos */
+  .spec-cell { padding: 22px 18px 24px; }
+  .spec-cell h4 { margin: 10px 0 14px; font-size: 1.45rem; }
+  .spec-cell ul { gap: 8px; }
+  .spec-cell li { font-size: .9rem; }
+
+  /* resumo de números */
+  .brief > div { padding: 20px 14px 22px; }
+  .brief b { font-size: 1.9rem; }
+}
+@media (max-width: 700px) {
+  .hide-m { display: none !important; }
+  .swipe-m { display: flex !important; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter) 6px; scrollbar-width: none; }
+  .swipe-m::-webkit-scrollbar { display: none; }
+  .swipe-m > li { flex: 0 0 80%; scroll-snap-align: start; }
+  .car-slide img { aspect-ratio: 1 / 1; }
+  .amb + .amb { margin-top: 48px; }
+}
+@media (max-width: 700px) {
+  .swipe-m { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; scroll-padding-left: var(--gutter); }
+  .swipe-m > li { margin-top: 0 !important; }
+  .mosaic-a figcaption { display: none; }
+}
+@media (max-width: 700px) { .map-tag { left: 8px; top: 8px; width: calc(100% - 16px); max-width: 280px; min-height: 0; padding: 14px 16px; gap: 6px; } .map-tag b { font-size: 1.1rem; } .map-tag span { font-size: .78rem; } .gmap { aspect-ratio: 4 / 4.2; } }
+@media (max-width: 700px) {
+  .mosaic-a { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mosaic-a figure, .mosaic-a figure:nth-child(n) { grid-column: span 1; aspect-ratio: 4 / 5; }
+  /* número ímpar de fotos: a primeira ocupa a largura toda, sem buraco no fim */
+  .mosaic-a figure:first-child:nth-last-child(odd) { grid-column: 1 / -1; aspect-ratio: 16 / 11; }
+}
+@media (max-width: 700px) {
+  .mosaic-a { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  .mosaic-a figure, .mosaic-a figure:nth-child(n) { grid-column: span 1 !important; aspect-ratio: 4 / 5 !important; }
+  .mosaic-a figure:first-child:nth-last-child(odd) { grid-column: 1 / -1 !important; aspect-ratio: 16 / 11 !important; }
 }
