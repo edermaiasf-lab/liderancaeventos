@@ -7,13 +7,16 @@ import Lightbox from '../components/Lightbox.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import { site, waLink } from '../data/conteudo';
 
-interface Props { title: string; description: string; image?: string; schema?: object[] }
-const { title, description, image = 'vista-geral', schema = [] } = Astro.props;
+interface Props { title: string; description: string; image?: string; schema?: object[]; noindex?: boolean }
+const { title, description, image = 'vista-geral', schema = [], noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(`/img/${image}.webp`, Astro.site);
+const ogImage = new URL(`/og/${image}.jpg`, Astro.site);
 
 const venue = {
   '@context': 'https://schema.org', '@type': 'EventVenue', name: site.nome, telephone: '+55 62 99103-5398', url: Astro.site, image: ogImage,
+  logo: new URL('/img/marca/completa-ouro.webp', Astro.site), hasMap: site.mapsRota, sameAs: [site.instagram],
+  description: 'Espaço de eventos com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira em Abadia de Goiás - GO. Até 60 pessoas, diária das 09h às 22h.',
+  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '09:00', closes: '22:00' }],
   maximumAttendeeCapacity: site.capacidade,
   address: { '@type': 'PostalAddress', streetAddress: 'R. Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural', addressLocality: 'Abadia de Goiás', addressRegion: 'GO', postalCode: '75325-204', addressCountry: 'BR' },
   amenityFeature: ['Piscina com cascata e aquecimento solar', 'Churrasqueira', 'Mesa de sinuca', 'Wi-Fi', 'Climatizador de ar'].map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
@@ -26,25 +29,35 @@ const venue = {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#06080c" />
+  <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+  <meta name="theme-color" content="#14130f" />
   <link rel="canonical" href={canonical} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={title} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
   <meta property="og:url" content={canonical} />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content={site.nome} />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="format-detection" content="telephone=no" />
   <meta name="geo.region" content="BR-GO" />
   <meta name="geo.placename" content="Abadia de Goiás, Goiás" />
-  <link rel="icon" type="image/webp" href="/img/logo-emblema.webp" />
-  <link rel="apple-touch-icon" href="/img/logo-lideranca.webp" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <script is:inline>document.documentElement.classList.add('js');</script>
   <ClientRouter />
   <script type="application/ld+json" set:html={JSON.stringify(venue)} />
+  {Astro.url.pathname === '/' && <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: site.nome, url: Astro.site, inLanguage: 'pt-BR' })} />}
   {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 </head>
 <body>

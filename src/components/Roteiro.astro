@@ -4,6 +4,6 @@ const { steps } = Astro.props;
 ---
 <ol class="roteiro" data-stagger>
   {steps.map(([h, t, x]) => (
-    <li><span class="h">{h}</span><div><h4>{t}</h4><p>{x}</p></div></li>
+    <li><span class="h">{h}</span><div><h3 class="h4">{t}</h3><p>{x}</p></div></li>
   ))}
 </ol>

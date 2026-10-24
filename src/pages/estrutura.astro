@@ -14,13 +14,13 @@ import { grupos, rapidas, site } from '../data/conteudo';
         {grupos.map((g, n) => (
           <div class="spec-cell">
             <span class="n">{String(n + 1).padStart(2, '0')}</span>
-            <h4>{g.t}</h4>
+            <h3 class="h4">{g.t}</h3>
             <ul>{g.itens.map((it) => <li>{it}</li>)}</ul>
           </div>
         ))}
         <div class="spec-cell rules">
           <span class="n">06</span>
-          <h4>Regras</h4>
+          <h3 class="h4">Regras</h3>
           <ul><li>Diária das 09h às 22h</li><li>Reserva com 50% de sinal</li><li>Proibido som automotivo</li></ul>
         </div>
       </div>
@@ -44,7 +44,7 @@ import { grupos, rapidas, site } from '../data/conteudo';
       <div>
         <span class="kicker" data-reveal>Respostas rápidas</span>
         <div class="qa" data-stagger style="grid-template-columns:1fr;margin-top:26px">
-          {rapidas.map(([q, a]) => <div style="padding:18px 0 20px"><h4 style="font-size:1.3rem">{q}</h4><p>{a}</p></div>)}
+          {rapidas.map(([q, a]) => <div style="padding:18px 0 20px"><h3 class="h4" style="font-size:1.3rem">{q}</h3><p>{a}</p></div>)}
         </div>
       </div>
     </div>

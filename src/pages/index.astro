@@ -24,13 +24,13 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
   <section class="hero" data-hero data-pin>
     <div class="hero-media" aria-hidden="true">
       <picture>
-        <source media="(max-width: 700px)" srcset="/img/piscina-cascata.webp" />
+        <source media="(max-width: 700px)" srcset="/img/sm/piscina-cascata.webp 800w, /img/piscina-cascata.webp 1281w" sizes="100vw" />
         <img src="/img/vista-geral.webp" srcset="/img/sm/vista-geral.webp 800w, /img/vista-geral.webp 1920w" sizes="100vw" width="1920" height="974" alt="" fetchpriority="high" />
       </picture>
     </div>
     <div class="hero-mid">
       <div>
-        <h1><img class="hero-logo" src="/img/marca/completa-ouro.webp" width="1280" height="1280" alt="Liderança Espaço de Eventos" data-fade /></h1>
+        <h1><img class="hero-logo" src="/img/marca/completa-ouro.webp" srcset="/img/marca/completa-ouro-560.webp 560w, /img/marca/completa-ouro.webp 840w" sizes="(max-width: 700px) 220px, 280px" width="840" height="840" alt="Liderança Espaço de Eventos" fetchpriority="high" decoding="async" data-fade /></h1>
         <p class="hero-sub" data-reveal>Piscina com cascata, salão e sinuca em Abadia de Goiás.</p>
       </div>
     </div>
@@ -75,13 +75,13 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
         {grupos.map((g, n) => (
           <div class="spec-cell">
             <span class="n">{String(n + 1).padStart(2, '0')}</span>
-            <h4>{g.t}</h4>
+            <h3 class="h4">{g.t}</h3>
             <ul>{g.itens.map((it) => <li>{it}</li>)}</ul>
           </div>
         ))}
         <div class="spec-cell rules">
           <span class="n">06</span>
-          <h4>Regras</h4>
+          <h3 class="h4">Regras</h3>
           <ul><li>Diária das 09h às 22h</li><li>Reserva com 50% de sinal</li><li>Proibido som automotivo</li></ul>
         </div>
       </div>
@@ -179,7 +179,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
         <a class="tlink" href="/duvidas/">Ver todas as respostas <Arrow /></a>
       </div>
       <div class="qa" data-stagger>
-        {rapidas.map(([q, a]) => <div><h4>{q}</h4><p>{a}</p></div>)}
+        {rapidas.map(([q, a]) => <div><h3 class="h4">{q}</h3><p>{a}</p></div>)}
       </div>
     </div>
   </section>
@@ -206,7 +206,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
         <p class="lead" data-reveal>Escolha a data e peça o orçamento pelo WhatsApp.</p></div>
       <div class="two">
         <div data-reveal>
-          <h4>Passo a passo</h4>
+          <h3 class="h4">Passo a passo</h3>
           <ul class="rows">
             <li>1. Consulte a data<span>formulário ou WhatsApp</span></li>
             <li>2. Receba o orçamento<span>pelo WhatsApp</span></li>
@@ -215,7 +215,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
           </ul>
         </div>
         <div data-reveal>
-          <h4>Condições</h4>
+          <h3 class="h4">Condições</h3>
           <ul class="rows">
             <li>Diária<span>das 09h às 22h</span></li>
             <li>Capacidade<span>até {site.capacidade} pessoas</span></li>

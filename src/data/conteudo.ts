@@ -2,7 +2,7 @@
 
 export const site = {
   nome: 'Liderança Espaço de Eventos',
-  url: 'https://www.liderancaeventos.com.br', // TROCAR pelo domínio real
+  url: 'https://liderancaeventos.pages.dev', // TROCAR pelo domínio real (e em astro.config.mjs)
   whats: '5562991035398',
   telefone: '(62) 99103-5398',
   telefoneLink: 'tel:+5562991035398',

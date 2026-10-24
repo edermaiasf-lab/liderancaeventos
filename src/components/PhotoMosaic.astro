@@ -6,9 +6,10 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
 <div class={`mosaic-a n${Math.min(items.length, 9)}`} data-stagger>
   {items.map((it, i) => (
-    <figure data-lb data-lb-group={group} data-src={`/img/${it.img}.webp`} data-alt={it.alt} tabindex="0" role="button" aria-label={`Ampliar: ${it.alt}`}>
+    <figure data-lb data-lb-group={group} data-src={`/img/${it.img}.webp`} data-alt={it.alt} >
       <Photo name={it.img} alt="" />
       <figcaption>Foto {pad(i)} — {it.alt}</figcaption>
+      <button type="button" class="lb-hit" aria-label={`Ampliar: ${it.alt}`}></button>
     </figure>
   ))}
 </div>

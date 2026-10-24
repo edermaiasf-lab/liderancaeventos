@@ -1,0 +1,21 @@
+# Cloudflare Pages: cache e cabeçalhos de segurança
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# arquivos com nome versionado: guardar por 1 ano
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# fotos, marca e ícones: 30 dias
+/img/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/og/*
+  Cache-Control: public, max-age=2592000
+/*.png
+  Cache-Control: public, max-age=2592000

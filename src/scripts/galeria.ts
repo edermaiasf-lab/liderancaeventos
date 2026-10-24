@@ -1,7 +1,4 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
 
 /* ---------- lightbox global: qualquer foto com [data-lb] amplia ---------- */
 const st = { list: [] as HTMLElement[], idx: 0, opener: null as HTMLElement | null };
@@ -77,10 +74,12 @@ function bind() {
 }
 
 /* ---------- página Galeria: filtros e entrada em cascata ---------- */
-export function initGaleria() {
+export async function initGaleria() {
   bind();
   const root = document.getElementById('galeria');
   if (!root) return;
+  const [{ gsap }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
+  gsap.registerPlugin(ScrollTrigger);
   const items = [...root.querySelectorAll<HTMLButtonElement>('[data-item]')];
   const filters = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
   const count = document.querySelector<HTMLElement>('[data-gcount]');
