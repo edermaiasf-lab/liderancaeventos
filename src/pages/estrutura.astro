@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Arrow from '../components/Arrow.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { grupos, rapidas, site } from '../data/conteudo';
+---
+<Base title="Estrutura e condições | Liderança Espaço de Eventos" description="Quarto, piscina com cascata e aquecimento solar, 2 TVs, climatizador, sinuca, churrasqueira, fogão industrial, Wi-Fi e câmeras. Até 60 pessoas. Diária das 09h às 22h." image="salao-amplo">
+  <PageHero eyebrow="Estrutura" title="Tudo o que o espaço <em>oferece.</em>" lead="Esta é a lista completa do que você encontra no Liderança. Capacidade para até 60 pessoas, diária das 09h às 22h." img="cascata-salao" alt="Cascata da piscina com o salão ao fundo" caption="Fotografia — cascata e salão." crumbs={[{ label: 'Estrutura' }]} />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="spec-grid" data-stagger>
+        {grupos.map((g, n) => (
+          <div class="spec-cell">
+            <span class="n">{String(n + 1).padStart(2, '0')}</span>
+            <h4>{g.t}</h4>
+            <ul>{g.itens.map((it) => <li>{it}</li>)}</ul>
+          </div>
+        ))}
+        <div class="spec-cell rules">
+          <span class="n">06</span>
+          <h4>Regras</h4>
+          <ul><li>Diária das 09h às 22h</li><li>Reserva com 50% de sinal</li><li>Proibido som automotivo</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sand">
+    <div class="wrap two">
+      <div>
+        <span class="kicker" data-reveal>Condições</span>
+        <h2 data-split style="margin:26px 0 36px">Antes de reservar.</h2>
+        <ul class="rows" data-stagger>
+          <li>Diária<span>das 09h às 22h</span></li>
+          <li>Capacidade<span>até {site.capacidade} pessoas</span></li>
+          <li>Reserva<span>com 50% de sinal</span></li>
+          <li>Datas<span>limitadas, sujeito à disponibilidade</span></li>
+          <li>Som automotivo<span>proibido</span></li>
+        </ul>
+        <p style="margin-top:34px"><a class="btn fill" href="/reservar/">Consultar minha data <Arrow /></a></p>
+      </div>
+      <div>
+        <span class="kicker" data-reveal>Respostas rápidas</span>
+        <div class="qa" data-stagger style="grid-template-columns:1fr;margin-top:26px">
+          {rapidas.map(([q, a]) => <div style="padding:18px 0 20px"><h4 style="font-size:1.3rem">{q}</h4><p>{a}</p></div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

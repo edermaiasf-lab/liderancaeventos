@@ -1,0 +1,17 @@
+---
+import Photo from './Photo.astro';
+import { ambientes } from '../data/conteudo';
+---
+<div class="mapa">
+  <figure class="mapa-fig">
+    <div class="mapa-img">
+      <Photo name="vista-geral" alt="Vista do espaço ao entardecer: piscina com cascata à esquerda e o salão com sinuca ao fundo" lazy={false} />
+    </div>
+    <figcaption class="cap">Vista do espaço ao entardecer.</figcaption>
+  </figure>
+  <ol class="mapa-list">
+    {ambientes.map((a) => (
+      <li><a href={`#${a.slug}`}><span>{a.n}</span><b>{a.nome}</b><small>{a.resumo}</small></a></li>
+    ))}
+  </ol>
+</div>

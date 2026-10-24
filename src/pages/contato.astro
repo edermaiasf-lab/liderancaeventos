@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Arrow from '../components/Arrow.astro';
+import Faq from '../components/Faq.astro';
+import Review from '../components/Review.astro';
+import { site, waLink } from '../data/conteudo';
+---
+<Base title="Contato e como chegar | Liderança Espaço de Eventos" description="Endereço, telefone, WhatsApp e mapa do Liderança Espaço de Eventos, no Residencial Goiânia Sul, em Abadia de Goiás - GO." image="entrada-noite">
+  <PageHero eyebrow="Contato" title="Como chegar e <em>falar com a gente.</em>" lead="Endereço, telefone e WhatsApp. Chame para consultar a data ou conhecer o espaço." img="piscina-led-5" alt="Piscina iluminada ao entardecer, com o salão à direita" caption="Fotografia — o espaço ao entardecer." pos="center 60%" crumbs={[{ label: 'Contato' }]} />
+
+  <section class="sec tight">
+    <div class="wrap">
+      <div class="contact-cards" data-stagger>
+        <a class="c-card" href={waLink()} target="_blank" rel="noopener noreferrer">
+          <span class="kicker">WhatsApp</span><b>{site.telefone}</b><small>Resposta mais rápida. A mensagem já vai pronta.</small><i>Chamar agora <Arrow /></i>
+        </a>
+        <a class="c-card" href={site.telefoneLink}>
+          <span class="kicker">Telefone</span><b>{site.telefone}</b><small>Ligue para consultar datas e valores.</small><i>Ligar <Arrow /></i>
+        </a>
+        <a class="c-card" href={site.mapsRota} target="_blank" rel="noopener noreferrer">
+          <span class="kicker">Endereço</span><b>R. Fortaleza, Qd. 030, Lt. 010</b><small>Residencial Goiânia Sul · Abadia de Goiás — GO · CEP 75325-204</small><i>Traçar rota <Arrow /></i>
+        </a>
+        <a class="c-card" href={site.instagram} target="_blank" rel="noopener noreferrer">
+          <span class="kicker">Instagram</span><b>@lideranca_espacodeeventos</b><small>Veja os bastidores e os eventos.</small><i>Abrir o perfil <Arrow /></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap two" style="align-items:center">
+      <div>
+        <h2 data-split>Venha conhecer.</h2>
+        <address class="addr" data-reveal>{site.endereco.map((l, i) => <>{l}{i < site.endereco.length - 1 && <br />}</>)}</address>
+        <ul class="rows" data-reveal style="margin-top:34px">
+          <li>Diária<span>das 09h às 22h</span></li>
+          <li>Capacidade<span>até {site.capacidade} pessoas</span></li>
+          <li>Reserva<span>com 50% de sinal</span></li>
+        </ul>
+        <div class="btns" data-reveal>
+          <a class="btn fill" href={site.mapsRota} target="_blank" rel="noopener noreferrer">Traçar rota <Arrow /></a>
+          <a class="btn line" href={waLink('Olá! Vim pelo site e quero combinar uma visita ao espaço.')} target="_blank" rel="noopener noreferrer">Combinar uma visita <Arrow /></a>
+        </div>
+      </div>
+      <div class="gmap" data-reveal data-map data-src={site.mapsEmbed}>
+        <div class="map-tag"><b>Liderança Espaço de Eventos</b><span>R. Fortaleza, Qd. 030 · Lt. 010<br />Residencial Goiânia Sul, Abadia de Goiás</span><a href={site.mapsRota} target="_blank" rel="noopener noreferrer">Traçar rota ↗</a></div>
+        <div class="map-ph">
+          <span class="kicker">Mapa do Google</span>
+          <p>Para mostrar o mapa interativo, o Google pode usar cookies e coletar dados de navegação. A escolha é sua.</p>
+          <div class="btns" style="margin-top:20px"><button type="button" class="btn fill sm" data-map-load>Carregar mapa</button><a class="btn line sm" href={site.mapsRota} target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a></div>
+          <small>Veja a <a href="/cookies/">Política de Cookies</a>.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Review />
+
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Dúvidas</span>
+        <h2 data-split style="margin-top:26px">Antes de chamar.</h2>
+        <p class="lead" data-reveal>O que mais perguntam sobre chegar, reservar e o que está incluído.</p>
+        <div class="btns" data-reveal><a class="btn fill" href="/duvidas/">Ver todas <Arrow /></a></div>
+      </div>
+      <Faq cats={['Como chegar', 'Reserva', 'Regras']} limit={5} />
+    </div>
+  </section>
+</Base>

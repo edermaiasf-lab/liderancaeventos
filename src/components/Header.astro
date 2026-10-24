@@ -1,0 +1,23 @@
+---
+import Arrow from './Arrow.astro';
+import { nav } from '../data/conteudo';
+const path = Astro.url.pathname;
+const current = (href: string) => (path.startsWith(href) ? 'page' : undefined);
+---
+<header class={`nav${path === '/' ? ' on-hero' : ''}`} id="nav">
+  <div class="wrap nav-row">
+    <a href="/" class="brand" aria-label="Liderança Espaço de Eventos — início">
+      <img class="logo-o" src="/img/marca/horizontal-ouro.webp" width="1120" height="330" alt="Liderança Espaço de Eventos" />
+      <img class="logo-e" src="/img/marca/horizontal-escuro.webp" width="1120" height="330" alt="" aria-hidden="true" />
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      {nav.map((i) => <a href={i.href} aria-current={current(i.href)}>{i.label}</a>)}
+    </nav>
+    <a href="/reservar/" class="btn sm">Consultar data <Arrow /></a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+  </div>
+</header>
+<div class="drawer" id="drawer" aria-label="Menu">
+  {nav.map((i) => <a href={i.href} aria-current={current(i.href)}>{i.label}</a>)}
+  <a class="btn line-d" href="/reservar/">Consultar data <Arrow /></a>
+</div>

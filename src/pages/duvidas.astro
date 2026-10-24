@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Arrow from '../components/Arrow.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faq } from '../data/conteudo';
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
+---
+<Base title="Dúvidas frequentes | Liderança Espaço de Eventos" description="Horário da diária, capacidade, reserva com sinal, estrutura e regras do Liderança Espaço de Eventos em Abadia de Goiás." image="salao-sinuca" schema={[faqSchema]}>
+  <PageHero eyebrow="Dúvidas" title="Perguntas <em>frequentes.</em>" lead="Não achou o que procura? Chame no WhatsApp." img="salao-sinuca" alt="Salão com sinuca" caption="Fotografia — salão e sinuca." crumbs={[{ label: 'Dúvidas' }]} />
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Antes de reservar</span>
+        <h2 data-split style="margin-top:26px">Tire suas dúvidas.</h2>
+        <p class="lead" data-reveal>Filtre por assunto ou abra a pergunta. Se não achar a resposta, chame no WhatsApp.</p>
+        <div class="btns" data-reveal><a class="btn fill" href="/reservar/">Consultar data <Arrow /></a></div>
+      </div>
+      <Faq filters />
+    </div>
+  </section>
+  <CtaBand title="Ainda com dúvida?" text="Respondemos pelo WhatsApp." />
+</Base>

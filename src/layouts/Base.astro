@@ -1,0 +1,68 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import { site, waLink } from '../data/conteudo';
+
+interface Props { title: string; description: string; image?: string; schema?: object[] }
+const { title, description, image = 'vista-geral', schema = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(`/img/${image}.webp`, Astro.site);
+
+const venue = {
+  '@context': 'https://schema.org', '@type': 'EventVenue', name: site.nome, telephone: '+55 62 99103-5398', url: Astro.site, image: ogImage,
+  maximumAttendeeCapacity: site.capacidade,
+  address: { '@type': 'PostalAddress', streetAddress: 'R. Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural', addressLocality: 'Abadia de Goiás', addressRegion: 'GO', postalCode: '75325-204', addressCountry: 'BR' },
+  amenityFeature: ['Piscina com cascata e aquecimento solar', 'Churrasqueira', 'Mesa de sinuca', 'Wi-Fi', 'Climatizador de ar'].map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
+};
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#06080c" />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content={site.nome} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="geo.region" content="BR-GO" />
+  <meta name="geo.placename" content="Abadia de Goiás, Goiás" />
+  <link rel="icon" type="image/webp" href="/img/logo-emblema.webp" />
+  <link rel="apple-touch-icon" href="/img/logo-lideranca.webp" />
+  <script is:inline>document.documentElement.classList.add('js');</script>
+  <ClientRouter />
+  <script type="application/ld+json" set:html={JSON.stringify(venue)} />
+  {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <Header />
+  <main id="conteudo" transition:animate="none"><slot /></main>
+  <Footer />
+  <Lightbox />
+  <CookieBanner />
+  <nav class="mbar" aria-label="Ações rápidas">
+    <a href="/reservar/">Consultar data</a>
+    <a href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </nav>
+  <a href={waLink()} class="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.03 0C5.39 0 0 5.39 0 12.03c0 2.12.55 4.18 1.59 6L.05 24l6.11-1.6A12 12 0 0 0 12.03 24C18.68 24 24 18.62 24 11.97 24 5.32 18.68 0 12.03 0zm5.5 14.5c-.3-.15-1.79-.88-2.06-.98-.28-.1-.48-.15-.69.15-.2.3-.78.98-.96 1.19-.17.2-.35.23-.65.08-1.5-.76-2.59-1.42-3.57-3.08-.25-.44.31-.38.9-1.56.1-.2.05-.38-.03-.53-.07-.15-.68-1.65-.93-2.25-.25-.59-.5-.51-.69-.52h-.58c-.2 0-.53.08-.81.38-.28.3-1.06 1.03-1.06 2.52 0 1.49 1.08 2.92 1.24 3.13.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.79-.73 2.04-1.44.25-.7.25-1.31.18-1.44-.08-.12-.28-.2-.58-.35z"/></svg>
+  </a>
+  <script>
+    import '../scripts/motion.ts';
+  </script>
+</body>
+</html>

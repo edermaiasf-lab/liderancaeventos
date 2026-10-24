@@ -1,0 +1,25 @@
+---
+import { faq } from '../data/conteudo';
+interface Props { limit?: number; filters?: boolean; cats?: string[] }
+const { limit, filters = false, cats: only } = Astro.props;
+const base = only ? faq.filter((f) => only.includes(f[2])) : faq;
+const items = limit ? base.slice(0, limit) : base;
+const cats = [...new Set(faq.map((f) => f[2]))];
+const num = (n: number) => String(n + 1).padStart(2, '0');
+---
+<div data-faq>
+  {filters && (
+    <div class="faq-chips" role="group" aria-label="Filtrar perguntas por assunto">
+      <button type="button" data-faq-filter="todas" aria-pressed="true">Todas</button>
+      {cats.map((c) => <button type="button" data-faq-filter={c} aria-pressed="false">{c}</button>)}
+    </div>
+  )}
+  <div class="faq" data-reveal>
+    {items.map(([q, a, c], i) => (
+      <details data-cat={c} open={i === 0}>
+        <summary><b>{num(i)}</b><i>{c}</i>{q}</summary>
+        <p class="ans">{a}</p>
+      </details>
+    ))}
+  </div>
+</div>

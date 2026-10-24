@@ -1,0 +1,24 @@
+---
+import { site, waLink } from '../data/conteudo';
+const links = [
+  ['O espaço', '/espaco/'], ['Eventos', '/eventos/'], ['Estrutura', '/estrutura/'], ['Galeria', '/galeria/'],
+  ['Dúvidas', '/duvidas/'], ['Contato', '/contato/'],
+];
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <a href="/" class="ft-logo" aria-label="Liderança Espaço de Eventos, início"><img src="/img/marca/horizontal-ouro.webp" width="1120" height="330" alt="Liderança Espaço de Eventos" /></a>
+      <nav class="ft-nav" aria-label="Rodapé">{links.map(([t, h]) => <a href={h}>{t}</a>)}</nav>
+      <div class="ft-contact">
+        <a href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp {site.telefone}</a>
+        <a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>{site.endereco.join(' · ')} · <a href={site.mapsRota} target="_blank" rel="noopener noreferrer">Traçar rota</a></span>
+      <span class="legal-links"><a href="/privacidade/">Privacidade</a><a href="/cookies/">Cookies</a><a href="/termos/">Termos</a><button type="button" data-cc-open>Preferências de cookies</button></span>
+    </div>
+    <p class="ft-copy">© <span id="ano">2026</span> {site.nome} · Desenvolvido por <a href="https://nexoraagencia.com.br" target="_blank" rel="noopener noreferrer">Nexora Digital</a></p>
+  </div>
+</footer>

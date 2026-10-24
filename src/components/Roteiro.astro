@@ -1,0 +1,9 @@
+---
+interface Props { steps: [string, string, string][] }
+const { steps } = Astro.props;
+---
+<ol class="roteiro" data-stagger>
+  {steps.map(([h, t, x]) => (
+    <li><span class="h">{h}</span><div><h4>{t}</h4><p>{x}</p></div></li>
+  ))}
+</ol>

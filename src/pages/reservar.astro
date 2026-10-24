@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ReservaForm from '../components/ReservaForm.astro';
+import Dial from '../components/Dial.astro';
+---
+<Base title="Consultar data | Liderança Espaço de Eventos" description="Escolha o tipo de evento e a data e envie a consulta pronta pelo WhatsApp. Diária das 09h às 22h, reserva com 50% de sinal." image="piscina-noite-2">
+  <PageHero eyebrow="Reservar" title="Que dia é a <em>sua festa?</em>" lead="Escolha o tipo de evento e o dia. A mensagem chega pronta no WhatsApp." img="piscina-noite-2" alt="Piscina com cascata à noite" caption="Fotografia — piscina com cascata, à noite." pos="center 55%" crumbs={[{ label: 'Reservar' }]} />
+  <section class="sec sand">
+    <div class="wrap book">
+      <div class="book-intro">
+        <h2 data-split style="font-size:clamp(2.2rem,1rem+3.6vw,4rem)">Consulte a sua data.</h2>
+        <p class="lead" data-reveal>A reserva é feita com 50% de sinal e as datas são limitadas, sujeitas à disponibilidade. Confirmamos tudo pelo WhatsApp.</p>
+        <div class="clock-read" data-reveal>
+          <Dial form />
+          <div><small>Seu horário</small><strong data-clock-read>09h às 22h</strong><span data-clock-sub>13 horas de festa, no mesmo dia.</span></div>
+        </div>
+      </div>
+      <ReservaForm />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,12 @@
+---
+import Arrow from './Arrow.astro';
+import { waLink } from '../data/conteudo';
+interface Props { title?: string; rows: [string, string][]; msg?: string }
+const { title = 'Em resumo', rows, msg } = Astro.props;
+---
+<aside class="info-card" data-reveal>
+  <h4>{title}</h4>
+  <ul class="rows">{rows.map(([k, v]) => <li>{k}<span>{v}</span></li>)}</ul>
+  <a class="btn fill block" href="/reservar/">Consultar data <Arrow /></a>
+  <a class="btn line block" href={waLink(msg)} target="_blank" rel="noopener noreferrer">Falar no WhatsApp <Arrow /></a>
+</aside>

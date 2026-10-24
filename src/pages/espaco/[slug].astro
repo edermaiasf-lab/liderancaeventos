@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import InfoCard from '../../components/InfoCard.astro';
+import PhotoMosaic from '../../components/PhotoMosaic.astro';
+import Review from '../../components/Review.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { ambientes, galeria, papeis, site, waLink } from '../../data/conteudo';
+
+export function getStaticPaths() {
+  return ambientes.map((a, i) => ({
+    params: { slug: a.slug },
+    props: { a, prev: ambientes[(i - 1 + ambientes.length) % ambientes.length], next: ambientes[(i + 1) % ambientes.length] },
+  }));
+}
+const { a, prev, next } = Astro.props;
+const outros = ambientes.filter((x) => x.slug !== a.slug);
+const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? a.alt;
+const fotos = a.galeria.slice(0, 10).map((g) => ({ img: g, alt: altDe(g) }));
+const crumbSchema = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: new URL('/', Astro.site) },
+    { '@type': 'ListItem', position: 2, name: 'O espaço', item: new URL('/espaco/', Astro.site) },
+    { '@type': 'ListItem', position: 3, name: a.nome },
+  ],
+};
+---
+<Base title={`${a.nome} | Liderança Espaço de Eventos, Abadia de Goiás`} description={a.resumo} image={a.hero} schema={[crumbSchema]}>
+  <PageHero eyebrow={`Ambiente ${a.n} / 04`} title={a.nome} lead={a.resumo} img={a.hero} alt={a.alt} caption={`Fotografia — ${a.nome.toLowerCase()}.`} pos="center 55%" crumbs={[{ label: 'O espaço', href: '/espaco/' }, { label: a.nome }]} />
+
+  <!-- SOBRE + RESUMO FIXO -->
+  <section class="sec tight">
+    <div class="wrap detail">
+      <div class="detail-main">
+        <span class="kicker" data-reveal>Sobre o ambiente</span>
+        <p class="statement" data-reveal>{a.texto[0]}</p>
+        {a.texto.slice(1).map((t) => <p data-reveal>{t}</p>)}
+        <ul class="chips-spec" data-stagger>
+          {a.destaques.map((d) => <li>{d}</li>)}
+        </ul>
+        <p class="detail-links" data-reveal>
+          <a class="tlink" href="/estrutura/">Ver tudo o que tem no espaço <Arrow /></a>
+        </p>
+      </div>
+      <InfoCard
+        rows={[['Capacidade', `até ${site.capacidade} pessoas`], ['Diária', 'das 09h às 22h'], ['Reserva', 'com 50% de sinal'], ['Ideal para', a.ideal]]}
+        msg={`Olá! Vim pelo site e quero saber sobre datas. Gostei muito do ambiente: ${a.nome}.`}
+      />
+    </div>
+  </section>
+
+  <!-- FOTOS -->
+  {fotos.length > 0 && (
+    <section class="sec sand">
+      <div class="wrap">
+        <div class="head">
+          <div><span class="kicker" data-reveal>Fotografias</span><h2 data-split style="margin-top:26px">{a.curto}, de perto.</h2></div>
+          <a class="tlink" href="/galeria/">Abrir a galeria completa <Arrow /></a>
+        </div>
+        <PhotoMosaic items={fotos} group={`amb-${a.slug}`} />
+        <p class="note-s" data-reveal>Toque numa foto para ampliar.</p>
+      </div>
+    </section>
+  )}
+
+  <!-- DEPOIMENTOS -->
+  <Review />
+
+  <!-- DÚVIDAS -->
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Dúvidas</span>
+        <h2 data-split style="margin-top:26px">Sobre o espaço.</h2>
+        <p class="lead" data-reveal>As perguntas mais comuns sobre {a.curto.toLowerCase()} e a reserva.</p>
+        <div class="btns" data-reveal>
+          <a class="btn fill" href="/duvidas/">Ver todas <Arrow /></a>
+          <a class="btn line" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp <Arrow /></a>
+        </div>
+      </div>
+      <Faq cats={['O espaço', 'Reserva']} limit={5} />
+    </div>
+  </section>
+
+  <!-- OUTROS AMBIENTES -->
+  <section class="sec dark photo">
+    <div class="backdrop" aria-hidden="true"><Photo name={a.hero} /></div>
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Continue o passeio</span><h2 data-split style="margin-top:26px">Outros ambientes.</h2></div>
+        <p style="display:flex;gap:28px"><a class="tlink" href={`/espaco/${prev.slug}/`}>{prev.curto}</a><a class="tlink" href={`/espaco/${next.slug}/`}>{next.curto} <Arrow dir="right" /></a></p>
+      </div>
+      <ul class="cols3" data-stagger>
+        {outros.map((o) => (
+          <li><a class="ecard" href={`/espaco/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} /></figure><h3>{o.nome}</h3><p>{papeis[o.slug]}</p><span class="tlink">Ver o ambiente <Arrow /></span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand msg={`Olá! Vim pelo site e quero saber sobre datas. Gostei muito do ambiente: ${a.nome}.`} />
+</Base>

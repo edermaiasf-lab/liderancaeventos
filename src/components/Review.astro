@@ -1,0 +1,18 @@
+---
+import Arrow from './Arrow.astro';
+import { site, reviews, googleLink } from '../data/conteudo';
+---
+<section class="sec sand reviews-band">
+  <div class="wrap rv-grid">
+    <div class="rating" data-reveal>
+      <span class="kicker">Quem já esteve aqui</span>
+      <b>{site.nota}</b>
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <span class="rating-sub">de 5 no Google · {site.avaliacoes} avaliações</span>
+      <a class="tlink" href={googleLink} target="_blank" rel="noopener noreferrer">Ver avaliações no Google <Arrow /></a>
+    </div>
+    <div class="rq" data-stagger>
+      {reviews.map((r) => <blockquote><p>{r.q}</p><footer>{r.a}</footer></blockquote>)}
+    </div>
+  </div>
+</section>

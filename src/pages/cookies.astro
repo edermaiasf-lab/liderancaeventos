@@ -1,0 +1,55 @@
+---
+import Legal from '../components/Legal.astro';
+const toc: [string, string][] = [
+  ['o-que-sao', 'O que são cookies'],
+  ['o-que-usamos', 'O que usamos neste site'],
+  ['gerenciar', 'Como gerenciar sua escolha'],
+  ['terceiros', 'Serviços de terceiros'],
+  ['futuro', 'Se passarmos a usar estatísticas'],
+  ['mais', 'Mais informações'],
+];
+---
+<Legal path="cookies" title="Política de Cookies" description="Quais cookies e armazenamentos o site do Liderança Espaço de Eventos usa, para quê, e como você controla sua escolha." h1="Política de Cookies" lead="Aqui explicamos o que o site guarda no seu navegador, por que guarda e como você controla isso." toc={toc}>
+
+  <div class="callout">
+    <b>Resumo rápido</b>
+    <ul>
+      <li>Hoje o site <b>não usa</b> cookies de estatística nem de publicidade.</li>
+      <li>Guardamos só a sua escolha sobre cookies (essencial).</li>
+      <li>O mapa do Google <b>só carrega se você permitir</b>.</li>
+    </ul>
+  </div>
+
+  <h2 id="o-que-sao">1. O que são cookies</h2>
+  <p>Cookies são pequenos arquivos que um site grava no seu aparelho para lembrar informações. Existem também tecnologias parecidas, como o armazenamento local do navegador (<i>localStorage</i>). Nesta política, chamamos tudo isso de “cookies”.</p>
+
+  <h2 id="o-que-usamos">2. O que usamos neste site</h2>
+  <div class="ltable-wrap">
+    <table class="ltable">
+      <thead><tr><th>Nome</th><th>Tipo</th><th>Para quê</th><th>Duração</th></tr></thead>
+      <tbody>
+        <tr><td><code>lid_consent_v1</code> (armazenamento local)</td><td>Essencial</td><td>Lembrar a sua escolha sobre cookies, para não perguntar de novo a cada página</td><td>Até 12 meses, ou até você limpar os dados do navegador</td></tr>
+        <tr><td>Google Maps (somente se permitido)</td><td>Terceiros</td><td>Exibir o mapa interativo na página de Contato</td><td>Definida pelo Google</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>As fontes e as imagens do site ficam no nosso próprio servidor. Por isso, não enviamos seus dados a serviços de fontes ou de imagens de terceiros.</p>
+  <p>O cookie essencial é necessário para o funcionamento do aviso de cookies e não depende de consentimento. Cookies de terceiros só são usados depois da sua permissão.</p>
+
+  <h2 id="gerenciar">3. Como gerenciar sua escolha</h2>
+  <ul>
+    <li><b>Neste site:</b> clique em “Preferências de cookies”, no rodapé de qualquer página, para aceitar ou recusar os cookies de terceiros. Você pode mudar quando quiser.</li>
+    <li><b>No navegador:</b> é possível bloquear ou apagar cookies nas configurações do Chrome, Safari, Firefox, Edge e outros. Se bloquear tudo, o aviso poderá aparecer novamente a cada visita.</li>
+  </ul>
+  <p><button type="button" class="btn fill sm" data-cc-open>Abrir preferências de cookies</button></p>
+
+  <h2 id="terceiros">4. Serviços de terceiros</h2>
+  <p><b>Google Maps.</b> Ao carregar o mapa, o Google pode definir cookies e coletar dados como endereço IP e informações de navegação, segundo a política do próprio Google. Por isso, o mapa só aparece depois que você permite. Sem o mapa, você ainda pode abrir o endereço no Google Maps por um link comum.</p>
+  <p><b>WhatsApp e Instagram.</b> Os botões e links levam você para fora do site. Eles não carregam nada dessas empresas enquanto você não clicar. Depois do clique, valem as políticas delas.</p>
+
+  <h2 id="futuro">5. Se passarmos a usar estatísticas ou publicidade</h2>
+  <p>Se um dia usarmos ferramentas como Google Analytics ou pixels de anúncios, pediremos o seu consentimento <b>antes</b> de ativá-las, e esta página será atualizada com a lista completa.</p>
+
+  <h2 id="mais">6. Mais informações</h2>
+  <p>Leia também a nossa <a href="/privacidade/">Política de Privacidade</a>, que explica como tratamos dados pessoais e como exercer os seus direitos pela LGPD.</p>
+</Legal>

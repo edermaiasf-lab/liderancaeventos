@@ -1,0 +1,25 @@
+---
+interface Props { live?: boolean; form?: boolean }
+const { live = false, form = false } = Astro.props;
+// o círculo inteiro é a diária: das 09h (topo) às 22h
+const pt = (h: number, r: number) => {
+  const a = ((h - 9) / 13) * 2 * Math.PI - Math.PI / 2;
+  return [60 + r * Math.cos(a), 60 + r * Math.sin(a)];
+};
+const [x1, y1] = pt(9, 48);
+const ticks = Array.from({ length: 13 }, (_, i) => {
+  const h = 9 + i;
+  const [a, b] = pt(h, 55);
+  const [c, d] = pt(h, i % 3 ? 57 : 59);
+  return { a, b, c, d };
+});
+const labels = [9, 12, 15, 18].map((h) => ({ h, p: pt(h, 32) }));
+const arcAttr = form ? { 'data-form-arc': '' } : { 'data-dial-arc': '' };
+---
+<svg class="dial" viewBox="0 0 120 120" aria-hidden="true">
+  <circle class="dial-track" cx="60" cy="60" r="48" />
+  <circle class="dial-arc" cx="60" cy="60" r="48" transform="rotate(-90 60 60)" pathLength="1" stroke-dasharray={form ? '1 1' : '1'} stroke-dashoffset={live ? 1 : 0} {...arcAttr} />
+  {ticks.map((t) => <line x1={t.a.toFixed(2)} y1={t.b.toFixed(2)} x2={t.c.toFixed(2)} y2={t.d.toFixed(2)} />)}
+  {labels.map((l) => <text x={l.p[0].toFixed(2)} y={l.p[1].toFixed(2)}>{l.h}h</text>)}
+  {live && <circle data-dial-dot cx={x1.toFixed(2)} cy={y1.toFixed(2)} r="5.5" fill="#1f201d" stroke="#e8dfd2" stroke-width="2" />}
+</svg>

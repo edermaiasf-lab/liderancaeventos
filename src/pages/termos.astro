@@ -1,0 +1,58 @@
+---
+import Legal from '../components/Legal.astro';
+import { site } from '../data/conteudo';
+const toc: [string, string][] = [
+  ['aceitacao', 'Aceitação'],
+  ['sobre', 'Sobre este site'],
+  ['reservas', 'Consultas e reservas'],
+  ['regras', 'Regras do espaço'],
+  ['propriedade', 'Propriedade intelectual'],
+  ['conduta', 'Uso adequado do site'],
+  ['links', 'Links de terceiros'],
+  ['responsabilidade', 'Responsabilidade'],
+  ['privacidade', 'Privacidade e cookies'],
+  ['alteracoes', 'Alterações'],
+  ['foro', 'Lei aplicável e foro'],
+];
+---
+<Legal path="termos" title="Termos de Uso" description="Termos de uso do site do Liderança Espaço de Eventos: consultas e reservas, regras do espaço, propriedade intelectual e responsabilidades." h1="Termos de Uso" lead="Regras simples para usar este site e para consultar e reservar o espaço. Ao navegar, você concorda com elas." toc={toc}>
+
+  <h2 id="aceitacao">1. Aceitação</h2>
+  <p>Ao acessar e usar o site do <b>{site.nome}</b>, você declara que leu e concorda com estes Termos de Uso e com a <a href="/privacidade/">Política de Privacidade</a>. Se não concordar, pedimos que não use o site.</p>
+
+  <h2 id="sobre">2. Sobre este site</h2>
+  <p>O site apresenta o espaço, os ambientes, a estrutura e as condições de locação, e oferece formas de contato. As informações têm caráter <b>informativo</b>. Fazemos o possível para mantê-las corretas, mas valores, datas e disponibilidade são sempre confirmados por atendimento direto (WhatsApp ou telefone <a href={site.telefoneLink}>{site.telefone}</a>).</p>
+
+  <h2 id="reservas">3. Consultas e reservas</h2>
+  <ul>
+    <li>O formulário do site apenas <b>prepara uma mensagem</b> de consulta no WhatsApp. Ele não faz reserva e não garante a data.</li>
+    <li>A reserva só é confirmada depois do nosso retorno e do pagamento do <b>sinal de 50%</b>, conforme combinado no atendimento e no contrato.</li>
+    <li>As datas são <b>limitadas</b> e sujeitas à disponibilidade.</li>
+    <li>Condições como cancelamento, remarcação, responsabilidade por danos e valores finais constam no orçamento ou no contrato assinado, que prevalecem sobre qualquer informação resumida do site.</li>
+  </ul>
+
+  <h2 id="regras">4. Regras do espaço</h2>
+  <p>Informações gerais divulgadas no site: diária das 09h às 22h, capacidade de até 60 pessoas e <b>proibição de som automotivo</b>. Podem existir outras regras de uso, apresentadas no momento da reserva. O espaço conta com câmeras de segurança.</p>
+
+  <h2 id="propriedade">5. Propriedade intelectual</h2>
+  <p>A marca “Liderança Espaço de Eventos”, o logotipo, as fotografias, os textos e o design do site pertencem ao Liderança ou são usados com autorização. É proibido copiar, reproduzir, modificar ou distribuir esse conteúdo sem autorização prévia e por escrito, salvo para uso pessoal e não comercial, como compartilhar um link.</p>
+
+  <h2 id="conduta">6. Uso adequado do site</h2>
+  <p>Você concorda em não usar o site para fins ilícitos, não tentar acessar áreas restritas, não inserir código malicioso, não sobrecarregar o serviço e não usar os canais de contato para enviar conteúdo ofensivo, falso ou que viole direitos de terceiros.</p>
+
+  <h2 id="links">7. Links de terceiros</h2>
+  <p>O site contém links para serviços de terceiros, como WhatsApp, Instagram e Google Maps. Não controlamos esses serviços e não somos responsáveis pelo conteúdo ou pelas políticas deles.</p>
+
+  <h2 id="responsabilidade">8. Responsabilidade</h2>
+  <p>O site é oferecido “no estado em que se encontra”. Podemos alterá-lo ou tirá-lo do ar para manutenção, sem aviso. Não nos responsabilizamos por indisponibilidades fora do nosso controle, por falhas de internet ou de serviços de terceiros, nem por decisões tomadas apenas com base em informações resumidas do site, sem confirmação com o atendimento. Nada nestes Termos limita direitos que a lei garante ao consumidor.</p>
+
+  <h2 id="privacidade">9. Privacidade e cookies</h2>
+  <p>O tratamento de dados pessoais segue a <a href="/privacidade/">Política de Privacidade</a>, e o uso de cookies segue a <a href="/cookies/">Política de Cookies</a>.</p>
+
+  <h2 id="alteracoes">10. Alterações</h2>
+  <p>Podemos atualizar estes Termos a qualquer momento. A versão em vigor é a publicada nesta página, com a data de atualização no topo. O uso do site após a mudança indica concordância com o texto atualizado.</p>
+
+  <h2 id="foro">11. Lei aplicável e foro</h2>
+  <p>Estes Termos seguem as leis do Brasil, em especial o Código de Defesa do Consumidor (Lei nº 8.078/1990) e a Lei Geral de Proteção de Dados (Lei nº 13.709/2018). Fica eleito o foro do domicílio do consumidor para resolver conflitos, quando se tratar de relação de consumo.</p>
+  <p>Dúvidas sobre estes Termos? Fale com a gente pelo WhatsApp <a href={site.telefoneLink}>{site.telefone}</a>.</p>
+</Legal>

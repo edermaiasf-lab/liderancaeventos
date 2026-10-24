@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { eventos, waLink } from '../../data/conteudo';
+---
+<Base title="Eventos | Liderança Espaço de Eventos, Abadia de Goiás" description="Aniversários, festas infantis, chás de bebê e revelação, confraternizações e outras celebrações em Abadia de Goiás, com piscina e salão." image="piscina-led-1">
+  <PageHero eyebrow="Eventos" title="O espaço é a base. <em>O tema é seu.</em>" lead="Veja como cada tipo de evento aproveita os ambientes." img="piscina-led-1" alt="Piscina com luzes ao entardecer ao lado do salão" caption="Fotografia — piscina e salão ao entardecer." pos="center 60%" crumbs={[{ label: 'Eventos' }]} />
+  <section class="sec">
+    <div class="wrap">
+      <ul class="cols3" data-stagger>
+        {eventos.map((e) => (
+          <li><a class="ecard" href={`/eventos/${e.slug}/`}><figure><Photo name={e.img} alt={e.alt} /></figure><h3>{e.nome}</h3><p>{e.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+        ))}
+        <li class="ecard-cta">
+          <div>
+            <span class="kicker">Outro formato?</span>
+            <h3>Seu evento é diferente?</h3>
+            <p>Conte o que você tem em mente. Respondemos pelo WhatsApp e vemos como o espaço se adapta.</p>
+            <a class="btn fill" href={waLink('Olá! Vim pelo site e quero conversar sobre um evento diferente.')} target="_blank" rel="noopener noreferrer">Falar no WhatsApp <Arrow /></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

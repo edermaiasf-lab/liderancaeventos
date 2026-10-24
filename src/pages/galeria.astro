@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Review from '../components/Review.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { galeria, dims } from '../data/conteudo';
+const cats = [...new Set(galeria.map((g) => g[1]))];
+const n = (c: string) => galeria.filter((g) => g[1] === c).length;
+---
+<Base title="Galeria de fotos | Liderança Espaço de Eventos" description="Veja as fotos da piscina com cascata, do salão, da sinuca e da fachada do Liderança Espaço de Eventos." image="piscina-led-1">
+  <PageHero eyebrow="Galeria" title="O lugar, <em>de perto.</em>" lead={`${galeria.length} fotografias do espaço real, organizadas por ambiente. Toque numa foto para ampliar.`} img="piscina-led-3" alt="Piscina com luzes ao entardecer" caption="Fotografia — piscina ao entardecer." pos="center 60%" crumbs={[{ label: 'Galeria' }]} />
+  <section class="sec tight">
+    <div class="wrap">
+      <div class="gal-head">
+        <div class="filters" role="group" aria-label="Filtrar fotos">
+          <button type="button" data-filter="todos" aria-pressed="true">Todas <small>{galeria.length}</small></button>
+          {cats.map((c) => <button type="button" data-filter={c} aria-pressed="false">{c} <small>{n(c)}</small></button>)}
+        </div>
+        <p class="gcount" aria-live="polite"><b data-gcount>{galeria.length}</b> fotografias</p>
+      </div>
+      <div class="gallery" id="galeria">
+        {galeria.map(([img, cat, alt]) => {
+          const [w, h] = dims(img);
+          return (
+            <button type="button" data-item data-lb data-cat={cat} data-src={`/img/${img}.webp`} data-alt={alt} aria-label={`Ampliar: ${alt}`}>
+              <img src={`/img/${img}.webp`} width={w} height={h} loading="lazy" alt="" />
+              <span class="go">{cat} — {alt}</span>
+            </button>
+          );
+        })}
+      </div>
+      <p class="note-s" style="margin-top:36px">Fotos do espaço real, sem decoração. Quer ver mais? Veja também o <a class="tlink" href="https://www.instagram.com/lideranca_espacodeeventos/" target="_blank" rel="noopener noreferrer">Instagram <Arrow /></a></p>
+    </div>
+  </section>
+  <Review />
+  <CtaBand />
+</Base>

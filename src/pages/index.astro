@@ -1,0 +1,267 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Arrow from '../components/Arrow.astro';
+import Carousel from '../components/Carousel.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import Review from '../components/Review.astro';
+import MapaPins from '../components/MapaPins.astro';
+import PhotoMosaic from '../components/PhotoMosaic.astro';
+import Dial from '../components/Dial.astro';
+import ReservaForm from '../components/ReservaForm.astro';
+import { site, ambientes, eventos, grupos, rapidas, galeria, waLink } from '../data/conteudo';
+
+const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
+const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachada-dia', 'piscina-led-5', 'sinuca-close', 'piscina-noite'].map((g) => ({ img: g, alt: altDe(g) }));
+---
+<Base
+  title="Liderança Espaço de Eventos | Piscina com cascata em Abadia de Goiás - GO"
+  description="Espaço de eventos em Abadia de Goiás com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira. Até 60 pessoas. WhatsApp (62) 99103-5398."
+  image="vista-geral"
+>
+  <!-- BANNER (fica parado; a próxima seção sobe por cima) -->
+  <section class="hero" data-hero data-pin>
+    <div class="hero-media" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 700px)" srcset="/img/piscina-cascata.webp" />
+        <img src="/img/vista-geral.webp" width="1280" height="649" alt="" fetchpriority="high" />
+      </picture>
+    </div>
+    <div class="hero-mid">
+      <div>
+        <h1><img class="hero-logo" src="/img/marca/completa-ouro.webp" width="1280" height="1280" alt="Liderança Espaço de Eventos" data-fade /></h1>
+        <p class="hero-sub" data-reveal>Piscina com cascata, salão e sinuca em Abadia de Goiás.</p>
+      </div>
+    </div>
+    <div class="wrap hero-bar" data-fade>
+      <div><a class="btn gold" href="/reservar/">Consultar data <Arrow /></a></div>
+      <a class="scroll-cue" href="#espaco">Conhecer o espaço <Arrow dir="down" /></a>
+      <small>Abadia de Goiás — GO</small>
+    </div>
+  </section>
+
+  <!-- O ESPAÇO (escuro, foto de fundo) -->
+  <section class="sec dark photo" id="espaco">
+    <div class="backdrop" aria-hidden="true"><Photo name="piscina-noite" /></div>
+    <div class="wrap intro">
+      <div>
+        <span class="kicker" data-reveal>O espaço</span>
+        <h2 data-split style="margin-top:26px">Piscina, salão e sinuca.</h2>
+        <p class="lead" data-reveal>Quatro ambientes pensados para a sua festa: piscina ampla com cascata e aquecimento solar, salão, mesa de sinuca e uma entrada com letreiro iluminado. Você chega e já encontra tudo pronto.</p>
+        <a class="tlink" data-reveal href="/espaco/" style="margin-top:36px">Explore os ambientes <Arrow /></a>
+      </div>
+      <figure class="photo tall">
+        <div data-img><Photo name="piscina-led-3" alt="Piscina com cascata, luzes na água e paredes escuras ao entardecer" /></div>
+        <figcaption class="cap" style="color:var(--on-dark-2)">Fotografia — piscina com cascata ao entardecer.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- RESUMO + O QUE TEM NO ESPAÇO -->
+  <section class="sec" id="resumo">
+    <div class="wrap">
+      <div class="brief" data-stagger>
+        <div><b>até <i data-count="60">60</i></b><span>pessoas, com 10 jogos de mesas e cadeiras</span></div>
+        <div><b>09h–22h</b><span>horário da diária</span></div>
+        <div><b><i data-count="50">50</i>%</b><span>de sinal para reservar a data</span></div>
+        <div><b>Aquecida</b><span>piscina com cascata e aquecimento solar</span></div>
+      </div>
+      <div class="head" style="margin-top:104px">
+        <div><span class="kicker" data-reveal>O que tem no espaço</span><h2 data-split style="margin-top:26px">Tudo o que você vai encontrar.</h2></div>
+        <p class="lead" data-reveal>Sem surpresa no dia da festa: esta é a lista do que o espaço oferece.</p>
+      </div>
+      <div class="spec-grid" data-stagger>
+        {grupos.map((g, n) => (
+          <div class="spec-cell">
+            <span class="n">{String(n + 1).padStart(2, '0')}</span>
+            <h4>{g.t}</h4>
+            <ul>{g.itens.map((it) => <li>{it}</li>)}</ul>
+          </div>
+        ))}
+        <div class="spec-cell rules">
+          <span class="n">06</span>
+          <h4>Regras</h4>
+          <ul><li>Diária das 09h às 22h</li><li>Reserva com 50% de sinal</li><li>Proibido som automotivo</li></ul>
+        </div>
+      </div>
+      <p style="margin-top:44px" data-reveal><a class="tlink" href="/estrutura/">Ver estrutura e condições <Arrow /></a></p>
+    </div>
+  </section>
+
+  <!-- FAIXA DE FOTO -->
+  <div class="band" aria-hidden="true"><Photo name="salao-amplo" /><div class="band-cap"><div class="wrap">O salão, aberto para a piscina</div></div></div>
+
+  <!-- A DIÁRIA -->
+  <section class="dn" id="dn" data-dn aria-label="A diária, das 09h às 22h">
+    <div class="dn-pin">
+      <div class="wrap dn-grid">
+        <div class="dn-copy">
+          <span class="kicker">A diária</span>
+          <div class="dn-time" aria-live="off"><strong data-dn-time>09:00</strong><span data-dn-label>manhã</span></div>
+          <h2>Das nove às dez da noite.</h2>
+          <p class="lead">A piscina muda de cara ao longo do dia: azul de manhã, dourada no fim de tarde, iluminada à noite. Role para ver as horas passarem.</p>
+          <div class="dn-clock"><Dial live /><small>Diária<br />09h — 22h</small></div>
+        </div>
+        <div class="dn-stage">
+          <Photo name="piscina-dia" alt="Piscina com cascata durante o dia" class="dn-img dn-1" lazy={false} />
+          <Photo name="piscina-cascata" alt="Piscina com cascata ao entardecer" class="dn-img dn-2" />
+          <Photo name="piscina-noite-2" alt="Piscina com cascata iluminada à noite" class="dn-img dn-3" />
+          <span class="dn-cap" data-dn-cap>Piscina de dia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="sec tight">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Conheça pelo mapa</span><h2 data-split style="margin-top:26px">Onde fica cada ambiente.</h2></div>
+        <a class="tlink" href="/espaco/">Ver o espaço completo <Arrow /></a>
+      </div>
+      <MapaPins />
+    </div>
+  </section>
+
+  <!-- AMBIENTES -->
+  <section class="sec" id="ambientes">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Os ambientes</span><h2 data-split style="margin-top:26px">Quatro cantos, uma festa.</h2></div>
+        <p class="lead" data-reveal>Veja cada ambiente de perto. Deslize para ver mais fotos.</p>
+      </div>
+      {ambientes.map((a) => (
+        <article class="amb" id={a.slug}>
+          <div class="amb-top">
+            <div class="amb-txt">
+              <span class="amb-n">{a.n} / 04</span>
+              <h3 data-split>{a.nome}</h3>
+              <p data-reveal>{a.resumo}</p>
+              <ul class="tags">{a.destaques.slice(0, 3).map((d) => <li>{d}</li>)}</ul>
+              <a class="tlink" href={`/espaco/${a.slug}/`}>Ver este ambiente <Arrow /></a>
+            </div>
+            <Carousel group={`car-${a.slug}`} items={a.galeria.map((g) => ({ img: g, alt: altDe(g) || a.alt }))} />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- EVENTOS (escuro, foto de fundo, fica parado até a próxima seção cobrir) -->
+  <section class="sec dark photo">
+    <div class="backdrop" aria-hidden="true"><Photo name="piscina-led-1" /></div>
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Eventos</span><h2 data-split style="margin-top:26px">Para qual festa?</h2></div>
+        <a class="tlink" href="/eventos/">Ver todos os eventos <Arrow /></a>
+      </div>
+      <ul class="cols3" data-stagger>
+        {eventos.slice(0, 3).map((e) => (
+          <li>
+            <a class="ecard" href={`/eventos/${e.slug}/`}>
+              <figure><Photo name={e.img} alt={e.alt} /></figure>
+              <h3>{e.nome}</h3>
+              <p>{e.resumo}</p>
+              <span class="tlink">Conhecer <Arrow /></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- RESPOSTAS RÁPIDAS -->
+  <section class="sec sand">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Antes de chamar</span><h2 data-split style="margin-top:26px">As dúvidas mais comuns.</h2></div>
+        <a class="tlink" href="/duvidas/">Ver todas as respostas <Arrow /></a>
+      </div>
+      <div class="qa" data-stagger>
+        {rapidas.map(([q, a]) => <div><h4>{q}</h4><p>{a}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Galeria</span><h2 data-split style="margin-top:26px">O lugar, de perto.</h2></div>
+        <a class="tlink" href="/galeria/">Ver as {galeria.length} fotografias <Arrow /></a>
+      </div>
+      <PhotoMosaic items={mosaico} group="home" />
+      <p class="note-s" data-reveal>Toque numa foto para ampliar.</p>
+    </div>
+  </section>
+
+  <!-- FAIXA DE FOTO 2 -->
+  <div class="band" aria-hidden="true"><Photo name="piscina-led-1" /><div class="band-cap"><div class="wrap">A piscina, quando as luzes acendem</div></div></div>
+
+  <!-- LOCAÇÃO -->
+  <section class="sec sand">
+    <div class="wrap">
+      <div class="head"><div><span class="kicker" data-reveal>Locação</span><h2 data-split style="margin-top:26px">Como funciona.</h2></div>
+        <p class="lead" data-reveal>Escolha a data e peça o orçamento pelo WhatsApp.</p></div>
+      <div class="two">
+        <div data-reveal>
+          <h4>Passo a passo</h4>
+          <ul class="rows">
+            <li>1. Consulte a data<span>formulário ou WhatsApp</span></li>
+            <li>2. Receba o orçamento<span>pelo WhatsApp</span></li>
+            <li>3. Reserve com 50% de sinal<span>a data fica sua</span></li>
+            <li>4. Curta a festa<span>diária das 09h às 22h</span></li>
+          </ul>
+        </div>
+        <div data-reveal>
+          <h4>Condições</h4>
+          <ul class="rows">
+            <li>Diária<span>das 09h às 22h</span></li>
+            <li>Capacidade<span>até {site.capacidade} pessoas</span></li>
+            <li>Reserva<span>com 50% de sinal</span></li>
+            <li>Datas<span>limitadas, sujeito à disponibilidade</span></li>
+            <li>Som automotivo<span>proibido</span></li>
+          </ul>
+          <p style="margin-top:34px"><a class="btn fill" href="#agendar">Consultar minha data <Arrow dir="down" /></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDAR (formulário do site antigo, agora aqui) -->
+  <section class="sec" id="agendar">
+    <div class="wrap book">
+      <div class="book-intro">
+        <span class="kicker" data-reveal>Agende uma visita</span>
+        <h2 data-split style="margin-top:26px">Que dia é a sua festa?</h2>
+        <p class="lead" data-reveal>Escolha o tipo de evento, o dia e o horário. A mensagem chega pronta no WhatsApp e você confere antes de enviar.</p>
+        <div class="clock-read" data-reveal>
+          <Dial form />
+          <div><small>Seu horário</small><strong data-clock-read>09h às 22h</strong><span data-clock-sub>13 horas de festa, no mesmo dia.</span></div>
+        </div>
+      </div>
+      <ReservaForm />
+    </div>
+  </section>
+
+  <Review />
+
+  <!-- FAQ -->
+  <section class="sec sand">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Dúvidas</span>
+        <h2 data-split style="margin-top:26px">Perguntas frequentes.</h2>
+        <p class="lead" data-reveal>O que mais costuma ser perguntado antes de reservar. Não achou a sua? Chame no WhatsApp.</p>
+        <div class="btns" data-reveal>
+          <a class="btn fill" href="/duvidas/">Ver todas <Arrow /></a>
+          <a class="btn line" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp <Arrow /></a>
+        </div>
+      </div>
+      <Faq limit={6} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

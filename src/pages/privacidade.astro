@@ -1,0 +1,107 @@
+---
+import Legal from '../components/Legal.astro';
+import { site } from '../data/conteudo';
+const toc: [string, string][] = [
+  ['quem-somos', 'Quem somos'],
+  ['dados', 'Quais dados tratamos'],
+  ['compartilhamento', 'Com quem compartilhamos'],
+  ['internacional', 'Transferência internacional'],
+  ['guarda', 'Por quanto tempo guardamos'],
+  ['direitos', 'Seus direitos'],
+  ['seguranca', 'Segurança'],
+  ['camera', 'Câmeras no espaço'],
+  ['criancas', 'Crianças e adolescentes'],
+  ['imagens', 'Fotos e imagens de eventos'],
+  ['cookies', 'Cookies'],
+  ['alteracoes', 'Alterações'],
+  ['contato', 'Fale com a gente'],
+];
+const l = site.legal;
+---
+<Legal path="privacidade" title="Política de Privacidade" description="Como o Liderança Espaço de Eventos trata dados pessoais, em conformidade com a LGPD (Lei 13.709/2018): quais dados, para quê, seus direitos e como exercê-los." h1="Política de Privacidade" lead="Explicamos, de forma simples, quais dados pessoais tratamos, para quê, com quem compartilhamos e como você exerce os seus direitos, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018)." toc={toc}>
+
+  <div class="callout">
+    <b>Resumo rápido</b>
+    <ul>
+      <li>O site <b>não grava</b> os dados do formulário de consulta: ele só monta uma mensagem de WhatsApp, que você confere e envia.</li>
+      <li>Só usamos o que é necessário para responder você, orçar e reservar a data.</li>
+      <li>Não vendemos dados. O mapa do Google só carrega se você permitir.</li>
+      <li>Você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento.</li>
+    </ul>
+  </div>
+
+  <h2 id="quem-somos">1. Quem somos</h2>
+  <p>O <b>controlador</b> dos dados pessoais tratados por este site é o <b>{site.nome}</b>{l.razao && <> ({l.razao})</>}{l.cnpj && <>, CNPJ {l.cnpj}</>}, com endereço em {site.endereco.join(', ')}.</p>
+  <p>Para qualquer assunto sobre privacidade, inclusive para exercer seus direitos, fale com o nosso canal de atendimento: WhatsApp e telefone <a href={site.telefoneLink}>{site.telefone}</a>{l.email && <>, e-mail <a href={`mailto:${l.email}`}>{l.email}</a></>}.</p>
+
+  <h2 id="dados">2. Quais dados tratamos, para quê e com qual base legal</h2>
+  <p>Tratamos apenas os dados listados abaixo. Cada tratamento tem uma finalidade e uma base legal prevista no art. 7º da LGPD.</p>
+  <div class="ltable-wrap">
+    <table class="ltable">
+      <thead><tr><th>Dado</th><th>Quando</th><th>Para quê</th><th>Base legal</th></tr></thead>
+      <tbody>
+        <tr><td>Nome, tipo de evento, data, horário e número de convidados</td><td>Ao preencher o formulário de consulta de data</td><td>Montar a mensagem e atender seu pedido de data e orçamento</td><td>Procedimentos preliminares de contrato, a seu pedido (art. 7º, V)</td></tr>
+        <tr><td>Telefone, nome do perfil e conteúdo das mensagens</td><td>Quando você chama no WhatsApp ou liga</td><td>Responder, enviar orçamento, combinar visita e reserva</td><td>Art. 7º, V</td></tr>
+        <tr><td>Dados necessários ao contrato (por exemplo, nome completo, CPF e comprovante do sinal)</td><td>Se você fechar a reserva</td><td>Elaborar o contrato, receber o sinal de 50% e cumprir obrigações legais e fiscais</td><td>Art. 7º, V e II (obrigação legal)</td></tr>
+        <tr><td>Dados técnicos de acesso (IP, data e hora, navegador, páginas acessadas)</td><td>Ao navegar no site</td><td>Segurança, estabilidade e registros exigidos por lei</td><td>Legítimo interesse (art. 7º, IX) e obrigação legal (art. 7º, II)</td></tr>
+        <tr><td>Sua escolha sobre cookies</td><td>Ao responder o aviso de cookies</td><td>Lembrar a sua escolha por até 12 meses</td><td>Legítimo interesse (art. 7º, IX)</td></tr>
+        <tr><td>Dados coletados pelo Google ao carregar o mapa (IP, cookies, navegação)</td><td>Somente se você permitir o mapa</td><td>Exibir o mapa interativo</td><td>Consentimento (art. 7º, I)</td></tr>
+        <tr><td>Imagens das câmeras de segurança</td><td>Ao visitar ou locar o espaço físico</td><td>Segurança de pessoas e do patrimônio</td><td>Legítimo interesse (art. 7º, IX)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Não pedimos dados pessoais sensíveis (como saúde, religião ou biometria) por este site. Se você nos enviar um dado desse tipo por conta própria, ele será usado apenas para atender ao seu pedido.</p>
+  <p><b>Formulário de consulta.</b> As informações digitadas ficam apenas no seu navegador. Ao tocar em “Enviar pelo WhatsApp”, você é levado ao aplicativo com a mensagem pronta; o envio só acontece se você confirmar. A partir daí, a conversa passa a ser tratada por nós e pelo WhatsApp.</p>
+
+  <h2 id="compartilhamento">3. Com quem compartilhamos</h2>
+  <p>Não vendemos nem alugamos dados pessoais. Os dados podem ser compartilhados, quando necessário, com:</p>
+  <ul>
+    <li><b>WhatsApp (Meta Platforms)</b>, quando você nos envia uma mensagem. Veja a política do próprio WhatsApp.</li>
+    <li><b>Google (Google Maps)</b>, apenas se você permitir o carregamento do mapa.</li>
+    <li><b>Provedores de hospedagem e infraestrutura</b> do site, que operam em nosso nome.</li>
+    <li><b>Prestadores de serviços</b> (por exemplo, contabilidade e assessoria jurídica), sob dever de sigilo, para cumprir obrigações legais ou contratuais.</li>
+    <li><b>Autoridades públicas</b>, quando houver obrigação legal ou ordem judicial.</li>
+  </ul>
+
+  <h2 id="internacional">4. Transferência internacional de dados</h2>
+  <p>Alguns serviços citados acima (WhatsApp e Google) podem tratar dados em servidores fora do Brasil. Nesses casos, a transferência ocorre com base no art. 33 da LGPD, e adotamos serviços que declaram medidas de proteção compatíveis. Você pode evitar o envio de dados ao Google simplesmente não carregando o mapa.</p>
+
+  <h2 id="guarda">5. Por quanto tempo guardamos</h2>
+  <p>Guardamos os dados pelo tempo necessário para atender ao seu pedido, executar o contrato e cumprir obrigações legais (como as fiscais e as de guarda de registros de acesso, quando aplicáveis). Depois disso, eliminamos ou anonimizamos os dados, salvo se a lei permitir ou exigir a guarda por mais tempo. Conversas de atendimento que não resultaram em reserva são apagadas periodicamente.</p>
+
+  <h2 id="direitos">6. Seus direitos como titular</h2>
+  <p>Conforme o art. 18 da LGPD, você pode, a qualquer momento e sem custo, pedir:</p>
+  <ul>
+    <li>confirmação de que tratamos dados seus e acesso a eles;</li>
+    <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+    <li>anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade;</li>
+    <li>portabilidade dos dados, nos termos da regulamentação;</li>
+    <li>eliminação dos dados tratados com base no seu consentimento;</li>
+    <li>informação sobre com quem compartilhamos seus dados;</li>
+    <li>informação sobre a possibilidade de não consentir e as consequências da negativa;</li>
+    <li>revogação do consentimento e oposição a tratamentos feitos sem consentimento, quando houver descumprimento da lei.</li>
+  </ul>
+  <p><b>Como pedir:</b> envie uma mensagem para o nosso WhatsApp <a href={site.telefoneLink}>{site.telefone}</a>{l.email && <> ou para <a href={`mailto:${l.email}`}>{l.email}</a></>}, dizendo qual direito deseja exercer. Podemos pedir informações para confirmar a sua identidade, para proteger você contra fraudes. Respondemos de forma simplificada de imediato e, se for o caso, com declaração completa em até 15 dias (art. 19 da LGPD).</p>
+  <p>Se achar que o seu pedido não foi atendido, você pode reclamar à <b>Autoridade Nacional de Proteção de Dados (ANPD)</b> em <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">gov.br/anpd</a>.</p>
+
+  <h2 id="seguranca">7. Segurança</h2>
+  <p>Adotamos medidas técnicas e administrativas para proteger os dados contra acessos não autorizados, perda e alteração, como conexão segura (HTTPS), acesso restrito às conversas de atendimento e uso de serviços de reputação reconhecida. Nenhum sistema é totalmente imune a falhas; se ocorrer um incidente que possa trazer risco relevante a você, comunicaremos você e a ANPD, nos termos da lei.</p>
+
+  <h2 id="camera">8. Câmeras de segurança no espaço</h2>
+  <p>O espaço conta com sistema de câmeras de segurança. As imagens são usadas para proteger pessoas e patrimônio e para apurar ocorrências, com acesso restrito e guarda pelo tempo necessário a essa finalidade. Não há câmeras em áreas de uso íntimo.</p>
+
+  <h2 id="criancas">9. Crianças e adolescentes</h2>
+  <p>Este site não é dirigido a menores de 18 anos, e quem contrata e conversa conosco é o responsável pelo evento. Quando o evento é infantil, tratamos dados de crianças apenas na medida do necessário e no melhor interesse delas, com o consentimento específico de pelo menos um dos pais ou responsáveis (art. 14 da LGPD).</p>
+
+  <h2 id="imagens">10. Fotos e imagens de eventos</h2>
+  <p>As fotos do site mostram o espaço. Se, no futuro, publicarmos imagens de eventos em que pessoas possam ser identificadas (site ou redes sociais), faremos isso somente com a autorização de quem aparece (ou de seus responsáveis). Você pode pedir a retirada de uma imagem a qualquer momento pelos nossos canais.</p>
+
+  <h2 id="cookies">11. Cookies</h2>
+  <p>Usamos apenas o armazenamento essencial para lembrar a sua escolha. O mapa do Google só é carregado com a sua permissão. Detalhes na nossa <a href="/cookies/">Política de Cookies</a>. Você pode mudar a escolha quando quiser, em “Preferências de cookies”, no rodapé de qualquer página.</p>
+
+  <h2 id="alteracoes">12. Alterações desta política</h2>
+  <p>Podemos atualizar esta política para refletir mudanças no site ou na lei. A data da última atualização aparece no topo da página. Mudanças relevantes serão destacadas no site.</p>
+
+  <h2 id="contato">13. Fale com a gente</h2>
+  <p>Dúvidas sobre esta política ou sobre os seus dados? Chame no WhatsApp <a href={site.telefoneLink}>{site.telefone}</a>{l.email && <> ou escreva para <a href={`mailto:${l.email}`}>{l.email}</a></>}. Endereço: {site.endereco.join(', ')}.</p>
+</Legal>

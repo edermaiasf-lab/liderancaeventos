@@ -1,0 +1,20 @@
+---
+import Photo from './Photo.astro';
+interface Props { items: { img: string; alt: string }[]; group?: string }
+const { items, group = 'car' } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<div class="car" data-car>
+  <div class="car-track" aria-label="Fotos">
+    {items.map((it) => (
+      <figure class="car-slide" data-lb data-lb-group={group} data-src={`/img/${it.img}.webp`} data-alt={it.alt} tabindex="0" role="button" aria-label={`Ampliar: ${it.alt}`}><Photo name={it.img} alt="" /></figure>
+    ))}
+  </div>
+  <div class="car-ui">
+    <span><b data-car-cur>01</b> / {pad(items.length)}</span>
+    <div class="car-btns">
+      <button type="button" data-car-prev aria-label="Foto anterior">Anterior</button>
+      <button type="button" data-car-next aria-label="Próxima foto">Próxima</button>
+    </div>
+  </div>
+</div>

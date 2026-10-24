@@ -1,0 +1,119 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import InfoCard from '../../components/InfoCard.astro';
+import Roteiro from '../../components/Roteiro.astro';
+import PhotoMosaic from '../../components/PhotoMosaic.astro';
+import Review from '../../components/Review.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { eventos, ambientes, galeria, papeis, roteiros, site, waLink } from '../../data/conteudo';
+
+export function getStaticPaths() {
+  return eventos.map((e) => ({ params: { slug: e.slug }, props: { e } }));
+}
+const { e } = Astro.props;
+const usa = e.usa.map((s) => ambientes.find((a) => a.slug === s)!);
+const outros = eventos.filter((x) => x.slug !== e.slug).slice(0, 3);
+const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
+const fotos = [...new Set(usa.flatMap((a) => a.galeria.slice(0, 3)))].slice(0, 7).map((g) => ({ img: g, alt: altDe(g) }));
+const crumbSchema = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: new URL('/', Astro.site) },
+    { '@type': 'ListItem', position: 2, name: 'Eventos', item: new URL('/eventos/', Astro.site) },
+    { '@type': 'ListItem', position: 3, name: e.nome },
+  ],
+};
+---
+<Base title={`${e.nome} em Abadia de Goiás | Liderança Espaço de Eventos`} description={e.resumo} image={e.img} schema={[crumbSchema]}>
+  <PageHero eyebrow={e.nome} title={e.titulo} lead={e.resumo} img={e.img} alt={e.alt} caption={`Fotografia — ${e.alt.toLowerCase()}.`} pos="center 55%" crumbs={[{ label: 'Eventos', href: '/eventos/' }, { label: e.nome }]} />
+
+  <!-- COMO FUNCIONA + RESUMO FIXO -->
+  <section class="sec tight">
+    <div class="wrap detail">
+      <div class="detail-main">
+        <span class="kicker" data-reveal>Como funciona</span>
+        <p class="statement" data-reveal>{e.texto[0]}</p>
+        {e.texto.slice(1).map((t) => <p data-reveal>{t}</p>)}
+        <ul class="rows" data-stagger style="margin-top:38px">
+          {usa.map((a) => <li><a href={`/espaco/${a.slug}/`}>{a.nome}</a><span>{papeis[a.slug]}</span></li>)}
+        </ul>
+      </div>
+      <InfoCard
+        rows={[['Capacidade', `até ${site.capacidade} pessoas`], ['Diária', 'das 09h às 22h'], ['Reserva', 'com 50% de sinal'], ['Som automotivo', 'proibido']]}
+        msg={e.whatsMsg}
+      />
+    </div>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="sec sand">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Sugestão de roteiro</span><h2 data-split style="margin-top:26px">Como o dia pode ser.</h2></div>
+        <p class="lead" data-reveal>Um exemplo de como aproveitar a diária das 09h às 22h. Ajustamos ao seu evento.</p>
+      </div>
+      <Roteiro steps={roteiros[e.slug]} />
+    </div>
+  </section>
+
+  <!-- ONDE ACONTECE -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="head"><div><span class="kicker" data-reveal>Ambientes</span><h2 data-split style="margin-top:26px">Onde acontece.</h2></div></div>
+      <ul class="cols3" data-stagger>
+        {usa.map((a) => (
+          <li><a class="ecard" href={`/espaco/${a.slug}/`}><figure><Photo name={a.img} alt={a.alt} /></figure><h3>{a.nome}</h3><p>{papeis[a.slug]}</p><span class="tlink">Ver o ambiente <Arrow /></span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOTOS -->
+  <section class="sec sand">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Fotografias</span><h2 data-split style="margin-top:26px">O cenário da sua festa.</h2></div>
+        <a class="tlink" href="/galeria/">Abrir a galeria <Arrow /></a>
+      </div>
+      <PhotoMosaic items={fotos} group={`ev-${e.slug}`} />
+      <p class="note-s" data-reveal>Fotos do espaço real, sem decoração. A decoração é do seu tema.</p>
+    </div>
+  </section>
+
+  <Review />
+
+  <!-- DÚVIDAS -->
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Dúvidas</span>
+        <h2 data-split style="margin-top:26px">Antes de reservar.</h2>
+        <p class="lead" data-reveal>O que mais perguntam sobre {e.nome.toLowerCase()} e a reserva da data.</p>
+        <div class="btns" data-reveal>
+          <a class="btn fill" href="/duvidas/">Ver todas <Arrow /></a>
+          <a class="btn line" href={waLink(e.whatsMsg)} target="_blank" rel="noopener noreferrer">WhatsApp <Arrow /></a>
+        </div>
+      </div>
+      <Faq cats={['Reserva', 'Eventos', 'Regras']} limit={5} />
+    </div>
+  </section>
+
+  <!-- OUTROS EVENTOS -->
+  <section class="sec dark photo">
+    <div class="backdrop" aria-hidden="true"><Photo name={e.img} /></div>
+    <div class="wrap">
+      <div class="head"><div><span class="kicker" data-reveal>Outros eventos</span><h2 data-split style="margin-top:26px">Veja também.</h2></div><a class="tlink" href="/eventos/">Todos os eventos <Arrow /></a></div>
+      <ul class="cols3" data-stagger>
+        {outros.map((o) => (
+          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand title={`Vai fazer ${e.nome.toLowerCase()} com a gente?`} msg={e.whatsMsg} />
+</Base>

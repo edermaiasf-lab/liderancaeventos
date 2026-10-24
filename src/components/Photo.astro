@@ -1,0 +1,7 @@
+---
+import { dims } from '../data/conteudo';
+interface Props { blur?: boolean; name: string; alt?: string; class?: string; lazy?: boolean; style?: string; parallax?: boolean; priority?: boolean }
+const { blur, name, alt = '', class: cls, lazy = true, style, parallax, priority } = Astro.props;
+const [w, h] = dims(name);
+---
+<img src={blur ? `/img/blur/${name}.webp` : `/img/${name}.webp`} width={w} height={h} alt={alt} class={cls} style={style} loading={lazy && !priority ? 'lazy' : undefined} decoding="async" fetchpriority={priority ? 'high' : undefined} data-parallax={parallax ? '' : undefined} />

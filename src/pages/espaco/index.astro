@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Carousel from '../../components/Carousel.astro';
+import MapaPins from '../../components/MapaPins.astro';
+import Review from '../../components/Review.astro';
+import Arrow from '../../components/Arrow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { ambientes, galeria } from '../../data/conteudo';
+const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
+---
+<Base title="O espaço | Liderança Espaço de Eventos, Abadia de Goiás" description="Conheça os ambientes do Liderança: piscina com cascata, salão, sinuca e bancada, fachada e entrada." image="piscina-cascata">
+  <PageHero eyebrow="O espaço" title="Quatro cantos, <em>uma festa.</em>" lead="Veja os ambientes, a estrutura e as possibilidades de montagem." img="piscina-lateral-2" alt="Piscina com cascata e o salão ao fundo" caption="Fotografia — piscina e salão." pos="center 55%" crumbs={[{ label: 'O espaço' }]} />
+
+  <section class="sec tight">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Conheça pelo mapa</span><h2 data-split style="margin-top:26px">Onde fica cada ambiente.</h2></div>
+        <p class="lead" data-reveal>Os quatro ambientes, lado a lado. Toque num deles para ver de perto.</p>
+      </div>
+      <MapaPins />
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      {ambientes.map((a) => (
+        <article class="amb" id={a.slug}>
+          <div class="amb-top">
+            <div class="amb-txt">
+              <span class="amb-n">{a.n} / 04</span>
+              <h3 data-split>{a.nome}</h3>
+              <p data-reveal>{a.resumo}</p>
+              <ul class="tags">{a.destaques.map((d) => <li>{d}</li>)}</ul>
+              <a class="tlink" href={`/espaco/${a.slug}/`}>Ver o ambiente <Arrow /></a>
+            </div>
+            <Carousel group={`car-${a.slug}`} items={a.galeria.map((g) => ({ img: g, alt: altDe(g) || a.alt }))} />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Review />
+  <CtaBand />
+</Base>

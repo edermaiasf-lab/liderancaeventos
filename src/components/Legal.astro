@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/conteudo';
+interface Props { title: string; description: string; h1: string; lead: string; toc: [string, string][]; path: string }
+const { title, description, h1, lead, toc, path } = Astro.props;
+---
+<Base title={`${title} | Liderança Espaço de Eventos`} description={description} image="entrada-noite">
+  <section class="phero slim" data-hero>
+    <div class="wrap">
+      <ol class="crumbs" aria-label="Você está em">
+        <li><a href="/">Início</a></li>
+        <li><span aria-current="page">{h1}</span></li>
+      </ol>
+      <span class="kicker" style="margin-top:28px">Documento legal</span>
+      <h1 data-split>{h1}</h1>
+      <p class="lead" data-reveal>{lead}</p>
+      <p class="upd" data-reveal>Atualizada em {site.legal.atualizacao}</p>
+    </div>
+  </section>
+
+  <section class="sec tight">
+    <div class="wrap legal">
+      <nav class="toc" aria-label="Neste documento">
+        <h4>Neste documento</h4>
+        <ol>{toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
+        <div class="toc-links">
+          <a href="/privacidade/" aria-current={path === 'privacidade' ? 'page' : undefined}>Política de Privacidade</a>
+          <a href="/cookies/" aria-current={path === 'cookies' ? 'page' : undefined}>Política de Cookies</a>
+          <a href="/termos/" aria-current={path === 'termos' ? 'page' : undefined}>Termos de Uso</a>
+        </div>
+      </nav>
+      <article class="prose">
+        <slot />
+      </article>
+    </div>
+  </section>
+</Base>

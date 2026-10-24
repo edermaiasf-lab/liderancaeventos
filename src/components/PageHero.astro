@@ -1,0 +1,24 @@
+---
+import Photo from './Photo.astro';
+interface Props { eyebrow?: string; title: string; lead?: string; img: string; alt?: string; caption?: string; pos?: string; crumbs?: { label: string; href?: string }[] }
+const { eyebrow, title, lead, img, alt = '', caption, pos = 'center', crumbs = [] } = Astro.props;
+---
+<section class="phero" data-hero>
+  <div class="phero-media"><Photo name={img} alt={alt} lazy={false} priority style={`object-position:${pos}`} /></div>
+  <div class="phero-shade" aria-hidden="true"></div>
+  <div class="wrap phero-in">
+    <div class="phero-text">
+      {crumbs.length > 0 && (
+        <ol class="crumbs" aria-label="Você está em" data-reveal>
+          <li><a href="/">Início</a></li>
+          {crumbs.map((c) => <li>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
+        </ol>
+      )}
+      {eyebrow && <span class="kicker" data-reveal>{eyebrow}</span>}
+      <h1 data-split set:html={title} />
+      {lead && <p class="lead" data-reveal>{lead}</p>}
+      <slot />
+    </div>
+    {caption && <p class="phero-cap" data-reveal>{caption}</p>}
+  </div>
+</section>
