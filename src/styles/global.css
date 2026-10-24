@@ -1111,3 +1111,29 @@ html, body { overflow-x: clip; }
   .mosaic-a figure, .mosaic-a figure:nth-child(n) { grid-column: span 1 !important; aspect-ratio: 4 / 5 !important; }
   .mosaic-a figure:first-child:nth-last-child(odd) { grid-column: 1 / -1 !important; aspect-ratio: 16 / 11 !important; }
 }
+
+
+/* ================= menu do celular v3: enxuto ================= */
+.drawer { padding: calc(var(--header-h) + 36px) var(--gutter) 32px; }
+.drawer-main { display: flex; flex-direction: column; gap: 4px; }
+.drawer .drawer-main a { font: 400 2.1rem/1.25 var(--serif); color: var(--on-dark); text-decoration: none; padding: 6px 0; border: 0; width: fit-content; }
+.drawer .drawer-main a[aria-current="page"] { color: var(--gold); font-style: italic; }
+.drawer-sub { display: flex; gap: 26px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line-dark); }
+.drawer .drawer-sub a { font: 500 .9rem/1 var(--sans); color: var(--on-dark-2); text-decoration: none; padding: 8px 0; border: 0; }
+.drawer .drawer-sub a[aria-current="page"] { color: var(--gold); }
+.drawer-cta { margin-top: auto !important; width: 100%; justify-content: center; }
+.drawer .drawer-main a, .drawer-sub, .drawer-cta { opacity: 0; transform: translateY(14px); }
+.menu-open .drawer .drawer-main a, .menu-open .drawer-sub, .menu-open .drawer-cta { opacity: 1; transform: none; transition: opacity .5s var(--ease), transform .6s var(--ease); }
+.menu-open .drawer .drawer-main a { transition-delay: calc(.15s + var(--i) * .06s); }
+.menu-open .drawer-sub { transition-delay: .42s; }
+.menu-open .drawer-cta { transition-delay: .5s; }
+@media (prefers-reduced-motion: reduce) { .drawer .drawer-main a, .drawer-sub, .drawer-cta { opacity: 1; transform: none; } }
+
+/* ícone do menu com 3 traços (vira X ao abrir) */
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 22.5px; }
+.burger span:nth-child(3) { top: 29px; }
+.menu-open .burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.menu-open .burger span:nth-child(2) { opacity: 0; }
+.menu-open .burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.menu-open .nav.on-hero .brand { opacity: 1; visibility: visible; }

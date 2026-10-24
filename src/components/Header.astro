@@ -1,8 +1,11 @@
 ---
 import Arrow from './Arrow.astro';
-import { nav, site, waLink } from '../data/conteudo';
+import { nav } from '../data/conteudo';
 const path = Astro.url.pathname;
 const current = (href: string) => (path.startsWith(href) ? 'page' : undefined);
+// menu do celular: o que mostra o espaço em destaque; dúvidas e contato menores
+const main = nav.filter((i) => !['/duvidas/', '/contato/'].includes(i.href));
+const extra = nav.filter((i) => ['/duvidas/', '/contato/'].includes(i.href));
 ---
 <header class={`nav${path === '/' ? ' on-hero' : ''}`} id="nav">
   <div class="wrap nav-row">
@@ -14,19 +17,15 @@ const current = (href: string) => (path.startsWith(href) ? 'page' : undefined);
       {nav.map((i) => <a href={i.href} aria-current={current(i.href)}>{i.label}</a>)}
     </nav>
     <a href="/reservar/" class="btn sm">Consultar data <Arrow /></a>
-    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="drawer" id="drawer" aria-label="Menu">
-  <p class="drawer-k">Menu</p>
-  <nav class="drawer-nav">
-    {nav.map((i, n) => <a href={i.href} aria-current={current(i.href)} style={`--i:${n}`}><span>{String(n + 1).padStart(2, '0')}</span>{i.label}<Arrow /></a>)}
+  <nav class="drawer-main" aria-label="Menu principal">
+    {main.map((i, n) => <a href={i.href} aria-current={current(i.href)} style={`--i:${n}`}>{i.label}</a>)}
   </nav>
-  <div class="drawer-foot">
-    <div class="drawer-btns">
-      <a class="btn gold sm" href="/reservar/">Consultar data</a>
-      <a class="btn line-d sm" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-    </div>
-    <p>{site.telefone} · Abadia de Goiás — GO<br />Diária das 09h às 22h · até {site.capacidade} pessoas</p>
-  </div>
+  <nav class="drawer-sub" aria-label="Mais">
+    {extra.map((i) => <a href={i.href} aria-current={current(i.href)}>{i.label}</a>)}
+  </nav>
+  <a class="btn gold drawer-cta" href="/reservar/">Consultar data <Arrow /></a>
 </div>
