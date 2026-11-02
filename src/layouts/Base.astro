@@ -13,12 +13,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(`/og/${image}.jpg`, Astro.site);
 
 const venue = {
-  '@context': 'https://schema.org', '@type': 'EventVenue', name: site.nome, telephone: '+55 62 99103-5398', url: Astro.site, image: ogImage,
+  '@context': 'https://schema.org', '@type': 'EventVenue', name: site.nome, telephone: `+${site.whats}`, url: Astro.site, image: ogImage,
   logo: new URL('/img/marca/completa-ouro.webp', Astro.site), hasMap: site.mapsRota, sameAs: [site.instagram],
-  description: 'Espaço de eventos com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira em Abadia de Goiás - GO. Até 60 pessoas, diária das 09h às 22h.',
+  description: `Espaço de eventos com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira, a ${site.referencia}. Até 60 pessoas, diária das 09h às 22h.`,
   openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '09:00', closes: '22:00' }],
   maximumAttendeeCapacity: site.capacidade,
-  address: { '@type': 'PostalAddress', streetAddress: 'R. Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural', addressLocality: 'Abadia de Goiás', addressRegion: 'GO', postalCode: '75325-204', addressCountry: 'BR' },
+  address: { '@type': 'PostalAddress', streetAddress: 'Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural', addressLocality: 'Abadia de Goiás', addressRegion: 'GO', postalCode: '75325-204', addressCountry: 'BR' },
   amenityFeature: ['Piscina com cascata e aquecimento solar', 'Churrasqueira', 'Mesa de sinuca', 'Wi-Fi', 'Climatizador de ar'].map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
 };
 ---
@@ -50,7 +50,6 @@ const venue = {
   <link rel="preload" href="/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="format-detection" content="telephone=no" />
   <meta name="geo.region" content="BR-GO" />
-  <meta name="geo.placename" content="Abadia de Goiás, Goiás" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />

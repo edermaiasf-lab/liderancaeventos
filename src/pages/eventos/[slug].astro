@@ -28,7 +28,7 @@ const crumbSchema = {
   ],
 };
 ---
-<Base title={`${e.nome} em Abadia de Goiás | Liderança Espaço de Eventos`} description={e.resumo} image={e.img} schema={[crumbSchema]}>
+<Base title={`${e.nome} | Liderança Espaço de Eventos, a 25 min do Buriti Shopping`} description={`${e.resumo} A 25 minutos do Buriti Shopping, pela GO-040.`} image={e.img} schema={[crumbSchema]}>
   <PageHero eyebrow={e.nome} title={e.titulo} lead={e.resumo} img={e.img} alt={e.alt} caption={`Fotografia — ${e.alt.toLowerCase()}.`} pos="center 55%" crumbs={[{ label: 'Eventos', href: '/eventos/' }, { label: e.nome }]} />
 
   <!-- COMO FUNCIONA + RESUMO FIXO -->
@@ -108,7 +108,7 @@ const crumbSchema = {
       <div class="head"><div><span class="kicker" data-reveal>Outros eventos</span><h2 data-split style="margin-top:26px">Veja também.</h2></div><a class="tlink" href="/eventos/">Todos os eventos <Arrow /></a></div>
       <ul class="cols3" data-stagger>
         {outros.map((o) => (
-          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 200vw, 70vw" /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
         ))}
       </ul>
     </div>

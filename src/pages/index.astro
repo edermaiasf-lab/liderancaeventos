@@ -16,8 +16,8 @@ const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
 const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachada-dia', 'piscina-led-5', 'sinuca-close', 'piscina-noite'].map((g) => ({ img: g, alt: altDe(g) }));
 ---
 <Base
-  title="Liderança Espaço de Eventos | Piscina com cascata em Abadia de Goiás - GO"
-  description="Espaço de eventos em Abadia de Goiás com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira. Até 60 pessoas. WhatsApp (62) 99103-5398."
+  title="Liderança Espaço de Eventos | Piscina com cascata a 25 min do Buriti Shopping"
+  description={`Espaço de eventos com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira, a ${site.referencia}. Até 60 pessoas. WhatsApp ${site.telefone}.`}
   image="vista-geral"
 >
   <!-- BANNER (fica parado; a próxima seção sobe por cima) -->
@@ -31,13 +31,13 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
     <div class="hero-mid">
       <div>
         <h1><img class="hero-logo" src="/img/marca/completa-ouro.webp" srcset="/img/marca/completa-ouro-400.webp 400w, /img/marca/completa-ouro-560.webp 560w, /img/marca/completa-ouro.webp 840w" sizes="(max-width: 700px) 220px, 280px" width="840" height="840" alt="Liderança Espaço de Eventos" fetchpriority="high" decoding="async" data-fade /></h1>
-        <p class="hero-sub" data-reveal>Piscina com cascata, salão e sinuca em Abadia de Goiás.</p>
+        <p class="hero-sub" data-reveal>Piscina com cascata, salão e sinuca a 25 minutos do Buriti Shopping.</p>
       </div>
     </div>
     <div class="wrap hero-bar" data-fade>
       <div><a class="btn gold" href="/reservar/">Consultar data <Arrow /></a></div>
       <a class="scroll-cue" href="#espaco">Conhecer o espaço <Arrow dir="down" /></a>
-      <small>Abadia de Goiás — GO</small>
+      <small>25 min do Buriti Shopping</small>
     </div>
   </section>
 
@@ -158,7 +158,7 @@ const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachad
         {eventos.slice(0, 3).map((e) => (
           <li>
             <a class="ecard" href={`/eventos/${e.slug}/`}>
-              <figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure>
+              <figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 200vw, 70vw" /></figure>
               <h3>{e.nome}</h3>
               <p>{e.resumo}</p>
               <span class="tlink">Conhecer <Arrow /></span>

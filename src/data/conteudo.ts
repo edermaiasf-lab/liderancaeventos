@@ -3,11 +3,12 @@
 export const site = {
   nome: 'Liderança Espaço de Eventos',
   url: 'https://liderancaeventos.pages.dev', // TROCAR pelo domínio real (e em astro.config.mjs)
-  whats: '5562991035398',
-  telefone: '(62) 99103-5398',
-  telefoneLink: 'tel:+5562991035398',
+  whats: '5562982612837',
+  telefone: '(62) 98261-2837',
+  telefoneLink: 'tel:+5562982612837',
   instagram: 'https://www.instagram.com/lideranca_espacodeeventos/', // conferir com o cliente
-  endereco: ['R. Fortaleza, Qd. 030 — Lt. 010', 'Residencial Goiânia Sul · Zona Rural', 'Abadia de Goiás — GO · CEP 75325-204'],
+  endereco: ['Rua Fortaleza, Qd. 030, Lt. 010', 'Residencial Goiânia Sul, Zona Rural', 'CEP 75325-204, Abadia de Goiás – GO'],
+  referencia: '25 minutos do Buriti Shopping, pela GO-040',
   mapsRota: 'https://www.google.com/maps/dir/?api=1&destination=R.+Fortaleza+Qd.+030+Lt.+010+Residencial+Goi%C3%A2nia+Sul+Abadia+de+Goi%C3%A1s+GO',
   mapsEmbed: 'https://www.google.com/maps?q=R.+Fortaleza,+Residencial+Goi%C3%A2nia+Sul,+Abadia+de+Goi%C3%A1s+-+GO,+75325-204&output=embed',
   nota: '4,8',
@@ -106,7 +107,7 @@ export const ambientes = [
   },
   {
     slug: 'entrada', n: '04', nome: 'Fachada e entrada', curto: 'Entrada',
-    img: 'fachada-dia', hero: 'entrada-noite', alt: 'Fachada do espaço com letreiro Liderança iluminado e jardim de plantas',
+    img: 'fachada-dia', hero: 'fachada-dia', alt: 'Fachada do espaço durante o dia, com letreiro Liderança e jardim de plantas',
     resumo: 'Fachada moderna com letreiro iluminado, jardim de plantas e câmeras de segurança.',
     texto: [
       'A chegada já faz parte da festa: fachada moderna, letreiro da Liderança que acende à noite e um jardim de plantas na entrada.',
@@ -114,7 +115,7 @@ export const ambientes = [
     ],
     destaques: ['Letreiro iluminado', 'Jardim na entrada', 'Câmeras de segurança'],
     ideal: 'Fotos de chegada e recepção dos convidados.',
-    galeria: ['fachada-dia', 'entrada-noite'],
+    galeria: ['fachada-dia'],
   },
 ];
 
@@ -177,8 +178,8 @@ export const faq = [
   ['Quantas pessoas cabem no espaço?', 'O espaço comporta até 60 pessoas, com 10 jogos de mesas e cadeiras.', 'O espaço'],
   ['Qual o horário da diária?', 'A diária vai das 09h às 22h.', 'Reserva'],
   ['Como funciona a reserva?', 'A reserva é feita com 50% de sinal. As datas são limitadas e sujeitas à disponibilidade, então o ideal é consultar com antecedência pelo WhatsApp.', 'Reserva'],
-  ['Quanto custa a diária?', 'Os valores são passados pelo WhatsApp, de acordo com a data. Chame no (62) 99103-5398 para receber o orçamento.', 'Reserva'],
-  ['Como consulto uma data?', 'Pelo formulário da página Reservar: você escolhe o tipo de evento e a data e a mensagem já chega pronta no WhatsApp. Também dá para ligar para (62) 99103-5398.', 'Reserva'],
+  ['Quanto custa a diária?', `Os valores são passados pelo WhatsApp, de acordo com a data. Chame no ${site.telefone} para receber o orçamento.`, 'Reserva'],
+  ['Como consulto uma data?', `Pelo formulário da página Reservar: você escolhe o tipo de evento e a data e a mensagem já chega pronta no WhatsApp. Também dá para ligar para ${site.telefone}.`, 'Reserva'],
   ['A piscina é aquecida?', 'Sim. A piscina é ampla, tem cascata e aquecimento solar.', 'O espaço'],
   ['Tem churrasqueira e cozinha?', 'Tem churrasqueira, fogão industrial de 4 bocas com gás e freezer horizontal.', 'O espaço'],
   ['O espaço tem quarto?', 'Sim: 1 cama de casal e 2 colchões de solteiro.', 'O espaço'],
@@ -186,7 +187,7 @@ export const faq = [
   ['O espaço tem câmeras de segurança?', 'Sim, o espaço conta com sistema de câmeras de segurança.', 'O espaço'],
   ['Pode usar som automotivo?', 'Não. O som automotivo é proibido no espaço.', 'Regras'],
   ['Que tipos de evento vocês recebem?', 'Aniversários, festas infantis, chás de bebê e revelação, confraternizações e outras celebrações. Se o seu evento é diferente, chame no WhatsApp e converse.', 'Eventos'],
-  ['Onde fica?', 'Em Abadia de Goiás — GO, no Residencial Goiânia Sul (R. Fortaleza, Qd. 030, Lt. 010). Na página Contato há o mapa e o botão de rota.', 'Como chegar'],
+  ['Onde fica?', `Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural, CEP 75325-204, Abadia de Goiás – GO. Fica a ${site.referencia}. O trajeto não passa por barreira. Na página Contato há o mapa e o botão de rota.`, 'Como chegar'],
 ];
 
 export const galeria = [
@@ -211,7 +212,6 @@ export const galeria = [
   ['salao-sinuca-2', 'Salão e sinuca', 'Mesa de sinuca no salão'],
   ['sinuca-close', 'Salão e sinuca', 'Mesa de sinuca de feltro verde'],
   ['bancada', 'Salão e sinuca', 'Bancada com banquetas e piscina ao fundo'],
-  ['entrada-noite', 'Entrada', 'Letreiro Liderança iluminado à noite'],
   ['fachada-dia', 'Entrada', 'Fachada com letreiro e jardim de plantas'],
 ];
 
@@ -222,7 +222,6 @@ export const googleLink =
 
 export const reviews = [
   { q: 'A piscina é nota 10 e a limpeza do espaço impressiona.', a: 'Maria Natalina' },
-  { q: 'O sistema de som também é de primeira.', a: 'Tay Gomes' },
 ];
 
 /** o que cada ambiente faz na festa (usado nas páginas de evento) */

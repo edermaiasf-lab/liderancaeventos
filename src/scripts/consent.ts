@@ -28,7 +28,7 @@ function syncMaps() {
     const has = box.querySelector('iframe');
     if (ok && !has) {
       const f = document.createElement('iframe');
-      f.title = 'Mapa: Liderança Espaço de Eventos, Abadia de Goiás - GO';
+      f.title = 'Mapa: Liderança Espaço de Eventos, a 25 minutos do Buriti Shopping';
       f.loading = 'lazy';
       f.referrerPolicy = 'no-referrer-when-downgrade';
       f.src = box.dataset.src!;
