@@ -11,7 +11,7 @@ const extra = nav.filter((i) => ['/duvidas/', '/contato/'].includes(i.href));
   <div class="wrap nav-row">
     <a href="/" class="brand" aria-label="Liderança Espaço de Eventos — início">
       <img class="logo-o" src="/img/marca/horizontal-ouro.webp" width="1120" height="330" alt="Liderança Espaço de Eventos" />
-      <img class="logo-e" src="/img/marca/horizontal-escuro.webp" width="1120" height="330" alt="" aria-hidden="true" />
+      <img class="logo-e" src="/img/marca/horizontal-escuro.webp" width="1120" height="330" alt="" aria-hidden="true" loading="lazy" decoding="async" />
     </a>
     <nav class="nav-links" aria-label="Principal">
       {nav.map((i) => <a href={i.href} aria-current={current(i.href)} data-astro-prefetch="load">{i.label}</a>)}
