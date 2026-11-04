@@ -307,3 +307,8 @@ export const altFoto: Record<string, string> = {
   'fachada-dia': 'Fachada do Liderança Espaço de Eventos com letreiro e jardim de plantas na entrada, em Abadia de Goiás',
   'entrada-noite': 'Letreiro do Liderança Espaço de Eventos iluminado à noite na entrada',
 };
+
+/* eventos sazonais e casamento (texto em eventos-extra.ts) */
+import { eventosNovos, roteirosNovos } from './eventos-extra';
+eventos.push(...eventosNovos);
+Object.assign(roteiros, roteirosNovos);
