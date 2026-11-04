@@ -2,7 +2,7 @@
 
 export const site = {
   nome: 'Liderança Espaço de Eventos',
-  url: 'https://liderancaeventos.pages.dev', // TROCAR pelo domínio real (e em astro.config.mjs)
+  url: import.meta.env.SITE, // vem de SITE_URL (astro.config.mjs)
   whats: '5562982612837',
   telefone: '(62) 98261-2837',
   telefoneLink: 'tel:+5562982612837',

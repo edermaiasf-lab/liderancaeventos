@@ -1,0 +1,5 @@
+# Referência apenas. O arquivo _redirects do Cloudflare Pages NÃO aceita regra de domínio para
+# domínio (só caminhos relativos), por isso o redirecionamento do pages.dev usa o
+# docs/cloudflare/_middleware.js. A regra equivalente, se for criada em
+# Cloudflare > Regras > Redirecionamentos em massa (Bulk Redirects), é:
+https://liderancaeventos.pages.dev/* https://liderancaespacodeeventos.com.br/:splat 301
