@@ -33,7 +33,7 @@ const evs = eventos.slice(0, 6);
         {l.blocos.map((b, i) => (
           <>
             <h2 data-reveal>{b.h}</h2>
-            {b.p.map((t, j) => <p class={i === 0 && j === 0 ? 'statement' : undefined} data-reveal>{t}</p>)}
+            {b.p.map((t) => <p data-reveal>{t}</p>)}
           </>
         ))}
         <p class="note-s" data-reveal style="margin-top:26px">Veja também: <a href="/estrutura/">estrutura completa</a> · <a href="/galeria/">galeria de fotos</a> · <a href="/como-chegar/">como chegar</a> · <a href="/duvidas/">dúvidas</a>.</p>
