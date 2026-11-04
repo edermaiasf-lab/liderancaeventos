@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import MapaGoogle from '../components/MapaGoogle.astro';
 import Arrow from '../components/Arrow.astro';
 import Faq from '../components/Faq.astro';
 import Review from '../components/Review.astro';
@@ -44,15 +45,7 @@ import { site, waLink } from '../data/conteudo';
           <a class="btn line" href={waLink('Olá! Vim pelo site e quero combinar uma visita ao espaço.')} target="_blank" rel="noopener noreferrer">Combinar uma visita <Arrow /></a>
         </div>
       </div>
-      <div class="gmap" data-reveal data-map data-src={site.mapsEmbed}>
-        <div class="map-tag"><b>Liderança Espaço de Eventos</b><span>{site.endereco[0]}<br />{site.endereco[1]}</span><a href={site.mapsRota} target="_blank" rel="noopener noreferrer">Traçar rota ↗</a></div>
-        <div class="map-ph">
-          <span class="kicker">Mapa do Google</span>
-          <p>Para mostrar o mapa interativo, o Google pode usar cookies e coletar dados de navegação. A escolha é sua.</p>
-          <div class="btns" style="margin-top:20px"><button type="button" class="btn fill sm" data-map-load>Carregar mapa</button><a class="btn line sm" href={site.mapsRota} target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a></div>
-          <small>Veja a <a href="/cookies/">Política de Cookies</a>.</small>
-        </div>
-      </div>
+      <MapaGoogle />
     </div>
   </section>
 

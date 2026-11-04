@@ -1,0 +1,87 @@
+---
+// Página para buscas locais (texto de src/data/locais.ts).
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import Arrow from './Arrow.astro';
+import InfoCard from './InfoCard.astro';
+import PhotoMosaic from './PhotoMosaic.astro';
+import Review from './Review.astro';
+import Faq from './Faq.astro';
+import CtaBand from './CtaBand.astro';
+import Photo from './Photo.astro';
+import { eventos, site, waLink, altFoto } from '../data/conteudo';
+import type { Local } from '../data/locais';
+interface Props { l: Local }
+const { l } = Astro.props;
+const nomeCurto = l.h1.replace(/<[^>]+>/g, '');
+const crumbSchema = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: new URL('/', Astro.site) },
+    { '@type': 'ListItem', position: 2, name: nomeCurto },
+  ],
+};
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: l.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
+const evs = eventos.slice(0, 6);
+---
+<Base title={l.title} description={l.description} image={l.img} schema={[crumbSchema, faqSchema]}>
+  <PageHero eyebrow={l.eyebrow} title={l.h1} lead={l.lead} img={l.img} alt={l.alt} pos="center 55%" crumbs={[{ label: nomeCurto }]} />
+
+  <section class="sec tight">
+    <div class="wrap detail">
+      <div class="detail-main prose-local">
+        {l.blocos.map((b, i) => (
+          <>
+            <h2 data-reveal>{b.h}</h2>
+            {b.p.map((t, j) => <p class={i === 0 && j === 0 ? 'statement' : undefined} data-reveal>{t}</p>)}
+          </>
+        ))}
+        <p class="note-s" data-reveal style="margin-top:26px">Veja também: <a href="/estrutura/">estrutura completa</a> · <a href="/galeria/">galeria de fotos</a> · <a href="/como-chegar/">como chegar</a> · <a href="/duvidas/">dúvidas</a>.</p>
+      </div>
+      <InfoCard
+        rows={[['Onde', 'Abadia de Goiás – GO'], ['Capacidade', `até ${site.capacidade} pessoas`], ['Diária', 'das 09h às 22h'], ['Reserva', 'com 50% de sinal']]}
+        msg={l.whatsMsg}
+      />
+    </div>
+  </section>
+
+  <section class="sec sand">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker" data-reveal>Fotografias</span><h2 data-split style="margin-top:26px">O espaço real.</h2></div>
+        <a class="tlink" href="/galeria/">Abrir a galeria <Arrow /></a>
+      </div>
+      <PhotoMosaic items={l.fotos.map((f) => ({ img: f, alt: altFoto[f] }))} group={l.slug} />
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head"><div><span class="kicker" data-reveal>Eventos</span><h2 data-split style="margin-top:26px">Para qual festa?</h2></div><a class="tlink" href="/eventos/">Todos os eventos <Arrow /></a></div>
+      <ul class="cols3" data-stagger>
+        {evs.slice(0, 3).map((e) => (
+          <li><a class="ecard" href={`/eventos/${e.slug}/`}><figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{e.nome}</h3><p>{e.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+        ))}
+      </ul>
+      <p class="note-s" data-reveal style="margin-top:30px">Também: {evs.slice(3).map((e, i) => <>{i > 0 && ' · '}<a href={`/eventos/${e.slug}/`}>{e.nome}</a></>)}.</p>
+    </div>
+  </section>
+
+  <Review />
+
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Dúvidas</span>
+        <h2 data-split style="margin-top:26px">Perguntas frequentes.</h2>
+        <div class="btns" data-reveal>
+          <a class="btn fill" href="/duvidas/">Ver todas <Arrow /></a>
+          <a class="btn line" href={waLink(l.whatsMsg)} target="_blank" rel="noopener noreferrer">WhatsApp <Arrow /></a>
+        </div>
+      </div>
+      <Faq items={l.faqs} />
+    </div>
+  </section>
+
+  <CtaBand msg={l.whatsMsg} />
+</Base>

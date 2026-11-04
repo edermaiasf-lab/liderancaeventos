@@ -1,0 +1,6 @@
+---
+import LocalPage from '../components/LocalPage.astro';
+import { locais } from '../data/locais';
+const l = locais.find((x) => x.slug === 'espaco-de-eventos-com-piscina-perto-de-goiania')!;
+---
+<LocalPage l={l} />

@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Arrow from '../components/Arrow.astro';
+import MapaGoogle from '../components/MapaGoogle.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, waLink, googleLink } from '../data/conteudo';
+import { rotas } from '../data/locais';
+const faqs: [string, string][] = [
+  ['Qual o endereço completo?', `${site.enderecoLinha}.`],
+  ['Quanto tempo leva saindo de Goiânia?', `O espaço fica a ${site.referencia}. O tempo exato depende do trânsito: os links acima abrem a rota no Google Maps com o trânsito do momento.`],
+  ['O caminho passa por barreira?', site.semBarreira.replace('O trajeto', 'Não. O trajeto')],
+  ['Posso visitar o espaço antes de reservar?', 'Sim, combine o melhor dia e horário pelo WhatsApp.'],
+];
+const crumbSchema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Início', item: new URL('/', Astro.site) }, { '@type': 'ListItem', position: 2, name: 'Como chegar' }] };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
+---
+<Base title="Como chegar ao Liderança Espaço de Eventos em Abadia de Goiás" description={`Endereço, mapa e rotas para o Liderança Espaço de Eventos em Abadia de Goiás, a ${site.referencia}. Rotas a partir de Goiânia, Aparecida de Goiânia e do Buriti Shopping.`} image="fachada-dia" schema={[crumbSchema, faqSchema]}>
+  <PageHero eyebrow="Como chegar" title="Como chegar ao <em>Liderança.</em>" lead={`Rua Fortaleza, Residencial Goiânia Sul, em Abadia de Goiás. A ${site.referencia}.`} img="fachada-dia" pos="center 45%" crumbs={[{ label: 'Como chegar' }]} />
+
+  <section class="sec tight">
+    <div class="wrap two" style="align-items:center">
+      <div>
+        <h2 data-split>Endereço.</h2>
+        <address class="addr" data-reveal>{site.endereco.map((l, i) => <>{l}{i < site.endereco.length - 1 && <br />}</>)}</address>
+        <p class="addr" data-reveal>Referência: {site.referencia}.<br />{site.semBarreira}</p>
+        <div class="btns" data-reveal>
+          <a class="btn fill" href={site.mapsRota} target="_blank" rel="noopener noreferrer">Traçar rota daqui <Arrow /></a>
+          <a class="btn line" href={site.googlePerfil || googleLink} target="_blank" rel="noopener noreferrer">Ver no Google Maps <Arrow /></a>
+        </div>
+      </div>
+      <MapaGoogle />
+    </div>
+  </section>
+
+  <section class="sec sand">
+    <div class="wrap">
+      <div class="head"><div><span class="kicker" data-reveal>Rotas prontas</span><h2 data-split style="margin-top:26px">Saindo de onde você está.</h2></div></div>
+      <ul class="cols3" data-stagger>
+        {rotas.map((r) => (
+          <li class="rota-card"><h3>{r.de}</h3><p>{r.texto}</p><a class="tlink" href={r.link} target="_blank" rel="noopener noreferrer">Abrir rota no Google Maps <Arrow /></a></li>
+        ))}
+      </ul>
+      <p class="note-s" data-reveal style="margin-top:30px">O tempo de viagem muda com o trânsito. Ficou com dúvida no caminho? <a href={waLink('Olá! Estou indo para o espaço e preciso de ajuda com o caminho.')} target="_blank" rel="noopener noreferrer">Chame no WhatsApp</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div class="faq-side">
+        <span class="kicker" data-reveal>Dúvidas</span>
+        <h2 data-split style="margin-top:26px">Sobre o caminho.</h2>
+        <p class="lead" data-reveal>Veja também o <a href="/salao-de-festas-abadia-de-goias/">salão de festas em Abadia de Goiás</a> e o <a href="/espaco-de-eventos-com-piscina-perto-de-goiania/">espaço com piscina perto de Goiânia</a>.</p>
+      </div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <CtaBand title="Venha conhecer." msg="Olá! Vim pelo site e quero combinar uma visita ao espaço." />
+</Base>
