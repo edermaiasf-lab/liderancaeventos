@@ -97,10 +97,30 @@ export function initScrollFx() {
     }
   });
   ScrollTrigger.refresh();
+  watchHeight();
+}
+
+/* seções fora da tela só são montadas quando chegam perto (content-visibility no CSS);
+   quando a altura da página muda por isso, os gatilhos de rolagem são recalculados */
+let ro: ResizeObserver | null = null;
+let t: ReturnType<typeof setTimeout> | undefined;
+function watchHeight() {
+  ro?.disconnect();
+  if (!('ResizeObserver' in window)) return;
+  let last = document.body.offsetHeight;
+  ro = new ResizeObserver(() => {
+    const h = document.body.offsetHeight;
+    if (Math.abs(h - last) < 2) return;
+    last = h;
+    clearTimeout(t);
+    t = setTimeout(() => ScrollTrigger.refresh(), 150);
+  });
+  ro.observe(document.body);
 }
 
 
 export function killFx() {
+  ro?.disconnect();
   ctx?.revert();
   ctx = null;
   ScrollTrigger.getAll().forEach((s) => s.kill());

@@ -1,22 +1,30 @@
 # Cloudflare Pages: cache e cabeçalhos de segurança
+# /* vale para tudo; nas páginas (HTML) o navegador sempre confere se há versão nova (max-age=0)
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cache-Control: public, max-age=0, must-revalidate
   Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' https://static.cloudflareinsights.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
 
-# arquivos com nome versionado: guardar por 1 ano
+# arquivos com nome versionado (hash no nome): guardar por 1 ano
+# "! Cache-Control" tira o valor da regra /* para não juntar os dois
 /_astro/*
-  Cache-Control: public, max-age=31536000, immutable
-/fonts/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
-# fotos, marca e ícones: 30 dias
+# fontes, fotos, marca, imagens de compartilhamento e ícones: o nome não muda quando o arquivo muda, então 30 dias
+/fonts/*
+  ! Cache-Control
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 /img/*
+  ! Cache-Control
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 /og/*
+  ! Cache-Control
   Cache-Control: public, max-age=2592000
 /*.png
+  ! Cache-Control
   Cache-Control: public, max-age=2592000

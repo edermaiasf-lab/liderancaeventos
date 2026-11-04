@@ -10,8 +10,8 @@ const extra = nav.filter((i) => ['/duvidas/', '/contato/'].includes(i.href));
 <header class={`nav${path === '/' ? ' on-hero' : ''}`} id="nav">
   <div class="wrap nav-row">
     <a href="/" class="brand" aria-label="Liderança Espaço de Eventos — início">
-      <img class="logo-o" src="/img/marca/horizontal-ouro.webp" width="1120" height="330" alt="Liderança Espaço de Eventos" />
-      <img class="logo-e" src="/img/marca/horizontal-escuro.webp" width="1120" height="330" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <img class="logo-o" src="/img/marca/horizontal-ouro.webp" srcset="/img/marca/horizontal-ouro-240.webp 240w, /img/marca/horizontal-ouro.webp 480w" sizes="(max-width: 700px) 130px, 160px" width="1120" height="330" alt="Liderança Espaço de Eventos" />
+      <img class="logo-e" src="/img/marca/horizontal-escuro.webp" srcset="/img/marca/horizontal-escuro-240.webp 240w, /img/marca/horizontal-escuro.webp 480w" sizes="(max-width: 700px) 130px, 160px" width="1120" height="330" alt="" aria-hidden="true" loading="lazy" decoding="async" />
     </a>
     <nav class="nav-links" aria-label="Principal">
       {nav.map((i) => <a href={i.href} aria-current={current(i.href)} data-astro-prefetch="load">{i.label}</a>)}

@@ -5,9 +5,13 @@
    Serifa grande para os títulos, sans pequena para tudo o resto.
    Sem sombras, sem cantos arredondados, linhas finas.
    ========================================================= */
-@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader.woff2') format('woff2'); font-weight: 400 500; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader-italic.woff2') format('woff2'); font-weight: 400 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: 'DM Sans'; src: url('/fonts/dm-sans.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+
+/* fontes de reserva com as mesmas medidas (texto não pula quando a fonte carrega; valores do Capsize) */
+@font-face { font-family: "DM Sans Fallback"; src: local("Arial"), local("ArialMT"); ascent-override: 94.9001%; descent-override: 29.6563%; line-gap-override: 0%; size-adjust: 104.531%; }
+@font-face { font-family: "Newsreader Fallback"; src: local("Georgia"); ascent-override: 76.4676%; descent-override: 27.5699%; size-adjust: 96.1192%; }
 
 :root {
   --bone: #f7f4ee;
@@ -23,8 +27,8 @@
   --on-dark-2: #aaa699;
   --line-dark: rgba(239, 233, 220, .2);
 
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans: "DM Sans", system-ui, sans-serif;
+  --serif: "Newsreader", "Newsreader Fallback", Georgia, "Times New Roman", serif;
+  --sans: "DM Sans", "DM Sans Fallback", Arial, system-ui, sans-serif;
   --wrap: 1200px;
   --gutter: 40px;
   --sec: 104px;
@@ -1142,7 +1146,7 @@ html, body { overflow-x: clip; }
 .hero-logo.rv { opacity: .01; }
 .hero-logo.rv.in { opacity: 1; }
 /* desempenho: o navegador só monta as seções do fim da página quando elas chegam perto da tela */
-[data-dn] ~ .sec, .footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+main > section:not(:first-child):not([data-dn]):not(.dn), .footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 
 /* títulos que eram h4 viraram h3/h2 com a classe .h4: mesma aparência */
 :where(h2, h3).h4 { font-size: 1.4rem; line-height: 1.15; }

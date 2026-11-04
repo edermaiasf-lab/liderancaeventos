@@ -8,7 +8,7 @@ const links = [
 <footer class="footer">
   <div class="wrap">
     <div class="ft-top">
-      <a href="/" class="ft-logo" aria-label="Liderança Espaço de Eventos, início"><img src="/img/marca/horizontal-ouro.webp" width="1120" height="330" alt="Liderança Espaço de Eventos" /></a>
+      <a href="/" class="ft-logo" aria-label="Liderança Espaço de Eventos, início"><img src="/img/marca/horizontal-ouro.webp" srcset="/img/marca/horizontal-ouro-240.webp 240w, /img/marca/horizontal-ouro.webp 480w" sizes="150px" width="1120" height="330" alt="Liderança Espaço de Eventos" loading="lazy" decoding="async" /></a>
       <nav class="ft-nav" aria-label="Rodapé">{links.map(([t, h]) => <a href={h}>{t}</a>)}</nav>
       <div class="ft-contact">
         <a href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp {site.telefone}</a>
