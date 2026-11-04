@@ -18,7 +18,7 @@ Veja `.env.example`. No Cloudflare: **Workers & Pages > liderancaeventos > Confi
 | Variável | Para que serve |
 |---|---|
 | `SITE_URL` | Endereço oficial. Padrão hoje: `https://liderancaeventos.pages.dev` (constante `PADRAO` em `astro.config.mjs`); trocar para `https://liderancaespacodeeventos.com.br` quando o domínio abrir. Canonical, sitemap, `og:url`, `og:image`, dados estruturados e `robots.txt` saem daqui. |
-| `PUBLIC_GA_ID` | ID do Google Analytics 4 (`G-XXXXXXXXXX`). Vazio = nada do Analytics é carregado. |
+| `PUBLIC_GA_ID` | ID do Google Analytics 4: **`G-RCEXG8T5G7`** (já em `.env.production`). Vazio = nada do Analytics é carregado. |
 | `PUBLIC_GSC_VERIFICATION` | Valor da meta tag de verificação do Search Console. |
 
 Depois de mudar uma variável, faça um novo deploy (Implantações > Tentar implantar de novo).
@@ -46,7 +46,11 @@ Depois de mudar uma variável, faça um novo deploy (Implantações > Tentar imp
 
 ## 3. Google Analytics 4
 
-1. analytics.google.com > Administrador > Criar propriedade > Fluxo de dados **Web** com `https://liderancaespacodeeventos.com.br`. Copie o ID `G-...` para `PUBLIC_GA_ID` e publique.
+1. Propriedade criada: fluxo Web "Liderença" (código do fluxo 16273386861), **ID `G-RCEXG8T5G7`**. O ID já está em `.env.production` (o build de produção do Cloudflare lê esse arquivo) e em `.env.example`.
+   - Para cadastrar ou trocar pelo painel (tem prioridade sobre o arquivo): Cloudflare > **Workers & Pages** > liderancaeventos > **Settings** > **Variables and Secrets** > **Add** > tipo *Text*, nome `PUBLIC_GA_ID`, valor `G-RCEXG8T5G7`. Cadastre em **Production** e em **Preview**. Depois: **Deployments** > último deploy > **Retry deployment** (a variável só entra num build novo).
+   - **Não** cole no site o snippet `gtm.js?id=GTM-PDPM3863` que o Google mostra: ele carregaria antes do aceite de cookies (contra a LGPD e o Consent Mode) e duplicaria a medição. O site já carrega o `gtag.js` do GA4 sozinho.
+   - O nome do fluxo está "Liderença" (com e). Dá para corrigir em Administrador > Fluxos de dados > lápis; não afeta a medição.
+   - **Evitar visualização de página em dobro:** o site troca de página sem recarregar e já envia o `page_view` de cada página (com o título certo). No GA4, abra o fluxo > **Métrica otimizada** > engrenagem > **Visualizações de página** > **Mostrar configurações avançadas** > desmarque **"Alterações de página com base nos eventos do histórico de navegação"** > Salvar. Deixe o resto da métrica otimizada ligado.
 2. O Analytics só carrega depois que o visitante clica em **Aceitar** no aviso de cookies (Consent Mode v2: estatística liberada só com o aceite; anúncios sempre negados). Com o ID preenchido, o aviso, a Política de Cookies e a tabela de cookies passam a citar o Analytics automaticamente.
 3. Eventos enviados pelo site: `click_whatsapp`, `click_ligar`, `click_rota`, `click_instagram`, `submit_reservar` (envio do formulário de reserva).
 4. Marcar como conversão: Administrador > **Eventos** (eles aparecem depois do primeiro uso, em até 24 h) > ativar **Marcar como evento principal** em `click_whatsapp`, `click_ligar` e `submit_reservar` (e `click_rota`, se quiser).
@@ -56,7 +60,8 @@ Depois de mudar uma variável, faça um novo deploy (Implantações > Tentar imp
 ## 4. Pendências com o dono
 
 - [ ] Registrar o domínio e configurar o DNS (seção 1).
-- [ ] ID do GA4 (`PUBLIC_GA_ID`) e verificação do Search Console.
+- [x] ID do GA4 (`G-RCEXG8T5G7`).
+- [ ] Verificação do Search Console.
 - [ ] Link do perfil no Google (`site.googlePerfil` em `conteudo.ts`): entra no rodapé, no Como chegar e nos dados estruturados (`sameAs`).
 - [ ] Link curto "Avalie no Google" (`site.googleAvaliar`): o botão aparece sozinho quando preenchido.
 - [ ] Latitude e longitude do portão (`site.geo`): no Google Maps, clique com o botão direito no portão e copie os números.
