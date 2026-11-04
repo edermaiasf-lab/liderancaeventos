@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../../data/img';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Photo from '../../components/Photo.astro';
@@ -6,7 +7,7 @@ import Arrow from '../../components/Arrow.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { eventos, waLink, site } from '../../data/conteudo';
 ---
-<Base title="Eventos em Abadia de Goiás: aniversário, chá de bebê e mais | Liderança" description={`Aniversários, festas infantis, chás de bebê e revelação, casamentos, confraternizações e festas de fim de ano com piscina e salão em Abadia de Goiás. A ${site.referencia}.`} image="piscina-led-1">
+<Base lcp={lcpHero('piscina-led-1')} title="Eventos em Abadia de Goiás: aniversário, chá de bebê e mais | Liderança" description={`Aniversários, festas infantis, chás de bebê e revelação, casamentos, confraternizações e festas de fim de ano com piscina e salão em Abadia de Goiás. A ${site.referencia}.`} image="piscina-led-1">
   <PageHero eyebrow="Eventos" title="O espaço é a base. <em>O tema é seu.</em>" lead="Veja como cada tipo de evento aproveita os ambientes." img="piscina-led-1" alt="Piscina com luzes ao entardecer ao lado do salão" caption="Fotografia — piscina e salão ao entardecer." pos="center 60%" crumbs={[{ label: 'Eventos' }]} />
   <section class="sec">
     <div class="wrap">

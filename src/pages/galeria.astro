@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../data/img';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Review from '../components/Review.astro';
@@ -8,7 +9,7 @@ import { galeria, dims, altFoto } from '../data/conteudo';
 const cats = [...new Set(galeria.map((g) => g[1]))];
 const n = (c: string) => galeria.filter((g) => g[1] === c).length;
 ---
-<Base title="Galeria de fotos | Liderança Espaço de Eventos" description="Veja as fotos da piscina com cascata, do salão, da sinuca e da fachada do Liderança Espaço de Eventos." image="piscina-led-1">
+<Base lcp={lcpHero('piscina-led-3')} title="Galeria de fotos | Liderança Espaço de Eventos" description="Veja as fotos da piscina com cascata, do salão, da sinuca e da fachada do Liderança Espaço de Eventos." image="piscina-led-1">
   <PageHero eyebrow="Galeria" title="O lugar, <em>de perto.</em>" lead={`${galeria.length} fotografias do espaço real, organizadas por ambiente. Toque numa foto para ampliar.`} img="piscina-led-3" alt="Piscina com luzes ao entardecer" caption="Fotografia — piscina ao entardecer." pos="center 60%" crumbs={[{ label: 'Galeria' }]} />
   <section class="sec tight">
     <div class="wrap">

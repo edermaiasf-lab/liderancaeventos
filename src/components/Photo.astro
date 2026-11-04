@@ -1,11 +1,12 @@
 ---
 import { dims, altFoto } from '../data/conteudo';
+import { srcsetFoto } from '../data/img';
 interface Props { blur?: boolean; name: string; alt?: string; class?: string; lazy?: boolean; style?: string; parallax?: boolean; priority?: boolean; sizes?: string }
 const { blur, name, alt: altProp, class: cls, lazy = true, style, parallax, priority, sizes = '(max-width: 700px) 100vw, 50vw' } = Astro.props;
 const [w, h] = dims(name);
 // sem alt informado, usa o texto do mapa altFoto; alt="" explícito = foto decorativa
 const alt = altProp ?? altFoto[name] ?? '';
 // versões menores (480, 800 e 1200px); o navegador escolhe a menor que fica nítida no tamanho exibido
-const srcset = blur ? undefined : [`/img/xs/${name}.webp 480w`, `/img/sm/${name}.webp 800w`, ...(w > 1400 ? [`/img/md/${name}.webp 1200w`] : []), `/img/${name}.webp ${w}w`].join(', ');
+const srcset = blur ? undefined : srcsetFoto(name);
 ---
 <img src={blur ? `/img/blur/${name}.webp` : `/img/${name}.webp`} srcset={srcset} sizes={srcset ? sizes : undefined} width={w} height={h} alt={alt} class={cls} style={style} loading={lazy && !priority ? 'lazy' : undefined} decoding="async" fetchpriority={priority ? 'high' : undefined} data-parallax={parallax ? '' : undefined} />

@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../data/img';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import MapaGoogle from '../components/MapaGoogle.astro';
@@ -7,7 +8,7 @@ import Faq from '../components/Faq.astro';
 import Review from '../components/Review.astro';
 import { site, waLink } from '../data/conteudo';
 ---
-<Base title="Contato e como chegar | Liderança Espaço de Eventos" description={`Endereço, telefone e WhatsApp. O espaço fica a ${site.referencia}; ${site.semBarreira.toLowerCase()}`} image="entrada-noite">
+<Base lcp={lcpHero('piscina-led-5')} title="Contato e como chegar | Liderança Espaço de Eventos" description={`Endereço, telefone e WhatsApp. O espaço fica a ${site.referencia}; ${site.semBarreira.toLowerCase()}`} image="entrada-noite">
   <PageHero eyebrow="Contato" title="Como chegar e <em>falar com a gente.</em>" lead="Endereço, telefone e WhatsApp. Chame para consultar a data ou conhecer o espaço." img="piscina-led-5" alt="Piscina iluminada ao entardecer, com o salão à direita" caption="Fotografia — o espaço ao entardecer." pos="center 60%" crumbs={[{ label: 'Contato' }]} />
 
   <section class="sec tight">

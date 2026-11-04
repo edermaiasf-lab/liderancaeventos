@@ -96,21 +96,8 @@ function initReveals() {
   });
 }
 
-/* ---------- entrada do banner: foto assenta, marca e textos sobem em sequência ---------- */
-function initHeroIntro() {
-  const hero = $('[data-hero]');
-  if (!hero || reduce()) return;
-  const items = $$('[data-reveal], [data-split], [data-fade], [data-img], .phero-photo', hero);
-  items.forEach((el) => el.classList.add('rv'));
-  hero.classList.add('pre');
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    hero.classList.add('is-in');
-    items.forEach((el, i) => {
-      (el as HTMLElement).style.transitionDelay = `${60 + i * 90}ms`;
-      el.classList.add('in');
-    });
-  }));
-}
+/* ---------- entrada do banner: feita só em CSS (global.css, "entrada do topo"),
+   para a foto e o logo aparecerem na primeira pintura, sem esperar este script ---------- */
 
 /* ---------- carrosséis de fotos ---------- */
 function initCarousels() {
@@ -154,7 +141,6 @@ function initFaq() {
 initChrome();
 document.addEventListener('astro:page-load', () => {
   initPins();
-  initHeroIntro();
   initReveals();
   initCarousels();
   initFaq();

@@ -1170,3 +1170,41 @@ html, body { overflow-x: clip; }
 @media (max-width: 700px) { .prose-local h2 { font-size: 1.6rem; margin-top: 34px; } }
 .guia-lista { margin-top: 14px; padding-left: 20px; display: grid; gap: 10px; } .guia-lista li { line-height: 1.6; }
 .ft-local { margin-top: 14px; font-size: .76rem; color: var(--on-dark-2); } .ft-local a { color: var(--on-dark-2); text-decoration: underline; text-underline-offset: 3px; } .ft-local a:hover { color: var(--gold); }
+
+/* ================= entrada do topo em CSS puro (desempenho: LCP sem esperar JavaScript) =================
+   Mesma coreografia de antes: textos sobem em sequência, a foto entra como cortina e assenta com leve zoom.
+   fill-mode "backwards": depois de terminar, valem os estilos normais (o parallax do GSAP continua funcionando). */
+@keyframes hx-rise { from { opacity: 0; transform: translateY(22px); } }
+@keyframes hx-logo { from { opacity: .01; transform: translateY(24px) scale(.93); } }
+@keyframes hx-fade { from { opacity: .01; } }
+@keyframes hx-zoom8 { from { transform: scale(1.08); } }
+@keyframes hx-zoom18 { from { transform: scale(1.18); } }
+@keyframes hx-curtain-x { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes hx-curtain-y { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes hx-line { from { transform: scaleX(0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-hero] :is(.crumbs, .kicker, h1, .lead, .upd, .phero-cap, .hero-sub, .hero-bar, .btns) { animation: hx-rise .9s var(--ease) backwards; }
+  .js [data-hero] .crumbs { animation-delay: .06s; }
+  .js [data-hero] .kicker { animation-delay: .15s; }
+  .js [data-hero] h1 { animation-delay: .24s; }
+  .js [data-hero] .lead { animation-delay: .33s; }
+  .js [data-hero] :is(.upd, .phero-cap, .btns) { animation-delay: .42s; }
+  /* home: o logo é o elemento LCP, começa quase transparente (não invisível) */
+  .js .hero h1 { animation: none; }
+  .js .hero .hero-logo { animation: hx-logo .9s var(--ease) .06s backwards; }
+  .js .hero .hero-sub { animation-delay: .15s; }
+  .js .hero .hero-bar { animation-delay: .24s; }
+  .js .hero-media { animation: hx-fade 1.8s var(--ease) backwards; }
+  .js .hero-media img { animation: hx-zoom8 2.6s var(--ease) backwards; }
+  .js .phero-media img { animation: hx-zoom8 2.4s cubic-bezier(.2,.7,.1,1) backwards; }
+  .js .phero .kicker::before { transform-origin: left; animation: hx-line 1s cubic-bezier(.7,0,.2,1) .9s backwards; }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 1001px) {
+  .js .phero-media { animation: hx-curtain-x 1.4s cubic-bezier(.7,0,.2,1) .1s backwards; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 1000px) {
+  .js .phero-media { animation: hx-curtain-y 1.3s cubic-bezier(.7,0,.2,1) backwards; }
+  .js .phero-media img { animation: hx-zoom18 2.6s cubic-bezier(.2,.7,.1,1) .2s backwards; }
+  .js .hero-media { animation: hx-curtain-y 1.4s cubic-bezier(.7,0,.2,1) backwards; }
+  .js .hero-media img { animation: hx-zoom18 2.8s cubic-bezier(.2,.7,.1,1) .2s backwards; }
+}

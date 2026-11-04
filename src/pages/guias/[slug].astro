@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../../data/img';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Arrow from '../../components/Arrow.astro';
@@ -27,7 +28,7 @@ const crumbSchema = {
   ],
 };
 ---
-<Base title={`${g.titulo} | Guias Liderança`} description={g.resumo} image={g.img} schema={[artigo, crumbSchema]}>
+<Base lcp={lcpHero(g.img)} title={`${g.titulo} | Guias Liderança`} description={g.resumo} image={g.img} schema={[artigo, crumbSchema]}>
   <PageHero eyebrow={`Guia · ${dataBR}`} title={g.titulo} lead={g.resumo} img={g.img} pos="center 55%" crumbs={[{ label: 'Guias', href: '/guias/' }, { label: g.titulo }]} />
   <section class="sec tight">
     <div class="wrap detail">

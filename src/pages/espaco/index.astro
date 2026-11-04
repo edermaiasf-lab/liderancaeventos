@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../../data/img';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Carousel from '../../components/Carousel.astro';
@@ -9,7 +10,7 @@ import CtaBand from '../../components/CtaBand.astro';
 import { ambientes, galeria, site } from '../../data/conteudo';
 const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
 ---
-<Base title="O espaço: piscina, salão e sinuca em Abadia de Goiás | Liderança" description={`Conheça os ambientes do Liderança: piscina com cascata, salão, sinuca e bancada, fachada e entrada. A ${site.referencia}.`} image="piscina-cascata">
+<Base lcp={lcpHero('piscina-lateral-2')} title="O espaço: piscina, salão e sinuca em Abadia de Goiás | Liderança" description={`Conheça os ambientes do Liderança: piscina com cascata, salão, sinuca e bancada, fachada e entrada. A ${site.referencia}.`} image="piscina-cascata">
   <PageHero eyebrow="O espaço" title="Quatro cantos, <em>uma festa.</em>" lead="Veja os ambientes, a estrutura e as possibilidades de montagem." img="piscina-lateral-2" alt="Piscina com cascata e o salão ao fundo" caption="Fotografia — piscina e salão." pos="center 55%" crumbs={[{ label: 'O espaço' }]} />
 
   <section class="sec tight">

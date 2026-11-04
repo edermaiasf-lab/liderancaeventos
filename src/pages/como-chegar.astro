@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../data/img';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Arrow from '../components/Arrow.astro';
@@ -16,7 +17,7 @@ const faqs: [string, string][] = [
 const crumbSchema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Início', item: new URL('/', Astro.site) }, { '@type': 'ListItem', position: 2, name: 'Como chegar' }] };
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 ---
-<Base title="Como chegar ao Liderança Espaço de Eventos em Abadia de Goiás" description={`Endereço, mapa e rotas para o Liderança Espaço de Eventos em Abadia de Goiás, a ${site.referencia}. Rotas a partir de Goiânia, Aparecida de Goiânia e do Buriti Shopping.`} image="fachada-dia" schema={[crumbSchema, faqSchema]}>
+<Base lcp={lcpHero('fachada-dia')} title="Como chegar ao Liderança Espaço de Eventos em Abadia de Goiás" description={`Endereço, mapa e rotas para o Liderança Espaço de Eventos em Abadia de Goiás, a ${site.referencia}. Rotas a partir de Goiânia, Aparecida de Goiânia e do Buriti Shopping.`} image="fachada-dia" schema={[crumbSchema, faqSchema]}>
   <PageHero eyebrow="Como chegar" title="Como chegar ao <em>Liderança.</em>" lead={`Rua Fortaleza, Residencial Goiânia Sul, em Abadia de Goiás. A ${site.referencia}.`} img="fachada-dia" pos="center 45%" crumbs={[{ label: 'Como chegar' }]} />
 
   <section class="sec tight">

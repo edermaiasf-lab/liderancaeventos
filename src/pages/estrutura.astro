@@ -1,11 +1,12 @@
 ---
+import { lcpHero } from '../data/img';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Arrow from '../components/Arrow.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { grupos, rapidas, site } from '../data/conteudo';
 ---
-<Base title="Estrutura e condições | Liderança Espaço de Eventos" description="Quarto, piscina com cascata e aquecimento solar, 2 TVs, climatizador, sinuca, churrasqueira, fogão industrial, Wi-Fi e câmeras. Até 60 pessoas. Diária das 09h às 22h." image="salao-amplo">
+<Base lcp={lcpHero('cascata-salao')} title="Estrutura e condições | Liderança Espaço de Eventos" description="Quarto, piscina com cascata e aquecimento solar, 2 TVs, climatizador, sinuca, churrasqueira, fogão industrial, Wi-Fi e câmeras. Até 60 pessoas. Diária das 09h às 22h." image="salao-amplo">
   <PageHero eyebrow="Estrutura" title="Tudo o que o espaço <em>oferece.</em>" lead="Esta é a lista completa do que você encontra no Liderança. Capacidade para até 60 pessoas, diária das 09h às 22h." img="cascata-salao" alt="Cascata da piscina com o salão ao fundo" caption="Fotografia — cascata e salão." crumbs={[{ label: 'Estrutura' }]} />
 
   <section class="sec">

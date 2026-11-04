@@ -1,4 +1,11 @@
 ---
+import { srcsetFoto } from '../data/img';
+// imagens do topo da home pedidas primeiro: logo (LCP) e foto de fundo de cada tamanho de tela
+const lcpHome = [
+  { srcset: '/img/marca/completa-ouro-400.webp 400w, /img/marca/completa-ouro-560.webp 560w, /img/marca/completa-ouro.webp 840w', sizes: '(max-width: 700px) 220px, 280px' },
+  { srcset: '/img/sm/piscina-cascata.webp 800w, /img/piscina-cascata.webp 1281w', sizes: '100vw', media: '(max-width: 700px)' },
+  { srcset: srcsetFoto('vista-geral'), sizes: '100vw', media: '(min-width: 701px)' },
+];
 import Base from '../layouts/Base.astro';
 import Photo from '../components/Photo.astro';
 import Arrow from '../components/Arrow.astro';
@@ -16,6 +23,7 @@ const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
 const mosaico = ['piscina-led-2', 'salao-sinuca-2', 'piscina-lateral-2', 'fachada-dia', 'piscina-led-5', 'sinuca-close', 'piscina-noite'].map((g) => ({ img: g, alt: altDe(g) }));
 ---
 <Base
+  lcp={lcpHome}
   title="Salão de festas com piscina em Abadia de Goiás | Liderança Espaço de Eventos"
   description={`Salão de festas com piscina com cascata e aquecimento solar, sinuca e churrasqueira em Abadia de Goiás, a ${site.referencia}. Até 60 pessoas.`}
   image="vista-geral"

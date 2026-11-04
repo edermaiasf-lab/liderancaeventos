@@ -1,4 +1,5 @@
 ---
+import { lcpHero } from '../../data/img';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Photo from '../../components/Photo.astro';
@@ -29,7 +30,7 @@ const crumbSchema = {
   ],
 };
 ---
-<Base title={`${a.nome} | Liderança Espaço de Eventos em Abadia de Goiás`} description={`${a.resumo} A ${site.referencia}.`} image={a.hero} schema={[crumbSchema]}>
+<Base lcp={lcpHero(a.hero)} title={`${a.nome} | Liderança Espaço de Eventos em Abadia de Goiás`} description={`${a.resumo} A ${site.referencia}.`} image={a.hero} schema={[crumbSchema]}>
   <PageHero eyebrow={`Ambiente ${a.n} / 04`} title={a.nome} lead={a.resumo} img={a.hero} alt={a.alt} caption={`Fotografia — ${a.nome.toLowerCase()}.`} pos="center 55%" crumbs={[{ label: 'O espaço', href: '/espaco/' }, { label: a.nome }]} />
 
   <!-- SOBRE + RESUMO FIXO -->

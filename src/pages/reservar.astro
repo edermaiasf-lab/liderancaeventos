@@ -1,10 +1,11 @@
 ---
+import { lcpHero } from '../data/img';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ReservaForm from '../components/ReservaForm.astro';
 import Dial from '../components/Dial.astro';
 ---
-<Base title="Consultar data | Liderança Espaço de Eventos" description="Escolha o tipo de evento e a data e envie a consulta pronta pelo WhatsApp. Diária das 09h às 22h, reserva com 50% de sinal." image="piscina-noite-2">
+<Base lcp={lcpHero('piscina-noite-2')} title="Consultar data | Liderança Espaço de Eventos" description="Escolha o tipo de evento e a data e envie a consulta pronta pelo WhatsApp. Diária das 09h às 22h, reserva com 50% de sinal." image="piscina-noite-2">
   <PageHero eyebrow="Reservar" title="Que dia é a <em>sua festa?</em>" lead="Escolha o tipo de evento e o dia. A mensagem chega pronta no WhatsApp." img="piscina-noite-2" alt="Piscina com cascata à noite" caption="Fotografia — piscina com cascata, à noite." pos="center 55%" crumbs={[{ label: 'Reservar' }]} />
   <section class="sec sand">
     <div class="wrap book">
