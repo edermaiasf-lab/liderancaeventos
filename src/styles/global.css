@@ -1229,3 +1229,8 @@ main > section:not(:first-child):not([data-dn]):not(.dn), .footer { content-visi
   .js .hero .hero-logo { animation: none; }
   .js .hero h1 { animation: hx-logo-rise .9s var(--ease) .06s backwards, hx-logo-fade .3s ease-out backwards; }
 }
+/* celular: o logo da home aparece direto (com animação, o navegador só registra o LCP no fim dela).
+   No computador ele continua subindo. Para voltar a animar no celular, apague este bloco. */
+@media (max-width: 700px) {
+  .js .hero h1, .js .hero .hero-logo { animation: none; }
+}
