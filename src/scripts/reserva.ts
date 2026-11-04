@@ -1,3 +1,4 @@
+import { track } from './analytics';
 const DIAS = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
 const DIAS_CURTO = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -123,6 +124,7 @@ export function initReserva() {
     linhas.push('', 'Essa data está disponível?');
 
     const url = `https://wa.me/${whats}?text=${encodeURIComponent(linhas.join('\n'))}`;
+    track('submit_reservar', { evento, convidados: conv || undefined });
     const win = window.open(url, '_blank');
     if (win) win.opener = null;
     ok.innerHTML = win

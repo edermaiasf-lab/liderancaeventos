@@ -1,0 +1,6 @@
+---
+import LocalPage from '../components/LocalPage.astro';
+import { locais } from '../data/locais';
+const l = locais.find((x) => x.slug === 'salao-de-festas-abadia-de-goias')!;
+---
+<LocalPage l={l} />

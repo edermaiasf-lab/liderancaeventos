@@ -4,13 +4,13 @@ import PageHero from '../components/PageHero.astro';
 import Arrow from '../components/Arrow.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { faq } from '../data/conteudo';
+import { faq, site } from '../data/conteudo';
 const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
 };
 ---
-<Base title="Dúvidas frequentes | Liderança Espaço de Eventos" description="Horário da diária, capacidade, reserva com sinal, estrutura e regras. A 25 minutos do Buriti Shopping, pela GO-040." image="salao-sinuca" schema={[faqSchema]}>
+<Base title="Dúvidas frequentes | Liderança Espaço de Eventos" description={`Horário da diária, capacidade, reserva com sinal, estrutura e regras. A ${site.referencia}.`} image="salao-sinuca" schema={[faqSchema]}>
   <PageHero eyebrow="Dúvidas" title="Perguntas <em>frequentes.</em>" lead="Não achou o que procura? Chame no WhatsApp." img="salao-sinuca" alt="Salão com sinuca" caption="Fotografia — salão e sinuca." crumbs={[{ label: 'Dúvidas' }]} />
   <section class="sec">
     <div class="wrap faq-wrap">

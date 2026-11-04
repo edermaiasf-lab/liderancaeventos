@@ -10,6 +10,7 @@ import Review from '../../components/Review.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { eventos, ambientes, galeria, papeis, roteiros, site, waLink } from '../../data/conteudo';
+import { extras } from '../../data/eventos-extra';
 
 export function getStaticPaths() {
   return eventos.map((e) => ({ params: { slug: e.slug }, props: { e } }));
@@ -19,6 +20,8 @@ const usa = e.usa.map((s) => ambientes.find((a) => a.slug === s)!);
 const outros = eventos.filter((x) => x.slug !== e.slug).slice(0, 3);
 const altDe = (g: string) => galeria.find((x) => x[0] === g)?.[2] ?? '';
 const fotos = [...new Set(usa.flatMap((a) => a.galeria.slice(0, 3)))].slice(0, 7).map((g) => ({ img: g, alt: altDe(g) }));
+const ex = extras[e.slug] ?? {};
+const faqSchema = ex.faqs && { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: ex.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 const crumbSchema = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -28,19 +31,21 @@ const crumbSchema = {
   ],
 };
 ---
-<Base title={`${e.nome} | Liderança Espaço de Eventos, a 25 min do Buriti Shopping`} description={`${e.resumo} A 25 minutos do Buriti Shopping, pela GO-040.`} image={e.img} schema={[crumbSchema]}>
+<Base title={`${e.nome} em Abadia de Goiás | Liderança Espaço de Eventos`} description={`${e.resumo} Em Abadia de Goiás, a ${site.referencia}.`} image={e.img} schema={faqSchema ? [crumbSchema, faqSchema] : [crumbSchema]}>
   <PageHero eyebrow={e.nome} title={e.titulo} lead={e.resumo} img={e.img} alt={e.alt} caption={`Fotografia — ${e.alt.toLowerCase()}.`} pos="center 55%" crumbs={[{ label: 'Eventos', href: '/eventos/' }, { label: e.nome }]} />
 
   <!-- COMO FUNCIONA + RESUMO FIXO -->
   <section class="sec tight">
     <div class="wrap detail">
       <div class="detail-main">
-        <span class="kicker" data-reveal>Como funciona</span>
+        <h2 class="kicker" data-reveal>Como funciona</h2>
         <p class="statement" data-reveal>{e.texto[0]}</p>
         {e.texto.slice(1).map((t) => <p data-reveal>{t}</p>)}
+        {ex.mais?.map((t) => <p data-reveal>{t}</p>)}
         <ul class="rows" data-stagger style="margin-top:38px">
           {usa.map((a) => <li><a href={`/espaco/${a.slug}/`}>{a.nome}</a><span>{papeis[a.slug]}</span></li>)}
         </ul>
+        <p class="note-s" data-reveal style="margin-top:26px">Fica em Abadia de Goiás, a {site.referencia}. Veja <a href="/como-chegar/">como chegar</a> e conheça o <a href="/salao-de-festas-abadia-de-goias/">salão de festas em Abadia de Goiás</a>.</p>
       </div>
       <InfoCard
         rows={[['Capacidade', `até ${site.capacidade} pessoas`], ['Diária', 'das 09h às 22h'], ['Reserva', 'com 50% de sinal'], ['Som automotivo', 'proibido']]}
@@ -98,7 +103,7 @@ const crumbSchema = {
           <a class="btn line" href={waLink(e.whatsMsg)} target="_blank" rel="noopener noreferrer">WhatsApp <Arrow /></a>
         </div>
       </div>
-      <Faq cats={['Reserva', 'Eventos', 'Regras']} limit={5} />
+      {ex.faqs ? <Faq items={ex.faqs} /> : <Faq cats={['Reserva', 'Eventos', 'Regras']} limit={5} />}
     </div>
   </section>
 
@@ -108,7 +113,7 @@ const crumbSchema = {
       <div class="head"><div><span class="kicker" data-reveal>Outros eventos</span><h2 data-split style="margin-top:26px">Veja também.</h2></div><a class="tlink" href="/eventos/">Todos os eventos <Arrow /></a></div>
       <ul class="cols3" data-stagger>
         {outros.map((o) => (
-          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 200vw, 70vw" /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/eventos/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{o.nome}</h3><p>{o.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
         ))}
       </ul>
     </div>

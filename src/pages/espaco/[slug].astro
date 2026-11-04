@@ -29,14 +29,14 @@ const crumbSchema = {
   ],
 };
 ---
-<Base title={`${a.nome} | Liderança Espaço de Eventos, a 25 min do Buriti Shopping`} description={`${a.resumo} A 25 minutos do Buriti Shopping, pela GO-040.`} image={a.hero} schema={[crumbSchema]}>
+<Base title={`${a.nome} | Liderança Espaço de Eventos em Abadia de Goiás`} description={`${a.resumo} A ${site.referencia}.`} image={a.hero} schema={[crumbSchema]}>
   <PageHero eyebrow={`Ambiente ${a.n} / 04`} title={a.nome} lead={a.resumo} img={a.hero} alt={a.alt} caption={`Fotografia — ${a.nome.toLowerCase()}.`} pos="center 55%" crumbs={[{ label: 'O espaço', href: '/espaco/' }, { label: a.nome }]} />
 
   <!-- SOBRE + RESUMO FIXO -->
   <section class="sec tight">
     <div class="wrap detail">
       <div class="detail-main">
-        <span class="kicker" data-reveal>Sobre o ambiente</span>
+        <h2 class="kicker" data-reveal>Sobre o ambiente</h2>
         <p class="statement" data-reveal>{a.texto[0]}</p>
         {a.texto.slice(1).map((t) => <p data-reveal>{t}</p>)}
         <ul class="chips-spec" data-stagger>
@@ -95,7 +95,7 @@ const crumbSchema = {
       </div>
       <ul class="cols3" data-stagger>
         {outros.map((o) => (
-          <li><a class="ecard" href={`/espaco/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 200vw, 70vw" /></figure><h3>{o.nome}</h3><p>{papeis[o.slug]}</p><span class="tlink">Ver o ambiente <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/espaco/${o.slug}/`}><figure><Photo name={o.img} alt={o.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{o.nome}</h3><p>{papeis[o.slug]}</p><span class="tlink">Ver o ambiente <Arrow /></span></a></li>
         ))}
       </ul>
     </div>

@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Arrow from '../../components/Arrow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { guias } from '../../data/guias';
+const lista = [...guias].sort((a, b) => b.data.localeCompare(a.data));
+---
+<Base title="Guias para organizar sua festa | Liderança Espaço de Eventos" description="Dicas práticas para organizar aniversário, festa com piscina, chá de bebê e confraternização: checklists, prazos de reserva e roteiros." image="piscina-dia">
+  <PageHero eyebrow="Guias" title="Dicas para organizar <em>a sua festa.</em>" lead="Checklists, prazos e roteiros para a festa dar certo do convite ao encerramento." img="piscina-dia" pos="center 55%" crumbs={[{ label: 'Guias' }]} />
+  <section class="sec">
+    <div class="wrap">
+      <ul class="cols3" data-stagger>
+        {lista.map((g) => (
+          <li><a class="ecard" href={`/guias/${g.slug}/`}><figure><Photo name={g.img} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h2 class="h4" style="margin-top:20px;font-size:1.5rem">{g.titulo}</h2><p>{g.resumo}</p><span class="tlink">Ler o guia <Arrow /></span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

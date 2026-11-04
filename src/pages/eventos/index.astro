@@ -4,15 +4,15 @@ import PageHero from '../../components/PageHero.astro';
 import Photo from '../../components/Photo.astro';
 import Arrow from '../../components/Arrow.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { eventos, waLink } from '../../data/conteudo';
+import { eventos, waLink, site } from '../../data/conteudo';
 ---
-<Base title="Eventos | Liderança Espaço de Eventos, a 25 min do Buriti Shopping" description="Aniversários, festas infantis, chás de bebê e revelação, confraternizações e outras celebrações com piscina e salão. A 25 minutos do Buriti Shopping, pela GO-040." image="piscina-led-1">
+<Base title="Eventos em Abadia de Goiás: aniversário, chá de bebê e mais | Liderança" description={`Aniversários, festas infantis, chás de bebê e revelação, casamentos, confraternizações e festas de fim de ano com piscina e salão em Abadia de Goiás. A ${site.referencia}.`} image="piscina-led-1">
   <PageHero eyebrow="Eventos" title="O espaço é a base. <em>O tema é seu.</em>" lead="Veja como cada tipo de evento aproveita os ambientes." img="piscina-led-1" alt="Piscina com luzes ao entardecer ao lado do salão" caption="Fotografia — piscina e salão ao entardecer." pos="center 60%" crumbs={[{ label: 'Eventos' }]} />
   <section class="sec">
     <div class="wrap">
       <ul class="cols3" data-stagger>
         {eventos.map((e) => (
-          <li><a class="ecard" href={`/eventos/${e.slug}/`}><figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 200vw, 70vw" /></figure><h3>{e.nome}</h3><p>{e.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
+          <li><a class="ecard" href={`/eventos/${e.slug}/`}><figure><Photo name={e.img} alt={e.alt} sizes="(max-width: 700px) 80vw, 30vw" /></figure><h3>{e.nome}</h3><p>{e.resumo}</p><span class="tlink">Conhecer <Arrow /></span></a></li>
         ))}
         <li class="ecard-cta">
           <div>

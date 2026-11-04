@@ -1,8 +1,8 @@
 ---
 import { faq } from '../data/conteudo';
-interface Props { limit?: number; filters?: boolean; cats?: string[] }
-const { limit, filters = false, cats: only } = Astro.props;
-const base = only ? faq.filter((f) => only.includes(f[2])) : faq;
+interface Props { limit?: number; filters?: boolean; cats?: string[]; items?: [string, string][] }
+const { limit, filters = false, cats: only, items: proprias } = Astro.props;
+const base = proprias ? proprias.map(([q, a]) => [q, a, 'Dúvida'] as [string, string, string]) : only ? faq.filter((f) => only.includes(f[2])) : faq;
 const items = limit ? base.slice(0, limit) : base;
 const cats = [...new Set(faq.map((f) => f[2]))];
 const num = (n: number) => String(n + 1).padStart(2, '0');

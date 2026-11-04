@@ -12,14 +12,29 @@ const { title, description, image = 'vista-geral', schema = [], noindex = false 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(`/og/${image}.jpg`, Astro.site);
 
+// ficha do negócio para o Google (mesmo nome, endereço e telefone do perfil)
+const ID = new URL('/#local', Astro.site).href;
+const fotosSchema = ['vista-geral', 'piscina-cascata', 'salao-amplo', 'sinuca-close', 'fachada-dia'].map((n) => new URL(`/og/${n}.jpg`, Astro.site).href);
 const venue = {
-  '@context': 'https://schema.org', '@type': 'EventVenue', name: site.nome, telephone: `+${site.whats}`, url: Astro.site, image: ogImage,
-  logo: new URL('/img/marca/completa-ouro.webp', Astro.site), hasMap: site.mapsRota, sameAs: [site.instagram],
-  description: `Espaço de eventos com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira, a ${site.referencia}. Até 60 pessoas, diária das 09h às 22h.`,
+  '@context': 'https://schema.org', '@type': ['EventVenue', 'LocalBusiness'], '@id': ID,
+  name: site.nome, alternateName: site.nomeGoogle, url: Astro.site, telephone: `+${site.whats}`,
+  image: fotosSchema, logo: new URL('/img/marca/completa-ouro.webp', Astro.site).href,
+  description: `Salão de festas com piscina com cascata e aquecimento solar, salão, sinuca e churrasqueira em Abadia de Goiás (GO), a ${site.referencia}. Até ${site.capacidade} pessoas, diária das 09h às 22h.`,
+  address: { '@type': 'PostalAddress', streetAddress: 'Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural', addressLocality: 'Abadia de Goiás', addressRegion: 'GO', postalCode: '75325-204', addressCountry: 'BR' },
+  ...(site.geo ? { geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng } } : {}),
+  hasMap: site.googlePerfil || site.mapsRota,
+  sameAs: [site.instagram, ...(site.googlePerfil ? [site.googlePerfil] : [])],
   openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '09:00', closes: '22:00' }],
   maximumAttendeeCapacity: site.capacidade,
-  address: { '@type': 'PostalAddress', streetAddress: 'Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural', addressLocality: 'Abadia de Goiás', addressRegion: 'GO', postalCode: '75325-204', addressCountry: 'BR' },
-  amenityFeature: ['Piscina com cascata e aquecimento solar', 'Churrasqueira', 'Mesa de sinuca', 'Wi-Fi', 'Climatizador de ar'].map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
+  // estacionamento fica de fora até o dono confirmar (ver README)
+  amenityFeature: ['Piscina com cascata', 'Aquecimento solar na piscina', 'Churrasqueira', 'Mesa de sinuca', 'Wi-Fi', 'Climatizador de ar', 'Câmeras de segurança', 'Quarto', 'Fogão industrial', 'Freezer horizontal'].map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
+  paymentAccepted: site.pagamento, currenciesAccepted: 'BRL',
+  areaServed: ['Abadia de Goiás', 'Goiânia', 'Aparecida de Goiânia'].map((name) => ({ '@type': 'City', name })),
+};
+const org = {
+  '@context': 'https://schema.org', '@type': 'Organization', '@id': new URL('/#org', Astro.site).href,
+  name: site.nome, url: Astro.site, logo: new URL('/img/marca/completa-ouro.webp', Astro.site).href,
+  sameAs: [site.instagram, ...(site.googlePerfil ? [site.googlePerfil] : [])],
 };
 ---
 <!doctype html>
@@ -49,6 +64,7 @@ const venue = {
   <link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="format-detection" content="telephone=no" />
+  {import.meta.env.PUBLIC_GSC_VERIFICATION && <meta name="google-site-verification" content={import.meta.env.PUBLIC_GSC_VERIFICATION} />}
   <meta name="geo.region" content="BR-GO" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -58,6 +74,7 @@ const venue = {
   <ClientRouter />
   <script type="application/ld+json" set:html={JSON.stringify(venue)} />
   {Astro.url.pathname === '/' && <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: site.nome, url: Astro.site, inLanguage: 'pt-BR' })} />}
+  {Astro.url.pathname === '/' && <script type="application/ld+json" set:html={JSON.stringify(org)} />}
   {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 </head>
 <body>

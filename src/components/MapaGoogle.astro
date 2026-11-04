@@ -1,0 +1,13 @@
+---
+// Mapa do Google que só carrega com a permissão de cookies de terceiros (LGPD).
+import { site } from '../data/conteudo';
+---
+<div class="gmap" data-reveal data-map data-src={site.mapsEmbed}>
+  <div class="map-tag"><b>{site.nome}</b><span>{site.endereco[0]}<br />{site.endereco[1]}</span><a href={site.mapsRota} target="_blank" rel="noopener noreferrer">Traçar rota ↗</a></div>
+  <div class="map-ph">
+    <span class="kicker">Mapa do Google</span>
+    <p>Para mostrar o mapa interativo, o Google pode usar cookies e coletar dados de navegação. A escolha é sua.</p>
+    <div class="btns" style="margin-top:20px"><button type="button" class="btn fill sm" data-map-load>Carregar mapa</button><a class="btn line sm" href={site.mapsRota} target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a></div>
+    <small>Veja a <a href="/cookies/">Política de Cookies</a>.</small>
+  </div>
+</div>
