@@ -64,6 +64,7 @@ const org = {
   <link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="format-detection" content="telephone=no" />
+  {import.meta.env.PUBLIC_GSC_VERIFICATION && <meta name="google-site-verification" content={import.meta.env.PUBLIC_GSC_VERIFICATION} />}
   <meta name="geo.region" content="BR-GO" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

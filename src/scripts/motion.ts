@@ -1,6 +1,7 @@
 import { initReserva } from './reserva';
 import { initGaleria } from './galeria';
 import { initConsent } from './consent';
+import { initAnalytics } from './analytics';
 
 
 const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
@@ -159,6 +160,7 @@ document.addEventListener('astro:page-load', () => {
   initFaq();
   const later = () => {
     initConsent();
+    initAnalytics();
     import('./fx').then((mod) => { fx = mod; mod.initScrollFx(); mod.initMagnetic(); mod.initCounts(); });
   };
   if ('requestIdleCallback' in window) requestIdleCallback(later, { timeout: 1200 }); else setTimeout(later, 300);

@@ -1,5 +1,6 @@
 ---
 import Legal from '../components/Legal.astro';
+const temGA = !!import.meta.env.PUBLIC_GA_ID;
 const toc: [string, string][] = [
   ['o-que-sao', 'O que são cookies'],
   ['o-que-usamos', 'O que usamos neste site'],
@@ -14,7 +15,7 @@ const toc: [string, string][] = [
   <div class="callout">
     <b>Resumo rápido</b>
     <ul>
-      <li>Hoje o site <b>não usa</b> cookies de estatística nem de publicidade.</li>
+      {temGA ? <li>Usamos o <b>Google Analytics</b> para estatística de visitas, <b>só se você aceitar</b>. Não usamos cookies de publicidade.</li> : <li>Hoje o site <b>não usa</b> cookies de estatística nem de publicidade.</li>}
       <li>Guardamos só a sua escolha sobre cookies (essencial).</li>
       <li>O mapa do Google <b>só carrega se você permitir</b>.</li>
     </ul>
@@ -29,6 +30,7 @@ const toc: [string, string][] = [
       <thead><tr><th>Nome</th><th>Tipo</th><th>Para quê</th><th>Duração</th></tr></thead>
       <tbody>
         <tr><td><code>lid_consent_v1</code> (armazenamento local)</td><td>Essencial</td><td>Lembrar a sua escolha sobre cookies, para não perguntar de novo a cada página</td><td>Até 12 meses, ou até você limpar os dados do navegador</td></tr>
+        {temGA && <tr><td><code>_ga</code>, <code>_ga_*</code> (somente se aceito)</td><td>Estatística</td><td>Contar visitas e cliques de forma agregada (Google Analytics 4)</td><td>Até 2 anos</td></tr>}
         <tr><td>Google Maps (somente se permitido)</td><td>Terceiros</td><td>Exibir o mapa interativo na página de Contato</td><td>Definida pelo Google</td></tr>
       </tbody>
     </table>

@@ -233,7 +233,7 @@ ul, ol { margin: 0; padding: 0; }
 .lb { position: fixed; inset: 0; z-index: 400; background: rgba(20,26,25,.96); display: none; align-items: center; justify-content: center; padding: 24px; }
 .lb.on { display: flex; }
 .lb figure { max-width: min(1000px, 100%); }
-.lb img { max-height: 80vh; width: auto; margin: 0 auto; transition: opacity .25s; }
+.lb img { max-height: 80vh; width: auto; height: auto; margin: 0 auto; transition: opacity .25s; }
 .lb img.out { opacity: 0; }
 .lb figcaption { color: var(--on-dark); text-align: center; margin-top: 14px; font-size: .84rem; }
 .lb-count { position: absolute; top: 30px; left: 50%; translate: -50% 0; color: var(--on-dark-2); font: 500 .72rem var(--sans); letter-spacing: .16em; }

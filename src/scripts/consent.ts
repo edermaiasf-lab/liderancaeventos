@@ -1,8 +1,9 @@
-/* Consentimento de cookies (LGPD): só o essencial por padrão; mapa do Google só com permissão. */
+/* Consentimento de cookies (LGPD): só o essencial por padrão.
+   t = terceiros (mapa do Google), a = estatística (Google Analytics, só se houver PUBLIC_GA_ID). */
 const KEY = 'lid_consent_v1';
 const TTL = 365 * 24 * 60 * 60 * 1000;
 
-type Consent = { t: boolean; ts: number };
+type Consent = { t: boolean; a?: boolean; ts: number };
 
 export function getConsent(): Consent | null {
   try {
@@ -13,9 +14,9 @@ export function getConsent(): Consent | null {
     return null;
   }
 }
-function setConsent(t: boolean) {
-  try { localStorage.setItem(KEY, JSON.stringify({ t, ts: Date.now() })); } catch { /* sem armazenamento: vale só nesta visita */ }
-  document.dispatchEvent(new CustomEvent('consent-change', { detail: { t } }));
+function setConsent(t: boolean, a: boolean = t) {
+  try { localStorage.setItem(KEY, JSON.stringify({ t, a, ts: Date.now() })); } catch { /* sem armazenamento: vale só nesta visita */ }
+  document.dispatchEvent(new CustomEvent('consent-change', { detail: { t, a } }));
 }
 
 const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
@@ -28,7 +29,7 @@ function syncMaps() {
     const has = box.querySelector('iframe');
     if (ok && !has) {
       const f = document.createElement('iframe');
-      f.title = 'Mapa: Liderança Espaço de Eventos, a 25 minutos do Buriti Shopping';
+      f.title = 'Mapa: Liderança Espaço de Eventos em Abadia de Goiás';
       f.loading = 'lazy';
       f.referrerPolicy = 'no-referrer-when-downgrade';
       f.src = box.dataset.src!;
@@ -65,7 +66,7 @@ function bind() {
     if (t.closest('[data-cc-accept]')) { setConsent(true); closeBanner(); }
     else if (t.closest('[data-cc-reject]')) { setConsent(false); closeBanner(); }
     else if (t.closest('[data-cc-open]')) { openBanner(); }
-    else if (t.closest('[data-map-load]')) { setConsent(true); }
+    else if (t.closest('[data-map-load]')) { setConsent(true, !!getConsent()?.a); }
   });
   document.addEventListener('consent-change', syncMaps);
 }
