@@ -17,7 +17,7 @@ Veja `.env.example`. No Cloudflare: **Workers & Pages > liderancaeventos > Confi
 
 | Variável | Para que serve |
 |---|---|
-| `SITE_URL` | Endereço oficial. Padrão: `https://liderancaespacodeeventos.com.br`. Canonical, sitemap, `og:url`, `og:image`, dados estruturados e `robots.txt` saem daqui. |
+| `SITE_URL` | Endereço oficial. Padrão hoje: `https://liderancaeventos.pages.dev` (constante `PADRAO` em `astro.config.mjs`); trocar para `https://liderancaespacodeeventos.com.br` quando o domínio abrir. Canonical, sitemap, `og:url`, `og:image`, dados estruturados e `robots.txt` saem daqui. |
 | `PUBLIC_GA_ID` | ID do Google Analytics 4 (`G-XXXXXXXXXX`). Vazio = nada do Analytics é carregado. |
 | `PUBLIC_GSC_VERIFICATION` | Valor da meta tag de verificação do Search Console. |
 
@@ -30,7 +30,7 @@ Depois de mudar uma variável, faça um novo deploy (Implantações > Tentar imp
 3. Workers & Pages > liderancaeventos > **Domínios personalizados** > adicionar `liderancaespacodeeventos.com.br` e também `www.liderancaespacodeeventos.com.br`.
 4. HTTPS: o Cloudflare emite o certificado sozinho. Em SSL/TLS deixe o modo **Completo (estrito)** e ative **Sempre usar HTTPS**.
 5. Escolher um só endereço: **sem www**. Em Regras > **Regras de redirecionamento**, crie: "Se o host for `www.liderancaespacodeeventos.com.br`" → redirecionamento dinâmico 301 para `concat("https://liderancaespacodeeventos.com.br", http.request.uri.path)`, preservando a query string.
-6. Confirmar que `https://liderancaespacodeeventos.com.br/` abre o site.
+6. Confirmar que `https://liderancaespacodeeventos.com.br/` abre o site e trocar `PADRAO` em `astro.config.mjs` para o domínio novo (ou cadastrar `SITE_URL`).
 7. **Só agora** ativar o 301 do endereço antigo: copie `docs/cloudflare/_middleware.js` para `functions/_middleware.js`, faça commit e publique. Ele manda `liderancaeventos.pages.dev/qualquer-caminho` para `liderancaespacodeeventos.com.br/qualquer-caminho` (as prévias `xxxx.liderancaeventos.pages.dev` continuam funcionando).
    - Observação: o arquivo `_redirects` do Cloudflare Pages não aceita regra de um domínio para outro; por isso o redirecionamento usa o `_middleware.js`. A regra equivalente para "Redirecionamentos em massa" está em `docs/cloudflare/_redirects.exemplo`.
 8. Atualizar o link do site no perfil do Google (já está com o domínio novo) e no Instagram.
