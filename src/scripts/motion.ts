@@ -18,6 +18,13 @@ let chromeReady = false;
 function initChrome() {
   if (chromeReady) return;
   chromeReady = true;
+  // durante redimensionamento (girar o celular, mudar a janela) os blocos aparecem sem transição
+  let rz: ReturnType<typeof setTimeout> | undefined;
+  addEventListener('resize', () => {
+    document.documentElement.classList.add('rz');
+    clearTimeout(rz);
+    rz = setTimeout(() => document.documentElement.classList.remove('rz'), 500);
+  }, { passive: true });
   const setMenu = (open: boolean) => {
     document.body.classList.toggle('menu-open', open);
     $('#burger')?.setAttribute('aria-expanded', String(open));

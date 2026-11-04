@@ -1218,3 +1218,14 @@ main > section:not(:first-child):not([data-dn]):not(.dn), .footer { content-visi
 @media (prefers-reduced-motion: no-preference) {
   .js .hero .hero-logo { animation: hx-logo-move .9s var(--ease) .06s backwards, hx-logo-fade .3s ease-out backwards; }
 }
+.rz .rv { transition: none !important; }
+/* logo da home: sobe e esmaece, sem crescer (crescer adiaria o LCP para o fim da animação) */
+@keyframes hx-logo-rise { from { transform: translateY(24px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero .hero-logo { animation: hx-logo-rise .9s var(--ease) .06s backwards, hx-logo-fade .3s ease-out backwards; }
+}
+/* a animação fica no título que envolve o logo (o navegador registra a imagem já na primeira pintura) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero .hero-logo { animation: none; }
+  .js .hero h1 { animation: hx-logo-rise .9s var(--ease) .06s backwards, hx-logo-fade .3s ease-out backwards; }
+}
