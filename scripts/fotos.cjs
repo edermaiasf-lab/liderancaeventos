@@ -29,6 +29,12 @@ const keepOverride = { 'vista-geral': 0.76, 'piscina-led-1': 0.75, 'entrada-noit
     await sharp(d + '/' + f).extract({ left: 0, top: 0, width: m.width, height: h }).resize({ width: 800, kernel: 'lanczos3' }).sharpen({ sigma: 0.6 }).webp({ quality: 80, effort: 6 }).toFile(`public/img/sm/${name}.webp`);
     await sharp(d + '/' + f).extract({ left: 0, top: 0, width: m.width, height: h }).resize({ width: 480, kernel: 'lanczos3' }).sharpen({ sigma: 0.5 }).webp({ quality: 78, effort: 6 }).toFile(`public/img/xs/${name}.webp`);
     if (m.width * 1.5 > 1400) await sharp(buf).resize({ width: 1200, kernel: 'lanczos3' }).webp({ quality: 80, effort: 6 }).toFile(`public/img/md/${name}.webp`);
+    // AVIF (cerca de 40% menor que o WebP) em todos os tamanhos; o WebP fica de reserva
+    const corte = () => sharp(d + '/' + f).extract({ left: 0, top: 0, width: m.width, height: h });
+    await corte().resize({ width: 480, kernel: 'lanczos3' }).sharpen({ sigma: 0.5 }).avif({ quality: 52, effort: 5 }).toFile(`public/img/xs/${name}.avif`);
+    await corte().resize({ width: 800, kernel: 'lanczos3' }).sharpen({ sigma: 0.6 }).avif({ quality: 52, effort: 5 }).toFile(`public/img/sm/${name}.avif`);
+    if (m.width * 1.5 > 1400) await sharp(buf).resize({ width: 1200, kernel: 'lanczos3' }).avif({ quality: 52, effort: 5 }).toFile(`public/img/md/${name}.avif`);
+    await sharp(buf).avif({ quality: 55, effort: 5 }).toFile(`public/img/${name}.avif`);
     await sharp(buf).resize(64).blur(1.2).modulate({ saturation: 1.15 }).webp({ quality: 60 }).toFile(`public/img/blur/${name}.webp`);
     sizes[name] = [Math.round(m.width * 1.5), Math.round(h * 1.5)];
   }

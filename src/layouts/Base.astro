@@ -44,7 +44,7 @@ const org = {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   {/* imagem principal (LCP) pedida antes de qualquer outra coisa */}
-  {lcp.map((l) => <link rel="preload" as="image" type="image/webp" imagesrcset={l.srcset} imagesizes={l.sizes} media={l.media} fetchpriority="high" />)}
+  {lcp.map((l) => <link rel="preload" as="image" type={l.type ?? 'image/webp'} imagesrcset={l.srcset} imagesizes={l.sizes} media={l.media} fetchpriority="high" />)}
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
