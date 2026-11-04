@@ -1154,3 +1154,6 @@ html, body { overflow-x: clip; }
 .sec.sand, .dn, .reviews-band, .sec.sand .info-card { --muted: #57544d; }
 .sec.sand .kicker, .dn .kicker, .reviews-band .kicker { color: #6f5418; }
 .ft-copy a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* texto só para leitores de tela e buscadores */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

@@ -8,11 +8,20 @@ export const site = {
   telefoneLink: 'tel:+5562982612837',
   instagram: 'https://www.instagram.com/lideranca_espacodeeventos/', // conferir com o cliente
   endereco: ['Rua Fortaleza, Qd. 030, Lt. 010', 'Residencial Goiânia Sul, Zona Rural', 'CEP 75325-204, Abadia de Goiás – GO'],
+  // Tempo informado pelo dono. O Google Maps mostra 34 a 36 min (~20 km) saindo da Rua Fortaleza: ver README.
   referencia: '25 minutos do Buriti Shopping, pela GO-040',
+  semBarreira: 'O trajeto não passa por barreira.',
+  // grafia única do endereço (site, dados estruturados e perfil do Google)
+  enderecoLinha: 'Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural, CEP 75325-204, Abadia de Goiás – GO',
+  nomeGoogle: 'Espaço de eventos Liderança', // nome do perfil no Google (usado como alternateName)
+  googlePerfil: '', // PEDIR AO DONO: link do perfil no Google (ex.: https://maps.app.goo.gl/...). Entra no rodapé e no sameAs
+  googleAvaliar: '', // PEDIR AO DONO: link curto "Avalie no Google" (g.page/r/.../review). Mostra o botão quando preenchido
+  geo: null as null | { lat: number; lng: number }, // PEDIR AO DONO: latitude e longitude do portão (Google Maps > clicar no ponto)
+  pagamento: 'Cartão de crédito, cartão de débito, pagamento por aproximação',
   mapsRota: 'https://www.google.com/maps/dir/?api=1&destination=R.+Fortaleza+Qd.+030+Lt.+010+Residencial+Goi%C3%A2nia+Sul+Abadia+de+Goi%C3%A1s+GO',
   mapsEmbed: 'https://www.google.com/maps?q=R.+Fortaleza,+Residencial+Goi%C3%A2nia+Sul,+Abadia+de+Goi%C3%A1s+-+GO,+75325-204&output=embed',
-  nota: '4,8',
-  avaliacoes: 6,
+  nota: '5,0', // nota do perfil no Google
+  avaliacoes: 0, // número de avaliações no Google (0 = não mostra o número). CONFERIR com o dono
   capacidade: 60,
   legal: { razao: '', cnpj: '', email: '', atualizacao: '24 de outubro de 2026' },
 };
@@ -187,7 +196,7 @@ export const faq = [
   ['O espaço tem câmeras de segurança?', 'Sim, o espaço conta com sistema de câmeras de segurança.', 'O espaço'],
   ['Pode usar som automotivo?', 'Não. O som automotivo é proibido no espaço.', 'Regras'],
   ['Que tipos de evento vocês recebem?', 'Aniversários, festas infantis, chás de bebê e revelação, confraternizações e outras celebrações. Se o seu evento é diferente, chame no WhatsApp e converse.', 'Eventos'],
-  ['Onde fica?', `Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural, CEP 75325-204, Abadia de Goiás – GO. Fica a ${site.referencia}. O trajeto não passa por barreira. Na página Contato há o mapa e o botão de rota.`, 'Como chegar'],
+  ['Onde fica?', `Rua Fortaleza, Qd. 030, Lt. 010, Residencial Goiânia Sul, Zona Rural, CEP 75325-204, Abadia de Goiás – GO. Fica a ${site.referencia}. ${site.semBarreira} Na página Como chegar há o mapa e as rotas.`, 'Como chegar'],
 ];
 
 export const galeria = [
@@ -269,4 +278,32 @@ export const roteiros: Record<string, [string, string, string][]> = {
     ['18h', 'Fotos', 'Piscina iluminada e letreiro na entrada como cenário.'],
     ['22h', 'Encerramento', 'Fim da diária.'],
   ],
+};
+
+
+/** Texto alternativo de cada foto (único e descritivo). Fotos decorativas usam alt="" direto no componente. */
+export const altFoto: Record<string, string> = {
+  'vista-geral': 'Vista geral do Liderança Espaço de Eventos ao entardecer, com piscina, cascata e salão, em Abadia de Goiás',
+  'piscina-cascata': 'Piscina com cascata de pedra e aquecimento solar no Liderança Espaço de Eventos, em Abadia de Goiás',
+  'piscina-detalhe': 'Detalhe da cascata de pedra caindo sobre a água azul da piscina',
+  'piscina-lateral': 'Piscina e cascata vistas de lado, com o salão de festas ao fundo',
+  'piscina-lateral-2': 'Cascata de pedra e água azul da piscina vistas de perto, com o salão atrás',
+  'piscina-led-1': 'Piscina com luzes de LED na água e luminárias de parede acesas ao entardecer, ao lado do salão',
+  'piscina-led-2': 'Piscina com luzes rosa dentro da água e cascata de pedra ao fundo',
+  'piscina-led-3': 'Piscina ampla com cascata e luzes coloridas na água no espaço de eventos em Abadia de Goiás',
+  'piscina-led-4': 'Piscina com luzes coloridas na água e luminárias de parede ao entardecer',
+  'piscina-led-5': 'Piscina iluminada vista da borda, com o salão de festas aberto à direita',
+  'piscina-led-6': 'Piscina com luzes verdes e rosa na água e cascata de pedra',
+  'piscina-contraluz': 'Piscina e cascata de pedra com o sol da tarde ao fundo',
+  'piscina-dia': 'Piscina com cascata durante o dia, água azul e paredes escuras',
+  'cascata-salao': 'Cascata da piscina em primeiro plano e o salão de festas ao fundo',
+  'piscina-noite': 'Piscina sob o toldo à noite, com as luzes do espaço acesas',
+  'piscina-noite-2': 'Piscina com cascata iluminada no fim do dia, pronta para festa à noite',
+  'salao-sinuca': 'Salão de festas com mesa de sinuca, bancada com banquetas e TV na parede',
+  'salao-amplo': 'Salão amplo de piso claro com iluminação de embutir e TV, aberto para a piscina',
+  'salao-sinuca-2': 'Mesa de sinuca dentro do salão de festas, com iluminação de embutir',
+  'sinuca-close': 'Mesa de sinuca de feltro verde no salão do Liderança Espaço de Eventos',
+  bancada: 'Bancada escura com banquetas altas e mesa de sinuca, com a piscina ao fundo',
+  'fachada-dia': 'Fachada do Liderança Espaço de Eventos com letreiro e jardim de plantas na entrada, em Abadia de Goiás',
+  'entrada-noite': 'Letreiro do Liderança Espaço de Eventos iluminado à noite na entrada',
 };
