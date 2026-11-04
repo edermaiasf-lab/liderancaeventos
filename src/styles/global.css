@@ -810,7 +810,7 @@ main > [data-pin] { position: sticky; top: var(--pin-offset, 0px); z-index: 0; }
 /* galeria: contagem nos filtros e legenda na foto */
 .gal-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 30px; }
 .gal-head .filters, .gal-head .gcount { margin: 0; }
-.filters button small { opacity: .55; margin-left: 6px; font-size: .74em; }
+.filters button small { opacity: .8; margin-left: 6px; font-size: .74em; }
 .gallery button .go { position: absolute; left: 0; right: 0; bottom: 0; padding: 44px 16px 14px; text-align: left; font: 500 .74rem/1.4 var(--sans); color: #efe9dc; background: linear-gradient(0deg, rgba(20, 19, 15, .82), transparent); opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s var(--ease); }
 .gallery button:hover .go, .gallery button:focus-visible .go { opacity: 1; transform: none; }
 @media (hover: none) { .gallery button .go { opacity: 1; transform: none; font-size: .68rem; } }
