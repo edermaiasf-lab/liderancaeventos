@@ -14,7 +14,7 @@ const extra = nav.filter((i) => ['/duvidas/', '/contato/'].includes(i.href));
       <img class="logo-e" src="/img/marca/horizontal-escuro.webp" srcset="/img/marca/horizontal-escuro-240.webp 240w, /img/marca/horizontal-escuro.webp 480w" sizes="(max-width: 700px) 130px, 160px" width="1120" height="330" alt="" aria-hidden="true" loading="lazy" decoding="async" />
     </a>
     <nav class="nav-links" aria-label="Principal">
-      {nav.map((i) => <a href={i.href} aria-current={current(i.href)} data-astro-prefetch="load">{i.label}</a>)}
+      {nav.map((i) => <a href={i.href} aria-current={current(i.href)} data-nav-prefetch>{i.label}</a>)}
     </nav>
     <a href="/reservar/" class="btn sm">Consultar data <Arrow /></a>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>

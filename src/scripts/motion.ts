@@ -2,6 +2,7 @@ import { initReserva } from './reserva';
 import { initGaleria } from './galeria';
 import { initConsent } from './consent';
 import { initAnalytics } from './analytics';
+import { prefetch } from 'astro:prefetch';
 
 
 const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
@@ -157,6 +158,11 @@ document.addEventListener('astro:page-load', () => {
     import('./fx').then((mod) => { fx = mod; mod.initScrollFx(); mod.initMagnetic(); mod.initCounts(); });
   };
   if ('requestIdleCallback' in window) requestIdleCallback(later, { timeout: 1200 }); else setTimeout(later, 300);
+  // páginas do menu pré-carregadas só depois que esta terminou de carregar (não disputam com a foto/logo do topo)
+  const navPrefetch = () => setTimeout(() => $$<HTMLAnchorElement>('[data-nav-prefetch]').forEach((a) => prefetch(a.href)), 800);
+  if (document.readyState === 'complete') navPrefetch(); else addEventListener('load', navPrefetch, { once: true });
+  const fontesTarde = () => document.documentElement.classList.add('lf');
+  if (document.readyState === 'complete') fontesTarde(); else addEventListener('load', fontesTarde, { once: true });
   initReserva();
   initGaleria();
   const ano = $('#ano');

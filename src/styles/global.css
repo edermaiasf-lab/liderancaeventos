@@ -1234,3 +1234,9 @@ main > section:not(:first-child):not([data-dn]):not(.dn), .footer { content-visi
 @media (max-width: 700px) {
   .js .hero[data-hero] h1, .js .hero[data-hero] .hero-logo { animation: none; }
 }
+
+/* galeria sem JavaScript: usa as imagens do <noscript> */
+html:not(.js) .gallery picture { display: none; }
+
+/* home: o itálico do relógio (bem abaixo do topo) só é pedido depois que a página carrega (classe .lf em scripts/motion.ts) */
+html:not(.lf) .dn-time span { font-style: normal; }
