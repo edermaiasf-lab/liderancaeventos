@@ -25,7 +25,9 @@ const n = (c: string) => galeria.filter((g) => g[1] === c).length;
           const [w, h] = dims(img);
           return (
             <button type="button" data-item data-lb data-cat={cat} data-src={`/img/${img}.webp`} data-alt={alt} aria-label={`Ampliar: ${alt}`}>
-              <picture><source type="image/avif" srcset={`/img/xs/${img}.avif 480w, /img/sm/${img}.avif 800w`} sizes="(max-width: 700px) 50vw, 33vw" /><img src={`/img/sm/${img}.webp`} srcset={`/img/xs/${img}.webp 480w, /img/sm/${img}.webp 800w`} sizes="(max-width: 700px) 50vw, 33vw" width={w} height={h} loading="lazy" decoding="async" alt={altFoto[img] ?? alt} /></picture>
+              {/* miniaturas pedidas só depois que a página carrega (scripts/galeria.ts); a grade já fica invisível até a entrada */}
+              <picture><source type="image/avif" data-srcset={`/img/xs/${img}.avif 480w, /img/sm/${img}.avif 800w`} sizes="(max-width: 700px) 50vw, 33vw" /><img data-src={`/img/sm/${img}.webp`} data-srcset={`/img/xs/${img}.webp 480w, /img/sm/${img}.webp 800w`} sizes="(max-width: 700px) 50vw, 33vw" width={w} height={h} loading="lazy" decoding="async" alt={altFoto[img] ?? alt} /></picture>
+              <noscript><img src={`/img/sm/${img}.webp`} width={w} height={h} alt={altFoto[img] ?? alt} /></noscript>
               <span class="go">{cat} — {alt}</span>
             </button>
           );

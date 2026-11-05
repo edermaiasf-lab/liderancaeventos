@@ -78,6 +78,14 @@ export async function initGaleria() {
   bind();
   const root = document.getElementById('galeria');
   if (!root) return;
+  // espera a página carregar (foto do topo primeiro) e só então pede as miniaturas
+  if (document.readyState !== 'complete') {
+    await new Promise((r) => addEventListener('load', r, { once: true }));
+    await new Promise((r) => setTimeout(r, 300));
+  }
+  if (!root.isConnected) return;
+  root.querySelectorAll<HTMLElement>('[data-srcset]').forEach((el) => { el.setAttribute('srcset', el.dataset.srcset!); el.removeAttribute('data-srcset'); });
+  root.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((el) => { el.src = el.dataset.src!; el.removeAttribute('data-src'); });
   const [{ gsap }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
   gsap.registerPlugin(ScrollTrigger);
   const items = [...root.querySelectorAll<HTMLButtonElement>('[data-item]')];
